@@ -15,9 +15,20 @@ public class Entrenamiento {
 	private Date fecha_ini;	
 	private int hora;	
 	private int duracion;
-	private Usuario creador; //el usuario que crea el entrenamiento
+	private int creador; //el usuario que crea el entrenamiento
 	
 	
+	
+	public Entrenamiento(String titulo, String deporte, int distanciaKm, Date fecha_ini, int hora, int duracion) {
+		super();
+		this.titulo = titulo;
+		this.deporte = deporte;
+		this.distanciaKm = distanciaKm;
+		this.fecha_ini = fecha_ini;
+		this.hora = hora;
+		this.duracion = duracion;
+		//usuario u1, entrenamiento e1 -->e1.setCreador(u1);
+	}
 	public String getTitulo() {
 		return titulo;
 	}
@@ -56,11 +67,11 @@ public class Entrenamiento {
 	}
 	
 	
-	public Usuario getCreador() {
+	public int getCreador() {
 		return creador;
 	}
 	public void setCreador(Usuario creador) {
-		this.creador = creador;
+		this.creador = creador.getNumero();
 	}
 	@Override //imprime el entrenamiento
 	public String toString() {

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import domain.Contrasenya;
+import domain.UsuarioGmail;
 import domain.Entrenamiento;
 import domain.Usuario;
 import domain.Reto;

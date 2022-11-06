@@ -1,6 +1,6 @@
 package domain;
 
-public class Contrasenya extends Usuario{
+public class UsuarioGmail extends Usuario {
 	public String password;
 
 	public String getPassword() {

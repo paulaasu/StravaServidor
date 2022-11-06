@@ -8,7 +8,7 @@ import domain.TipoUsuario;
 
 
 public class Usuario {
-	private int numero; //ID????
+	private int numero; //ID
 	private String nombre;
 	private String email;
 	private float pesoKG;
@@ -16,7 +16,6 @@ public class Usuario {
 	private float frecCardMax;
 	private float frecCardResposo;
 	private TipoUsuario tipoUsuario;
-	//private List<Entrenamiento> entrenamientos = new ArrayList<>(); //ESTO NOSE SI ESTA BN
 	private List<Reto> retos = new ArrayList<>();
 	
 	
@@ -68,20 +67,7 @@ public int getNumero() {
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-	/*	//entrenamientos
-	public List<Entrenamiento> getEntrenamientos() {
-		return entrenamientos;
-	}
-	public void setEntrenamientos(List<Entrenamiento> entrenamientos) {
-		this.entrenamientos = entrenamientos;
-	}
-	
-	public void addEntrenamiento(Entrenamiento entrenamiento) { //añadir entrenamiento a la lista de entrenamientos
-		if (entrenamiento != null && !this.entrenamientos.contains(entrenamiento)) {
-			this.entrenamientos.add(entrenamiento);
-		}
-	}
-*/
+
 	//retos
 	public List<Reto> getRetos() {
 		return retos;
@@ -94,20 +80,49 @@ public int getNumero() {
 			this.retos.add(reto);
 		}
 	}
-	
-/*	@Override
-	public String toString() { //te imprime el usuario
-		NO ESTA HECHO
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", email=" + email + ", pesoKG=" + pesoKG + ", altura=" + altura
+				+ ", frecCardMax=" + frecCardMax + ", frecCardResposo=" + frecCardResposo + ", tipoUsuario="
+				+ tipoUsuario + ", retos=" + retos + "]";
 	}
-	*/
-	
-/*	@Override //te comprueba si son el mismo tipo de clase u objeto NOSE
+	@Override
 	public boolean equals(Object obj) {
-		if (this.getClass().getName().equals(obj.getClass().getName())) {
-			return this.email.equals(((User)obj).email);
-		}
-		
-		return false;
-	}*/
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (Float.floatToIntBits(altura) != Float.floatToIntBits(other.altura))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (Float.floatToIntBits(frecCardMax) != Float.floatToIntBits(other.frecCardMax))
+			return false;
+		if (Float.floatToIntBits(frecCardResposo) != Float.floatToIntBits(other.frecCardResposo))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (numero != other.numero)
+			return false;
+		if (Float.floatToIntBits(pesoKG) != Float.floatToIntBits(other.pesoKG))
+			return false;
+		if (retos == null) {
+			if (other.retos != null)
+				return false;
+		} else if (!retos.equals(other.retos))
+			return false;
+		if (tipoUsuario != other.tipoUsuario)
+			return false;
+		return true;
+	}
 	
 }
