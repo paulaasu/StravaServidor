@@ -9,6 +9,7 @@ import domain.Usuario;
 
 public class Reto {
 	private String nombre;
+	private String descripcion;
 	private Date fecha_ini; //duda: Date o String?
 	private Date fecha_fin;	
 	private int distancia;
@@ -16,12 +17,34 @@ public class Reto {
 	private String deporte;
 	Usuario creador;
 	
+	public Reto(String nombre, String descripcion, Date fecha_ini, Date fecha_fin, int distancia, long tiempoObjetivo,
+			String deporte, Usuario creador) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fecha_ini = fecha_ini;
+		this.fecha_fin = fecha_fin;
+		this.distancia = distancia;
+		this.tiempoObjetivo = tiempoObjetivo;
+		this.deporte = deporte;
+		this.creador = creador;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public Date getFecha_ini() {
 		return fecha_ini;
 	}
@@ -61,30 +84,41 @@ public class Reto {
 		this.creador = creador;
 	}
 	
+
 	@Override
 	public String toString() {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-YY - hh:mm");
-		NumberFormat numberFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
-
-		
-		StringBuffer result = new StringBuffer("Titulo:");
-		
-		result.append(this.getNombre());
-		result.append(" - Deporte:");
-		result.append(this.getDeporte());
-		result.append(" - Fecha Inicio:");
-		result.append(dateFormatter.format(this.fecha_ini));
-		result.append(" - Fecha Fin:");
-		result.append(dateFormatter.format(this.fecha_fin));
-		result.append(" - Distancia:");
-		result.append(numberFormatter.format(this.distancia));
-		result.append(" - Tiempo Objetivo:");
-		result.append(numberFormatter.format(this.tiempoObjetivo));
-		result.append(" - Creador:");
-		result.append(this.creador.getNombre());
-		
-		return result.toString();
+		return "Reto [nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_ini=" + fecha_ini + ", fecha_fin="
+				+ fecha_fin + ", distancia=" + distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte
+				+ ", creador=" + creador + "]";
 	}
+	
+	
+	
+//	@Override
+//	public String toString() {
+//		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-YY - hh:mm");
+//		NumberFormat numberFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
+//
+//		
+//		StringBuffer result = new StringBuffer("Titulo:");
+//		
+//		
+//		result.append(this.getNombre());
+//		result.append(" - Deporte:");
+//		result.append(this.getDeporte());
+//		result.append(" - Fecha Inicio:");
+//		result.append(dateFormatter.format(this.fecha_ini));
+//		result.append(" - Fecha Fin:");
+//		result.append(dateFormatter.format(this.fecha_fin));
+//		result.append(" - Distancia:");
+//		result.append(numberFormatter.format(this.distancia));
+//		result.append(" - Tiempo Objetivo:");
+//		result.append(numberFormatter.format(this.tiempoObjetivo));
+//		result.append(" - Creador:");
+//		result.append(this.creador.getNombre());
+//		
+//		return result.toString();
+//	}
 
 
 }

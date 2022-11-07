@@ -1,7 +1,7 @@
 package services;
 
 import domain.Usuario;
-import domain.Contrasenya;
+import domain.UsuarioGmail;
 //TODO: Implement Singleton Pattern
 public class LoginAppService {
 		
