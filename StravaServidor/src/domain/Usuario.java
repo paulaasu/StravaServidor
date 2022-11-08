@@ -19,6 +19,19 @@ public class Usuario {
 	private List<Reto> retos = new ArrayList<>();
 	
 	
+public Usuario(int numero, String nombre, String email, float pesoKG, float altura, float frecCardMax,
+			float frecCardResposo, TipoUsuario tipoUsuario, List<Reto> retos) {
+		super();
+		this.numero = numero;
+		this.nombre = nombre;
+		this.email = email;
+		this.pesoKG = pesoKG;
+		this.altura = altura;
+		this.frecCardMax = frecCardMax;
+		this.frecCardResposo = frecCardResposo;
+		this.tipoUsuario = tipoUsuario;
+		this.retos = retos;
+	}
 public int getNumero() {
 		return numero;
 	}

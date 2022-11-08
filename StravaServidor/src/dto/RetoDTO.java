@@ -14,7 +14,7 @@ public class RetoDTO implements Serializable {
 	private int distancia;
 	private long tiempoObjetivo;
 	private String deporte;
-	Usuario creador;
+	private int creador;
 	
 	public String getNombre() {
 		return nombre;
@@ -53,37 +53,17 @@ public class RetoDTO implements Serializable {
 		this.deporte = deporte;
 	}
 	
-	
-	public Usuario getCreador() {
+	public int getCreador() {
 		return creador;
 	}
-	public void setCreador(Usuario creador) {
+	public void setCreador(int creador) {
 		this.creador = creador;
 	}
-	
 	@Override
 	public String toString() {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-YY - hh:mm");
-		NumberFormat numberFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
-
-		
-		StringBuffer result = new StringBuffer("Titulo:");
-		
-		result.append(this.getNombre());
-		result.append(" - Deporte:");
-		result.append(this.getDeporte());
-		result.append(" - Fecha Inicio:");
-		result.append(dateFormatter.format(this.fecha_ini));
-		result.append(" - Fecha Fin:");
-		result.append(dateFormatter.format(this.fecha_fin));
-		result.append(" - Distancia:");
-		result.append(numberFormatter.format(this.distancia));
-		result.append(" - Tiempo Objetivo:");
-		result.append(numberFormatter.format(this.tiempoObjetivo));
-		result.append(" - Creador:");
-		result.append(this.creador.getNombre());
-		
-		return result.toString();
+		return "RetoDTO [nombre=" + nombre + ", fecha_ini=" + fecha_ini + ", fecha_fin=" + fecha_fin + ", distancia="
+				+ distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte + ", creador=" + creador
+				+ "]";
 	}
 
 

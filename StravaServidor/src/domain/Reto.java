@@ -15,10 +15,12 @@ public class Reto {
 	private int distancia;
 	private long tiempoObjetivo;
 	private String deporte;
-	Usuario creador;
+	private int creador;
+	
+	
 	
 	public Reto(String nombre, String descripcion, Date fecha_ini, Date fecha_fin, int distancia, long tiempoObjetivo,
-			String deporte, Usuario creador) {
+			String deporte, int creador) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -29,7 +31,6 @@ public class Reto {
 		this.deporte = deporte;
 		this.creador = creador;
 	}
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -75,16 +76,13 @@ public class Reto {
 	public void setDeporte(String deporte) {
 		this.deporte = deporte;
 	}
-	
-	
-	public Usuario getCreador() {
+
+	public int getCreador() {
 		return creador;
 	}
-	public void setCreador(Usuario creador) {
+	public void setCreador(int creador) {
 		this.creador = creador;
 	}
-	
-
 	@Override
 	public String toString() {
 		return "Reto [nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_ini=" + fecha_ini + ", fecha_fin="
@@ -92,33 +90,5 @@ public class Reto {
 				+ ", creador=" + creador + "]";
 	}
 	
-	
-	
-//	@Override
-//	public String toString() {
-//		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-YY - hh:mm");
-//		NumberFormat numberFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
-//
-//		
-//		StringBuffer result = new StringBuffer("Titulo:");
-//		
-//		
-//		result.append(this.getNombre());
-//		result.append(" - Deporte:");
-//		result.append(this.getDeporte());
-//		result.append(" - Fecha Inicio:");
-//		result.append(dateFormatter.format(this.fecha_ini));
-//		result.append(" - Fecha Fin:");
-//		result.append(dateFormatter.format(this.fecha_fin));
-//		result.append(" - Distancia:");
-//		result.append(numberFormatter.format(this.distancia));
-//		result.append(" - Tiempo Objetivo:");
-//		result.append(numberFormatter.format(this.tiempoObjetivo));
-//		result.append(" - Creador:");
-//		result.append(this.creador.getNombre());
-//		
-//		return result.toString();
-//	}
-
 
 }
