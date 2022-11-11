@@ -12,6 +12,13 @@ public class UsuarioGmail extends Usuario {
 		super(numero, nombre, email, pesoKG, altura, frecCardMax, frecCardResposo, tipoUsuario, retos);
 		this.password = password;
 	}
+	
+
+	public UsuarioGmail() {
+		super();
+		this.password = "";
+	}
+
 
 	public String getPassword() {
 		return password;

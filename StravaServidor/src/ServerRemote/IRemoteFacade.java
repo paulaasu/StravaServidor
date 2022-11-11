@@ -12,9 +12,13 @@ import dto.TipoUsuarioDTO;
 //This interface defines the API of the Server. It represents the Remote Facade pattern
 public interface IRemoteFacade extends Remote {	
 
-	public long login(String email, String password) throws RemoteException;
+	public long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
 	
 	public void logout(long token) throws RemoteException; 
+	
+	public long registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	
+	public long registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
 	
 	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException;
 	

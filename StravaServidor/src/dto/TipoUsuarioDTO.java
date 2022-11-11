@@ -1,5 +1,7 @@
 package dto;
 
-public class TipoUsuarioDTO {
-
+public enum TipoUsuarioDTO {
+	GOOGLE,
+	FACEBOOK,
+	EMAIL
 }

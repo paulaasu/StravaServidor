@@ -32,6 +32,19 @@ public Usuario(int numero, String nombre, String email, float pesoKG, float altu
 		this.tipoUsuario = tipoUsuario;
 		this.retos = retos;
 	}
+
+public Usuario() {
+	super();
+	this.numero = 0;
+	this.nombre = "";
+	this.email = "";
+	this.pesoKG = 0;
+	this.altura = 0;
+	this.frecCardMax = 0;
+	this.frecCardResposo = 0;
+	this.tipoUsuario = null;
+	this.retos = null;
+}
 public int getNumero() {
 		return numero;
 	}

@@ -38,11 +38,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 	
 	@Override
-	public synchronized long login(String email, String password) throws RemoteException {
-		System.out.println(" * RemoteFacade login(): " + email + " / " + password);
+	public synchronized long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuario) throws RemoteException {
+		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
 				
 		//Perform login() using LoginAppService
-		Usuario user = loginService.login(email, password);
+		Usuario user = loginService.login(email, password, nickname, tipoUsuario);
 			
 		//If login() success user is stored in the Server State
 		if (user != null) {
@@ -108,4 +108,25 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public long registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+			throws RemoteException {
+		
+		Usuario user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
+		
+		
+		return 0;
+	}
+
+	@Override
+	public long registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
+			Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+		Usuario user = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
+		return 0;
+	}
+
+	
 }
