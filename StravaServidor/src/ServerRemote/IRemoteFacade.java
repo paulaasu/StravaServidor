@@ -16,13 +16,11 @@ public interface IRemoteFacade extends Remote {
 	
 	public void logout(long token) throws RemoteException; 
 	
-	public long registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	public UsuarioDTO registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
 	
-	public long registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
+	public UsuarioDTO registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
 	
 	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException;
-	
-	public UsuarioDTO getCheckedUsuario(String email, String password) throws RemoteException;
 	
 	public void anyadirRetoARetos(RetoDTO reto, UsuarioDTO user) throws RemoteException;
 	

@@ -8,9 +8,8 @@ import domain.Usuario;
 
 public class UsuarioAssembler {
 
-	private static UsuarioAssembler instance;
+	public static UsuarioAssembler instance;
 
-	private UsuarioAssembler() { }
 	
 	public static UsuarioAssembler getInstance() {
 		if (instance == null) {

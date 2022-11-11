@@ -92,12 +92,6 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public UsuarioDTO getCheckedUsuario(String email, String password) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void anyadirRetoARetos(RetoDTO reto, UsuarioDTO user) throws RemoteException {
 		// TODO Auto-generated method stub
 		
@@ -110,22 +104,27 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public long registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public UsuarioDTO registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		
 		Usuario user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
+		UsuarioAssembler assembler = new UsuarioAssembler();
+		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
 		
+		return usuarioDto;
 		
-		return 0;
 	}
 
 	@Override
-	public long registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
+	public UsuarioDTO registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
 			Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 		Usuario user = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
-		return 0;
+		UsuarioAssembler assembler = new UsuarioAssembler();
+		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
+		
+		return usuarioDto;
 	}
 
 	
