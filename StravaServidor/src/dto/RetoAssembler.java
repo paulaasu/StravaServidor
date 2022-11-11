@@ -8,9 +8,8 @@ import domain.Reto;
 
 public class RetoAssembler {
 
-	private static RetoAssembler instance;
+	public static RetoAssembler instance;
 
-	private RetoAssembler() { }
 	
 	public static RetoAssembler getInstance() {
 		if (instance == null) {

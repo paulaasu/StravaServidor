@@ -9,8 +9,8 @@ import domain.Usuario;
 
 public class RetoDTO implements Serializable {
 	private String nombre;
-	private Date fecha_ini; //duda: Date o String?
-	private Date fecha_fin;	
+	private String fecha_ini; //duda: Date o String?
+	private String fecha_fin;	
 	private int distancia;
 	private long tiempoObjetivo;
 	private String deporte;
@@ -22,16 +22,16 @@ public class RetoDTO implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFecha_ini() {
+	public String getFecha_ini() {
 		return fecha_ini;
 	}
-	public void setFecha_ini(Date fecha_ini) {
+	public void setFecha_ini(String fecha_ini) {
 		this.fecha_ini = fecha_ini;
 	}
-	public Date getFecha_fin() {
+	public String getFecha_fin() {
 		return fecha_fin;
 	}
-	public void setFecha_fin(Date fecha_fin) {
+	public void setFecha_fin(String fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 	public int getDistancia() {

@@ -47,16 +47,16 @@ public class LoginAppService {
 			u.setEmail(email);
 			u.setNombre(nickName);
 			u.setTipoUsuario(TipoUsuario.FACEBOOK);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			return u;
 		}else if (tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)){
 			Usuario u = new Usuario();
 			u.setEmail(email);
 			u.setNombre(nickName);
 			u.setTipoUsuario(TipoUsuario.GOOGLE);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			return u;
 		} else if(tipoUsuarioDTO.equals(TipoUsuarioDTO.EMAIL)){
 			UsuarioGmail u = new UsuarioGmail();
@@ -64,8 +64,8 @@ public class LoginAppService {
 			u.setNombre(nickName);
 			u.setPassword(password);
 			u.setTipoUsuario(TipoUsuario.EMAIL);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			return u;
 		}
 		
@@ -83,8 +83,8 @@ public class LoginAppService {
 			u.setAltura(altura);
 			u.setFrecCardMax(frecCardMax);
 			u.setFrecCardResposo(frecCardReposo);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			return u;
 		}else if (tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)){
 			Usuario u = new Usuario();
@@ -95,8 +95,8 @@ public class LoginAppService {
 			u.setAltura(altura);
 			u.setFrecCardMax(frecCardMax);
 			u.setFrecCardResposo(frecCardReposo);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			return u;
 		} else if(tipoUsuarioDTO.equals(TipoUsuarioDTO.EMAIL)){
 			UsuarioGmail u = new UsuarioGmail();
@@ -108,8 +108,8 @@ public class LoginAppService {
 			u.setAltura(altura);
 			u.setFrecCardMax(frecCardMax);
 			u.setFrecCardResposo(frecCardReposo);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			return u;
 		}
 		

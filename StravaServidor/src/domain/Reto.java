@@ -10,8 +10,8 @@ import domain.Usuario;
 public class Reto {
 	private String nombre;
 	private String descripcion;
-	private Date fecha_ini; //duda: Date o String?
-	private Date fecha_fin;	
+	private String fecha_ini; //duda: Date o String?
+	private String fecha_fin;	
 	private int distancia;
 	private long tiempoObjetivo;
 	private String deporte;
@@ -19,7 +19,7 @@ public class Reto {
 	
 	
 	
-	public Reto(String nombre, String descripcion, Date fecha_ini, Date fecha_fin, int distancia, long tiempoObjetivo,
+	public Reto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, long tiempoObjetivo,
 			String deporte, int creador) {
 		super();
 		this.nombre = nombre;
@@ -30,6 +30,17 @@ public class Reto {
 		this.tiempoObjetivo = tiempoObjetivo;
 		this.deporte = deporte;
 		this.creador = creador;
+	}
+	public Reto() {
+		super();
+		this.nombre = "";
+		this.descripcion = "";
+		this.fecha_ini = null;
+		this.fecha_fin = null;
+		this.distancia = 0;
+		this.tiempoObjetivo = 0;
+		this.deporte = "";
+		this.creador = 0;
 	}
 	public String getNombre() {
 		return nombre;
@@ -46,16 +57,16 @@ public class Reto {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFecha_ini() {
+	public String getFecha_ini() {
 		return fecha_ini;
 	}
-	public void setFecha_ini(Date fecha_ini) {
+	public void setFecha_ini(String fecha_ini) {
 		this.fecha_ini = fecha_ini;
 	}
-	public Date getFecha_fin() {
+	public String getFecha_fin() {
 		return fecha_fin;
 	}
-	public void setFecha_fin(Date fecha_fin) {
+	public void setFecha_fin(String fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 	public int getDistancia() {

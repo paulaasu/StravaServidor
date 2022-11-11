@@ -20,7 +20,7 @@ import dto.RetoDTO;
 import dto.UsuarioDTO;
 import dto.UsuarioAssembler;
 import dto.TipoUsuarioDTO;
-import services.BidAppService;
+import services.ERAppService;
 import services.LoginAppService;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {	
@@ -31,7 +31,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	
 	//TODO: Remove this instances when Singleton Pattern is implemented
 	private LoginAppService loginService = new LoginAppService();
-	private BidAppService bidService = new BidAppService();
+	private ERAppService eraService = new ERAppService();
 
 	public RemoteFacade() throws RemoteException {
 		super();		
@@ -76,7 +76,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		System.out.println(" * RemoteFacade get GBP rate");
 		
 		//Get rate using BidAppService
-		float rate = bidService.getGBPRate();
+		float rate = eraService.getGBPRate();
 		
 		if (rate != -1) {
 			return rate;
