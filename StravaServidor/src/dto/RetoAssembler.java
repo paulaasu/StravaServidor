@@ -26,7 +26,6 @@ public class RetoAssembler {
 		dto.setFecha_ini(reto.getFecha_ini());
 		dto.setFecha_fin(reto.getFecha_fin());
 		dto.setDistancia(reto.getDistancia());
-		dto.setTiempoObjetivo(reto.getTiempoObjetivo());
 		dto.setDeporte(reto.getDeporte());
 		dto.setCreador(reto.getCreador());
 				

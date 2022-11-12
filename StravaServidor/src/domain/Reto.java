@@ -13,7 +13,6 @@ public class Reto {
 	private String fecha_ini; //duda: Date o String?
 	private String fecha_fin;	
 	private int distancia;
-	private long tiempoObjetivo;
 	private String deporte;
 	private int creador;
 	
@@ -27,7 +26,6 @@ public class Reto {
 		this.fecha_ini = fecha_ini;
 		this.fecha_fin = fecha_fin;
 		this.distancia = distancia;
-		this.tiempoObjetivo = tiempoObjetivo;
 		this.deporte = deporte;
 		this.creador = creador;
 	}
@@ -38,7 +36,6 @@ public class Reto {
 		this.fecha_ini = null;
 		this.fecha_fin = null;
 		this.distancia = 0;
-		this.tiempoObjetivo = 0;
 		this.deporte = "";
 		this.creador = 0;
 	}
@@ -75,12 +72,6 @@ public class Reto {
 	public void setDistancia(int distancia) {
 		this.distancia = distancia;
 	}
-	public long getTiempoObjetivo() {
-		return tiempoObjetivo;
-	}
-	public void setTiempoObjetivo(long tiempoObjetivo) {
-		this.tiempoObjetivo = tiempoObjetivo;
-	}
 	public String getDeporte() {
 		return deporte;
 	}
@@ -97,7 +88,7 @@ public class Reto {
 	@Override
 	public String toString() {
 		return "Reto [nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_ini=" + fecha_ini + ", fecha_fin="
-				+ fecha_fin + ", distancia=" + distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte
+				+ fecha_fin + ", distancia=" + distancia + ", deporte=" + deporte
 				+ ", creador=" + creador + "]";
 	}
 	

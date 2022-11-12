@@ -45,7 +45,7 @@ public class LoginAppService {
 		
 	}
 	public String registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
-		String mensaje;
+		String mensaje="";
 		if(tipoUsuarioDTO.equals(tipoUsuarioDTO.FACEBOOK)){
 			Usuario u = new Usuario();
 			u.setEmail(email);
@@ -53,8 +53,9 @@ public class LoginAppService {
 			u.setTipoUsuario(TipoUsuario.FACEBOOK);
 			List<Reto> reto = new ArrayList<>();
 			u.setRetos(reto);
+			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
+			System.out.println("Usuario creado: Nombre: "+u.getNombre()+" Email: "+u.getEmail());
 			mensaje = "Se ha registrado el usuario correctamente";
-			return mensaje;
 		}else if (tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)){
 			Usuario u = new Usuario();
 			u.setEmail(email);
@@ -62,8 +63,9 @@ public class LoginAppService {
 			u.setTipoUsuario(TipoUsuario.GOOGLE);
 			List<Reto> reto = new ArrayList<>();
 			u.setRetos(reto);
-			mensaje = "Se ha registrado el usuario correctamente";
-			return mensaje;
+			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
+			System.out.println("Usuario creado: Nombre: "+u.getNombre()+" Email: "+u.getEmail());
+			mensaje = "Se ha registrado el usuario GOOGLE correctamente";
 		} else if(tipoUsuarioDTO.equals(TipoUsuarioDTO.EMAIL)){
 			UsuarioGmail u = new UsuarioGmail();
 			u.setEmail(email);
@@ -72,11 +74,12 @@ public class LoginAppService {
 			u.setTipoUsuario(TipoUsuario.EMAIL);
 			List<Reto> reto = new ArrayList<>();
 			u.setRetos(reto);
-			mensaje = "Se ha registrado el usuario correctamente";
-			return mensaje;
+			System.out.println("Se ha registrado el usuario EMAIL correctamente");
+			mensaje = "Se ha registrado el usuario EMAIL correctamente";
+			System.out.println("Usuario creado: Nombre: "+u.getNombre()+" Email: "+u.getEmail()+" Contrasenya: "+u.getPassword());
 		}
 		
-		return null;
+		return mensaje;
 		
 	}
 	public String registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
@@ -94,6 +97,7 @@ public class LoginAppService {
 //			List<Reto> reto = new ArrayList<>();
 //			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
+			System.out.println("Usuario creado: Nombre: "+u.getNombre()+" Email: "+u.getEmail()+" Peso: "+u.getPesoKG()+ " Altura: "+u.getAltura()+" F.C.M: "+u.getFrecCardMax()+" F.C.R: "+u.getFrecCardResposo());
 			mensaje = "Se ha registrado el usuario FACEBOOK correctamente";
 		}else if (tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)){
 			UsuarioDTO u = new UsuarioDTO();
@@ -107,6 +111,7 @@ public class LoginAppService {
 //			List<Reto> reto = new ArrayList<>();
 //			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
+			System.out.println("Usuario creado: Nombre: "+u.getNombre()+" Email: "+u.getEmail()+" Peso: "+u.getPesoKG()+ " Altura: "+u.getAltura()+" F.C.M: "+u.getFrecCardMax()+" F.C.R: "+u.getFrecCardResposo());
 			mensaje = "Se ha registrado el usuario GOOGLE correctamente";
 		} else if(tipoUsuarioDTO.equals(TipoUsuarioDTO.EMAIL)){
 			UsuarioGmail u = new UsuarioGmail();
@@ -121,6 +126,7 @@ public class LoginAppService {
 //			List<Reto> reto = new ArrayList<>();
 //			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario EMAIL correctamente");
+			System.out.println("Usuario creado: Nombre: "+u.getNombre()+" Email: "+u.getEmail()+" Contrasenya: "+u.getPassword()+" Peso: "+u.getPesoKG()+ " Altura: "+u.getAltura()+" F.C.M: "+u.getFrecCardMax()+" F.C.R: "+u.getFrecCardResposo());
 			mensaje = "Se ha registrado el usuario EMAIL correctamente";
 		}
 		

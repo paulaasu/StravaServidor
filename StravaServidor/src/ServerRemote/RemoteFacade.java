@@ -86,23 +86,23 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		}
 	}
 
-	@Override
-	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	@Override
-	public void anyadirRetoARetos(RetoDTO reto, UsuarioDTO user) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void quitarRetoARetos(String tituloReto) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void anyadirRetoARetos(RetoDTO reto, UsuarioDTO user) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void quitarRetoARetos(String tituloReto) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	@Override
 	public String registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
@@ -127,6 +127,20 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 //		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
 		
 		return usuarioDTO;
+	}
+
+	@Override
+	public RetoDTO crearReto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, String deporte, int creador) throws RemoteException {
+		
+		RetoDTO retoDTO = eraService.crearReto(nombre, descripcion, fecha_ini, fecha_fin, distancia, deporte, creador);
+		
+		return retoDTO;
+	}
+
+	@Override
+	public EntrenamientoDTO crearEntrenamiento(String deporte) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

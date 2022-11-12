@@ -9,13 +9,41 @@ import domain.Usuario;
 
 public class RetoDTO implements Serializable {
 	private String nombre;
+	private String descripcion;
 	private String fecha_ini; //duda: Date o String?
 	private String fecha_fin;	
 	private int distancia;
-	private long tiempoObjetivo;
 	private String deporte;
 	private int creador;
+
 	
+	public RetoDTO(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, String deporte, int creador) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fecha_ini = fecha_ini;
+		this.fecha_fin = fecha_fin;
+		this.distancia = distancia;
+		this.deporte = deporte;
+		this.creador = creador;
+	}
+	
+	public RetoDTO() {
+		super();
+		this.nombre = "";
+		this.descripcion = "";
+		this.fecha_ini = "";
+		this.fecha_fin = "";
+		this.distancia = 0;
+		this.deporte = "";
+		this.creador = 0;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,17 +62,12 @@ public class RetoDTO implements Serializable {
 	public void setFecha_fin(String fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
+	
 	public int getDistancia() {
 		return distancia;
 	}
 	public void setDistancia(int distancia) {
 		this.distancia = distancia;
-	}
-	public long getTiempoObjetivo() {
-		return tiempoObjetivo;
-	}
-	public void setTiempoObjetivo(long tiempoObjetivo) {
-		this.tiempoObjetivo = tiempoObjetivo;
 	}
 	public String getDeporte() {
 		return deporte;
@@ -62,7 +85,7 @@ public class RetoDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "RetoDTO [nombre=" + nombre + ", fecha_ini=" + fecha_ini + ", fecha_fin=" + fecha_fin + ", distancia="
-				+ distancia + ", tiempoObjetivo=" + tiempoObjetivo + ", deporte=" + deporte + ", creador=" + creador
+				+ distancia + ", deporte=" + deporte + ", creador=" + creador
 				+ "]";
 	}
 
