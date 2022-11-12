@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,9 +139,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public EntrenamientoDTO crearEntrenamiento(String deporte) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) throws RemoteException {
+		
+		EntrenamientoDTO entreDTO = eraService.crearEntrenamiento(titulo, deporte,distanciaKm,fecha_ini, hora, duracion, creador);
+		
+		return entreDTO;
 	}
 
 	

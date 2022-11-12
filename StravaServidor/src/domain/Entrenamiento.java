@@ -12,14 +12,14 @@ public class Entrenamiento {
 	private String titulo;
 	private String deporte;
 	private int distanciaKm;
-	private Date fecha_ini;	
+	private String fecha_ini;	
 	private int hora;	
 	private int duracion;
 	private int creador; //el usuario que crea el entrenamiento
 	
 	
 	
-	public Entrenamiento(String titulo, String deporte, int distanciaKm, Date fecha_ini, int hora, int duracion) {
+	public Entrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion) {
 		super();
 		this.titulo = titulo;
 		this.deporte = deporte;
@@ -47,10 +47,10 @@ public class Entrenamiento {
 	public void setDistanciaKm(int distanciaKm) {
 		this.distanciaKm = distanciaKm;
 	}
-	public Date getFecha_ini() {
+	public String getFecha_ini() {
 		return fecha_ini;
 	}
-	public void setFecha_ini(Date fecha_ini) {
+	public void setFecha_ini(String fecha_ini) {
 		this.fecha_ini = fecha_ini;
 	}
 	public int getHora() {

@@ -14,6 +14,7 @@ import domain.Entrenamiento;
 import domain.Reto;
 import domain.Usuario;
 import domain.UsuarioGmail;
+import dto.EntrenamientoDTO;
 import dto.RetoAssembler;
 import dto.RetoDTO;
 
@@ -85,8 +86,8 @@ public class ERAppService {
 //	}
 	
 	
-	public Entrenamiento crearEntrenamiento(String titulo, String deporte, int distanciaKm, Date fecha_ini, int hora, int duracion) {
-		Entrenamiento entrenamiento = new Entrenamiento(titulo, deporte,distanciaKm,fecha_ini, hora, duracion);
+	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) {
+		EntrenamientoDTO entrenamiento = new EntrenamientoDTO(titulo, deporte,distanciaKm,fecha_ini, hora, duracion, creador);
 		
 		System.out.println("Se ha creado el Entrenamiento correctamente");
 		return entrenamiento;

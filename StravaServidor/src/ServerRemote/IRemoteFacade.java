@@ -3,6 +3,8 @@ package ServerRemote;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
+
 //import clases.RetoAceptadoDTO;
 import dto.EntrenamientoDTO;
 import dto.RetoDTO;
@@ -28,7 +30,7 @@ public interface IRemoteFacade extends Remote {
 //		
 	public RetoDTO crearReto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia,String deporte, int creador) throws RemoteException;
 	
-	public EntrenamientoDTO crearEntrenamiento(String deporte) throws RemoteException;
+	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) throws RemoteException;
 	
 	
 //	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException;
