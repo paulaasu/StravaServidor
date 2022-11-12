@@ -12,7 +12,6 @@ import domain.UsuarioGmail;
 import domain.Entrenamiento;
 import domain.Usuario;
 import domain.Reto;
-import domain.TipoUsuario;
 import dto.EntrenamientoAssembler;
 import dto.EntrenamientoDTO;
 import dto.RetoAssembler;

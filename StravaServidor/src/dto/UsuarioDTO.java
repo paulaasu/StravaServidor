@@ -2,8 +2,6 @@ package dto;
 
 import java.io.Serializable;
 
-import domain.TipoUsuario;
-
 public class UsuarioDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +12,7 @@ public class UsuarioDTO implements Serializable {
 	private float altura;
 	private float frecCardMax;
 	private float frecCardResposo;
-	private TipoUsuario tipoUsuario;
+	private TipoUsuarioDTO tipoUsuario;
 	
 	public int getNumero() {
 		return numero;
@@ -58,10 +56,10 @@ public class UsuarioDTO implements Serializable {
 	public void setFrecCardResposo(float frecCardResposo) {
 		this.frecCardResposo = frecCardResposo;
 	}
-	public TipoUsuario getTipoUsuario() {
+	public TipoUsuarioDTO getTipoUsuario() {
 		return tipoUsuario;
 	}
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+	public void setTipoUsuario(TipoUsuarioDTO tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
 	

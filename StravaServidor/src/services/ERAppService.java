@@ -30,7 +30,7 @@ public class ERAppService {
 		UsuarioGmail user0 = new UsuarioGmail();
 		user0.setEmail("thomas.e2001@gmail.com");
 		user0.setNombre("Thomas");
-		user0.setPassword("$!9PhNz,");
+		user0.setPassword("aaa");
 		user0.setNumero(1);
 
 		UsuarioGmail user1 = new UsuarioGmail();
