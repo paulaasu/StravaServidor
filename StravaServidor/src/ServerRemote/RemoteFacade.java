@@ -41,7 +41,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
 				
 		//Perform login() using LoginAppService
+		System.out.println("login");
 		Usuario user = loginService.login(email, password, nickname, tipoUsuario);
+		System.out.println("loa");
 			
 		//If login() success user is stored in the Server State
 		if (user != null) {
@@ -103,27 +105,28 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public UsuarioDTO registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public String registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		
-		Usuario user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
-		UsuarioAssembler assembler = new UsuarioAssembler();
-		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
+		String user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
+//		UsuarioAssembler assembler = new UsuarioAssembler();
+//		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
 		
-		return usuarioDto;
+		return user;
 		
 	}
 
 	@Override
-	public UsuarioDTO registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
+	public String registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
 			Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
-		// TODO Auto-generated method stub
 		
-		Usuario user = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
-		UsuarioAssembler assembler = new UsuarioAssembler();
-		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
 		
-		return usuarioDto;
+		String usuarioDTO = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
+//		Usuario user = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
+//		UsuarioAssembler assembler = new UsuarioAssembler();
+//		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
+		
+		return usuarioDTO;
 	}
 
 	

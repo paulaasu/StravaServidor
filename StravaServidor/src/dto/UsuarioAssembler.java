@@ -3,8 +3,10 @@ package dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.TipoUsuarioDTO;
 import domain.Entrenamiento;
 import domain.Usuario;
+import domain.TipoUsuario;
 
 public class UsuarioAssembler {
 
@@ -29,7 +31,15 @@ public class UsuarioAssembler {
 		dto.setAltura(usuario.getAltura());
 		dto.setFrecCardMax(usuario.getFrecCardMax());
 		dto.setFrecCardResposo(usuario.getFrecCardResposo());
-				
+		
+		if(usuario.getTipoUsuario().equals(TipoUsuario.GOOGLE)) {
+			dto.setTipoUsuario(TipoUsuarioDTO.GOOGLE);
+		} else if(usuario.getTipoUsuario().equals(TipoUsuario.FACEBOOK)) {
+			dto.setTipoUsuario(TipoUsuarioDTO.FACEBOOK);
+		}else if(usuario.getTipoUsuario().equals(TipoUsuario.EMAIL)) {
+			dto.setTipoUsuario(TipoUsuarioDTO.EMAIL);
+		}
+		
 		return dto;
 	}
 	

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import domain.Reto;
+import domain.Usuario;
 import domain.UsuarioGmail;
 import dto.RetoAssembler;
 
@@ -19,6 +20,7 @@ import dto.RetoAssembler;
 public class ERAppService {
 
 	private List<Reto> retos = new ArrayList<>();
+	public List<Usuario> listaUser = new ArrayList<>();
 	private RetoAssembler assemblerReto = new RetoAssembler();
 
 	public ERAppService() {
@@ -27,18 +29,25 @@ public class ERAppService {
 
 	private void initilizeData() {
 		//Create Users
+		
+		
 		UsuarioGmail user0 = new UsuarioGmail();
 		user0.setEmail("thomas.e2001@gmail.com");
 		user0.setNombre("Thomas");
 		user0.setPassword("aaa");
 		user0.setNumero(1);
 
+		
+		
 		UsuarioGmail user1 = new UsuarioGmail();
 		user1.setEmail("sample@gmail.com");
 		user1.setNombre("buyer33");		
 		user1.setPassword("hqc`}3Hb");
 		user0.setNumero(2);
 
+		listaUser.add(user0);
+		listaUser.add(user1);
+		
 		//Create Reto
 		Reto reto1 = new Reto();
 		reto1.setNombre("Pedalear Muchisimo");
