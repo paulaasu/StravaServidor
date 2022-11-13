@@ -7,9 +7,9 @@ public class UsuarioGmail extends Usuario {
 	public String password;
 
 	
-	public UsuarioGmail(int numero, String nombre, String email, float pesoKG, float altura, float frecCardMax,
+	public UsuarioGmail(String nombre, String email, float pesoKG, float altura, float frecCardMax,
 			float frecCardResposo, TipoUsuario tipoUsuario, List<Reto> retos, String password) {
-		super(numero, nombre, email, pesoKG, altura, frecCardMax, frecCardResposo, tipoUsuario, retos);
+		super(nombre, email, pesoKG, altura, frecCardMax, frecCardResposo, tipoUsuario, retos);
 		this.password = password;
 	}
 	
@@ -27,5 +27,16 @@ public class UsuarioGmail extends Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+	@Override
+	public String toString() {
+		return "UsuarioGmail [password=" + password + ", getNumero()=" + getNumero() + ", getNombre()=" + getNombre()
+				+ ", getEmail()=" + getEmail() + ", getPesoKG()=" + getPesoKG() + ", getAltura()=" + getAltura()
+				+ ", getFrecCardMax()=" + getFrecCardMax() + ", getFrecCardResposo()=" + getFrecCardResposo()
+				+ ", getTipoUsuario()=" + getTipoUsuario() + ", getRetos()=" + getRetos() + ", toString()="
+				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+	}
+	
 	
 }

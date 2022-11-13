@@ -8,6 +8,7 @@ import domain.TipoUsuario;
 
 
 public class Usuario {
+	public static int contador=0;
 	private int numero; //ID
 	private String nombre;
 	private String email;
@@ -19,10 +20,11 @@ public class Usuario {
 	private List<Reto> retos = new ArrayList<>();
 	
 	
-public Usuario(int numero, String nombre, String email, float pesoKG, float altura, float frecCardMax,
+public Usuario(String nombre, String email, float pesoKG, float altura, float frecCardMax,
 			float frecCardResposo, TipoUsuario tipoUsuario, List<Reto> retos) {
 		super();
-		this.numero = numero;
+		this.numero = Usuario.contador;
+		Usuario.contador++;
 		this.nombre = nombre;
 		this.email = email;
 		this.pesoKG = pesoKG;
@@ -35,7 +37,8 @@ public Usuario(int numero, String nombre, String email, float pesoKG, float altu
 
 public Usuario() {
 	super();
-	this.numero = 0;
+	this.numero = Usuario.contador;
+	Usuario.contador++;
 	this.nombre = "";
 	this.email = "";
 	this.pesoKG = 0;
@@ -106,12 +109,17 @@ public int getNumero() {
 			this.retos.add(reto);
 		}
 	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", email=" + email + ", pesoKG=" + pesoKG + ", altura=" + altura
-				+ ", frecCardMax=" + frecCardMax + ", frecCardResposo=" + frecCardResposo + ", tipoUsuario="
-				+ tipoUsuario + ", retos=" + retos + "]";
+		return "Usuario [numero=" + numero + ", nombre=" + nombre + ", email=" + email + ", pesoKG=" + pesoKG
+				+ ", altura=" + altura + ", frecCardMax=" + frecCardMax + ", frecCardResposo=" + frecCardResposo
+				+ ", tipoUsuario=" + tipoUsuario + ", retos=" + retos + "]";
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

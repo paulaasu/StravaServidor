@@ -146,5 +146,25 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		return entreDTO;
 	}
 
+	@Override
+	public UsuarioDTO registrarObligatorioFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+			throws RemoteException {
+		
+		
+		
+		UsuarioDTO usuDTO = loginService.registrarObligatorioFG(email, nickname, tipoUsuarioDTO);
+		
+		return null;
+	}
+
+	@Override
+	public UsuarioDTO registrarCompletoFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
+		
+		UsuarioDTO usuDTO = loginService.registrarCompletoFG(email,nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
+		
+		return usuDTO;
+	}
+
 	
 }

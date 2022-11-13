@@ -14,6 +14,31 @@ public class UsuarioDTO implements Serializable {
 	private float frecCardResposo;
 	private TipoUsuarioDTO tipoUsuario;
 	
+	public UsuarioDTO(int numero, String nombre, String email, float pesoKG, float altura, float frecCardMax,
+			float frecCardResposo, TipoUsuarioDTO tipoUsuario) {
+		super();
+		this.numero = numero;
+		this.nombre = nombre;
+		this.email = email;
+		this.pesoKG = pesoKG;
+		this.altura = altura;
+		this.frecCardMax = frecCardMax;
+		this.frecCardResposo = frecCardResposo;
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	public UsuarioDTO() {
+		super();
+		this.numero = 0;
+		this.nombre = "";
+		this.email = "";
+		this.pesoKG = 0;
+		this.altura = 0;
+		this.frecCardMax = 0;
+		this.frecCardResposo = 0;
+		this.tipoUsuario = tipoUsuario;
+	}
+	
 	public int getNumero() {
 		return numero;
 	}

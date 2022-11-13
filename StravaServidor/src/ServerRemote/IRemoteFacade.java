@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import domain.UsuarioGmail;
 //import clases.RetoAceptadoDTO;
 import dto.EntrenamientoDTO;
 import dto.RetoDTO;
@@ -18,16 +19,20 @@ public interface IRemoteFacade extends Remote {
 	
 	public void logout(long token) throws RemoteException; 
 	
+	//Registrar Email
+	
 	public String registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
 	
 	public String registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
 
-//Registrar Facebook/Google sin contraseña	
-//	
-//	public String registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
-//	
-//	public String registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
-//		
+	//Registrar Facebook/Google sin contraseña	
+	
+	public UsuarioDTO registrarObligatorioFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	
+	public UsuarioDTO registrarCompletoFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
+	
+	//Crear Reto/Entrenamiento
+	
 	public RetoDTO crearReto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia,String deporte, int creador) throws RemoteException;
 	
 	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) throws RemoteException;

@@ -38,15 +38,13 @@ public class ERAppService {
 		user0.setEmail("thomas.e2001@gmail.com");
 		user0.setNombre("Thomas");
 		user0.setPassword("aaa");
-		user0.setNumero(1);
 
-		
 		
 		UsuarioGmail user1 = new UsuarioGmail();
 		user1.setEmail("sample@gmail.com");
 		user1.setNombre("buyer33");		
 		user1.setPassword("hqc`}3Hb");
-		user0.setNumero(2);
+		
 
 		listaUser.add(user0);
 		listaUser.add(user1);
