@@ -19,7 +19,7 @@ public class Entrenamiento {
 	
 	
 	
-	public Entrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion) {
+	public Entrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) {
 		super();
 		this.titulo = titulo;
 		this.deporte = deporte;
@@ -27,8 +27,21 @@ public class Entrenamiento {
 		this.fecha_ini = fecha_ini;
 		this.hora = hora;
 		this.duracion = duracion;
+		this.creador= creador;
 		//usuario u1, entrenamiento e1 -->e1.setCreador(u1);
 	}
+	public Entrenamiento() {
+		super();
+		this.titulo = "";
+		this.deporte = "";
+		this.distanciaKm = 0;
+		this.fecha_ini = "";
+		this.hora = 0;
+		this.duracion = 0;
+		this.creador= 0;
+		//usuario u1, entrenamiento e1 -->e1.setCreador(u1);
+	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -66,42 +79,17 @@ public class Entrenamiento {
 		this.duracion = duracion;
 	}
 	
-	
 	public int getCreador() {
 		return creador;
 	}
 	public void setCreador(Usuario creador) {
 		this.creador = creador.getNumero();
 	}
-	@Override //imprime el entrenamiento
+	@Override
 	public String toString() {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-YY - hh:mm");
-		
-		NumberFormat numberFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
-
-		StringBuffer result = new StringBuffer();
-		
-		result.append(this.titulo);
-		result.append(" - ");
-		result.append(this.deporte);
-		result.append(" (distancia (km):");
-		result.append(this.distanciaKm);
-		result.append(", fecha: ");
-		result.append(this.distanciaKm);
-		result.append(", duracion: ");
-		result.append(this.duracion);
-		result.append(" ) ");
-		
-		return result.toString();		
+		return "Entrenamiento [titulo=" + titulo + ", deporte=" + deporte + ", distanciaKm=" + distanciaKm
+				+ ", fecha_ini=" + fecha_ini + ", hora=" + hora + ", duracion=" + duracion + ", creador=" + creador
+				+ "]";
 	}
-	
-/*	@Override
-	public boolean equals(Object obj) {
-		if (this.getClass().getName().equals(obj.getClass().getName())) {
-			return this.number == ((Article)obj).number;
-		}
-		
-		return false;
-	}*/
 
 }

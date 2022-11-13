@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import domain.Reto;
 import domain.UsuarioGmail;
 //import clases.RetoAceptadoDTO;
 import dto.EntrenamientoDTO;
@@ -42,6 +43,7 @@ public interface IRemoteFacade extends Remote {
 	
 	public List<RetoDTO> getTodosRetos() throws RemoteException;
 	
+	List<EntrenamientoDTO> getTodosEntrenamientos() throws RemoteException;	
 	
 //	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException;
 //	
@@ -51,5 +53,7 @@ public interface IRemoteFacade extends Remote {
 //	
 	//public float calcularEstado(RetoAceptadoDTO reto, UsuarioDTO user) throws RemoteException;
 //	
-	public float getGBPRate() throws RemoteException;	
+	public float getGBPRate() throws RemoteException;
+
+	
 }

@@ -8,9 +8,8 @@ import domain.Entrenamiento;
 
 public class EntrenamientoAssembler {
 
-	private static EntrenamientoAssembler instance;
+	public static EntrenamientoAssembler instance;
 
-	private EntrenamientoAssembler() { }
 	
 	public static EntrenamientoAssembler getInstance() {
 		if (instance == null) {

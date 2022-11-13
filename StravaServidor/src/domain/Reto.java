@@ -17,8 +17,7 @@ public class Reto {
 	private int creador;
 	
 	
-	
-	public Reto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, long tiempoObjetivo,
+	public Reto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia,
 			String deporte, int creador) {
 		super();
 		this.nombre = nombre;

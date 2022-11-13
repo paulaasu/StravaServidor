@@ -169,17 +169,19 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	@Override
 	public RetoDTO crearReto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, String deporte, int creador) throws RemoteException {
 		
-		RetoDTO retoDTO = eraService.crearReto(nombre, descripcion, fecha_ini, fecha_fin, distancia, deporte, creador);
-		
+		Reto reto = eraService.crearReto(nombre, descripcion, fecha_ini, fecha_fin, distancia, deporte, creador);
+		RetoAssembler assembler = new RetoAssembler();
+		RetoDTO retoDTO = assembler.retoToDTO(reto);
 		return retoDTO;
 	}
 
 	@Override
 	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) throws RemoteException {
 		
-		EntrenamientoDTO entreDTO = eraService.crearEntrenamiento(titulo, deporte,distanciaKm,fecha_ini, hora, duracion, creador);
-		
-		return entreDTO;
+		Entrenamiento entre = eraService.crearEntrenamiento(titulo, deporte,distanciaKm,fecha_ini, hora, duracion, creador);
+		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
+		EntrenamientoDTO entrenamientoDTO = assembler.entrenamientoToDTO(entre);
+		return entrenamientoDTO;
 	}
 
 	@Override
@@ -232,6 +234,18 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		
 		RetoAssembler assembler = new RetoAssembler();
 		List<RetoDTO> listaRetosDTO =  assembler.retosToDTO(listaRetos);
+		System.out.println("RemoteFacade2:"+listaRetosDTO.size());
+		return listaRetosDTO;
+	}
+	
+	@Override
+	public List<EntrenamientoDTO> getTodosEntrenamientos() throws RemoteException {
+		List<Entrenamiento> listaEntrenamientos;
+		listaEntrenamientos = eraService.getTodosEntrenamiento();
+		System.out.println("RemoteFacade1:"+listaEntrenamientos.size());
+		
+		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
+		List<EntrenamientoDTO> listaRetosDTO =  assembler.entrenamientosToDTO(listaEntrenamientos);
 		System.out.println("RemoteFacade2:"+listaRetosDTO.size());
 		return listaRetosDTO;
 	}
