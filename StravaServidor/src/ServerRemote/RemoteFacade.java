@@ -27,7 +27,8 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	private static final long serialVersionUID = 1L;
 
 	//Data structure for manage Server State
-	private Map<Long, Usuario> serverState = new HashMap<>();
+	private Map<Long, UsuarioDTO> serverState = new HashMap<>();
+	private Map<Long, UsuarioGmail> serverStates = new HashMap<>();
 	
 	//TODO: Remove this instances when Singleton Pattern is implemented
 	private LoginAppService loginService = new LoginAppService();
@@ -38,28 +39,47 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 	
 	@Override
-	public synchronized long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuario) throws RemoteException {
-		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
-				
+	public long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuario) throws RemoteException {
+//		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
+//				
 		//Perform login() using LoginAppService
-		System.out.println("login");
-		Usuario user = loginService.login(email, password, nickname, tipoUsuario);
-		System.out.println("loa");
-			
+		UsuarioGmail user = loginService.loginGmail(email, password, nickname, tipoUsuario);
 		//If login() success user is stored in the Server State
 		if (user != null) {
 			//If user is not logged in 
-			if (!this.serverState.values().contains(user)) {
+			if (!this.serverStates.values().contains(user)) {
 				Long token = Calendar.getInstance().getTimeInMillis();		
-				this.serverState.put(token, user);		
+				this.serverStates.put(token, user);
 				return(token);
 			} else {
-				throw new RemoteException("User is already logged in!");
+				throw new RemoteException("El usuario no esta registrado!");
 			}
 		} else {
 			throw new RemoteException("Login fails!");
 		}
 	}
+	
+	public synchronized long loginGF(String email, String nickname, TipoUsuarioDTO tipoUsuario) throws RemoteException {
+		System.out.println(" * RemoteFacade login(): " + email + " / " +nickname+ " / " +tipoUsuario);
+//				
+		//Perform login() using LoginAppService
+		UsuarioDTO user = loginService.login(email, nickname, tipoUsuario);
+		//If login() success user is stored in the Server State
+		if (user != null) {
+			//If user is not logged in 
+			if (!this.serverState.values().contains(user)) {
+				Long token = Calendar.getInstance().getTimeInMillis();		
+				this.serverState.put(token, user);
+				return(token);
+			} else {
+				throw new RemoteException("El usuario no esta registrado!");
+			}
+		} else {
+			throw new RemoteException("Login fails!");
+		}
+	}
+	
+	
 	
 	@Override
 	public synchronized void logout(long token) throws RemoteException {
@@ -106,28 +126,44 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 //	}
 
 	@Override
-	public String registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public Long registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		
-		String user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
-//		UsuarioAssembler assembler = new UsuarioAssembler();
-//		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
+		UsuarioGmail user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
 		
-		return user;
-		
+		if (user != null) {
+		//If user is not logged in 
+		if (!this.serverStates.values().contains(user)) {
+			Long token = Calendar.getInstance().getTimeInMillis();		
+			this.serverStates.put(token, user);		
+			return(token);
+		} else {
+			throw new RemoteException("Usuario ya registrado!");
+		}
+	} else {
+		throw new RemoteException("Error de registro!");
+	}
 	}
 
 	@Override
-	public String registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
+	public Long registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
 			Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 		
 		
-		String usuarioDTO = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
-//		Usuario user = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
-//		UsuarioAssembler assembler = new UsuarioAssembler();
-//		UsuarioDTO usuarioDto = assembler.usuarioToDTO(user);
+		UsuarioGmail usuarioDTO = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
 		
-		return usuarioDTO;
+		if (usuarioDTO != null) {
+			//If user is not logged in 
+			if (!this.serverStates.values().contains(usuarioDTO)) {
+				Long token = Calendar.getInstance().getTimeInMillis();		
+				this.serverStates.put(token, usuarioDTO);		
+				return(token);
+			} else {
+				throw new RemoteException("Usuario ya registrado!");
+			}
+		} else {
+			throw new RemoteException("Error de registro!");
+		}
 	}
 
 	@Override
@@ -147,24 +183,56 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public UsuarioDTO registrarObligatorioFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public Long registrarObligatorioFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
-		
-		
 		
 		UsuarioDTO usuDTO = loginService.registrarObligatorioFG(email, nickname, tipoUsuarioDTO);
 		
-		return null;
+		if (usuDTO != null) {
+			//If user is not logged in 
+			if (!this.serverState.values().contains(usuDTO)) {
+				Long token = Calendar.getInstance().getTimeInMillis();		
+				this.serverState.put(token, usuDTO);		
+				return(token);
+			} else {
+				throw new RemoteException("Usuario ya registrado!");
+			}
+		} else {
+			throw new RemoteException("Error de registro!");
+		}
+		
+//		return usuDTO;
 	}
 
 	@Override
-	public UsuarioDTO registrarCompletoFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public Long registrarCompletoFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 		
 		UsuarioDTO usuDTO = loginService.registrarCompletoFG(email,nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
 		
-		return usuDTO;
+		if (usuDTO != null) {
+			//If user is not logged in 
+			if (!this.serverState.values().contains(usuDTO)) {
+				Long token = Calendar.getInstance().getTimeInMillis();		
+				this.serverState.put(token, usuDTO);		
+				return(token);
+			} else {
+				throw new RemoteException("Usuario ya registrado!");
+			}
+		} else {
+			throw new RemoteException("Error de registro!");
+		}
 	}
 
-	
+	@Override
+	public List<RetoDTO> getTodosRetos() throws RemoteException {
+		List<Reto> listaRetos;
+		listaRetos = eraService.getTodosRetos();
+		System.out.println("RemoteFacade1:"+listaRetos.size());
+		
+		RetoAssembler assembler = new RetoAssembler();
+		List<RetoDTO> listaRetosDTO =  assembler.retosToDTO(listaRetos);
+		System.out.println("RemoteFacade2:"+listaRetosDTO.size());
+		return listaRetosDTO;
+	}
 }

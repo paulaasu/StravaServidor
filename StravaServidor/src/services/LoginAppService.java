@@ -13,38 +13,52 @@ import domain.TipoUsuario;
 //TODO: Implement Singleton Pattern
 public class LoginAppService {
 		
-	public Usuario login(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
-		//TODO: Get User using DAO and check 
-		if (tipoUsuarioDTO.equals(TipoUsuarioDTO.FACEBOOK) || tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)) {
-			Usuario u = new Usuario();
+	public UsuarioDTO login(String email, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
+		UsuarioDTO u = new UsuarioDTO();
+		if (tipoUsuarioDTO.equals(TipoUsuarioDTO.FACEBOOK)) {
 			u.setEmail(email);
 			u.setNombre(nickName);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
+			u.setTipoUsuario(tipoUsuarioDTO.FACEBOOK);
+//			List<Reto> rdto = new ArrayList<>();
+//			u.setRetos(rdto);
 			if (u.getEmail().equals(email) && u.getNombre().equals(nickName)) {		
+				System.out.println(u.toString());
 				return u;
 			} else {
 				return null;
 			}
-		} else if(tipoUsuarioDTO.equals(TipoUsuarioDTO.EMAIL)){
-			UsuarioGmail u = new UsuarioGmail();
+		} else if(tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)){
 			u.setEmail(email);
 			u.setNombre(nickName);
-			u.setPassword(password);
-			List<Reto> rdto = new ArrayList<>();
-			u.setRetos(rdto);
-			if (u.getEmail().equals(email) && u.getNombre().equals(nickName) && u.getPassword().equals(password) && u.getTipoUsuario().equals(TipoUsuarioDTO.EMAIL)) {		
+			u.setTipoUsuario(tipoUsuarioDTO.GOOGLE);
+//			List<Reto> rdto = new ArrayList<>();
+//			u.setRetos(rdto);
+			if (u.getEmail().equals(email) && u.getNombre().equals(nickName)) {		
+				System.out.println(u.toString());
 				return u;
 			} else {
 				return null;
 			}
+	}
+		return u;
+	}
+	
+	public UsuarioGmail loginGmail(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
+		UsuarioGmail u = new UsuarioGmail();
+		u.setNombre(nickName);
+		u.setEmail(email);
+		u.setPassword(password);
+		u.setTipoUsuario(TipoUsuario.EMAIL);
+		if (u.getEmail().equals(email) && u.getNombre().equals(nickName)) {		
+			System.out.println(u.toString());
+			return u;
+		} else {
+			return null;
 		}
-		System.out.println("error");
-		return null;
-		
 		
 	}
-	public String registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
+	
+	public UsuarioGmail registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
 		String mensaje = "";
 		UsuarioGmail u = new UsuarioGmail();
 		u.setEmail(email);
@@ -58,10 +72,10 @@ public class LoginAppService {
 		
 		mensaje+=u.toString();
 		
-		return mensaje;
+		return u;
 		
 	}
-	public String registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
+	public UsuarioGmail registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
 			Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) {
 		String mensaje = "";
 		UsuarioGmail u = new UsuarioGmail();
@@ -80,7 +94,7 @@ public class LoginAppService {
 //		
 		mensaje+=u.toString();
 		System.out.println(mensaje);
-		return mensaje;
+		return u;
 		
 	}
 	public UsuarioDTO registrarObligatorioFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
