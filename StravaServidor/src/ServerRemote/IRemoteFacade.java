@@ -45,9 +45,9 @@ public interface IRemoteFacade extends Remote {
 	
 	List<EntrenamientoDTO> getTodosEntrenamientos() throws RemoteException;	
 	
-//	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException;
-//	
-//	public void anyadirRetoARetos(RetoDTO reto, UsuarioDTO user) throws RemoteException;
+//	public List<RetoDTO> obtenerRetosActivos() throws RemoteException;
+	
+//	public void aceptarReto(RetoDTO reto, UsuarioDTO user) throws RemoteException;
 //	
 //	public void quitarRetoARetos(String tituloReto) throws RemoteException;
 //	
