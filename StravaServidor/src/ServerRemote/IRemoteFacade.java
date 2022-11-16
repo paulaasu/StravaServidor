@@ -11,6 +11,7 @@ import domain.UsuarioGmail;
 //import clases.RetoAceptadoDTO;
 import dto.EntrenamientoDTO;
 import dto.RetoDTO;
+import dto.TipoDeporteDTO;
 import dto.UsuarioDTO;
 import dto.TipoUsuarioDTO;
 
@@ -37,13 +38,13 @@ public interface IRemoteFacade extends Remote {
 	
 	//Crear Reto/Entrenamiento
 	
-	public RetoDTO crearReto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia,String deporte, int creador) throws RemoteException;
+	public boolean crearReto(RetoDTO retoDTO) throws RemoteException;
 	
-	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) throws RemoteException;
+	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO) throws RemoteException;
 	
 	public List<RetoDTO> getTodosRetos() throws RemoteException;
 	
-	List<EntrenamientoDTO> getTodosEntrenamientos() throws RemoteException;	
+	public List<EntrenamientoDTO> getTodosEntrenamientos() throws RemoteException;	
 	
 //	public List<RetoDTO> obtenerRetosActivos() throws RemoteException;
 	
@@ -52,7 +53,7 @@ public interface IRemoteFacade extends Remote {
 //	public void quitarRetoARetos(String tituloReto) throws RemoteException;
 //	
 	//public float calcularEstado(RetoAceptadoDTO reto, UsuarioDTO user) throws RemoteException;
-//	
+	
 	public float getGBPRate() throws RemoteException;
 
 	

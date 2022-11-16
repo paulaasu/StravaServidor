@@ -10,7 +10,7 @@ import domain.Usuario;
 
 public class Entrenamiento {
 	private String titulo;
-	private String deporte;
+	private TipoDeporte deporte;
 	private int distanciaKm;
 	private String fecha_ini;	
 	private int hora;	
@@ -19,7 +19,7 @@ public class Entrenamiento {
 	
 	
 	
-	public Entrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) {
+	public Entrenamiento(String titulo, TipoDeporte deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) {
 		super();
 		this.titulo = titulo;
 		this.deporte = deporte;
@@ -33,7 +33,7 @@ public class Entrenamiento {
 	public Entrenamiento() {
 		super();
 		this.titulo = "";
-		this.deporte = "";
+		this.deporte = null;
 		this.distanciaKm = 0;
 		this.fecha_ini = "";
 		this.hora = 0;
@@ -48,11 +48,15 @@ public class Entrenamiento {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDeporte() {
+	
+	public TipoDeporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(String deporte) {
+	public void setDeporte(TipoDeporte deporte) {
 		this.deporte = deporte;
+	}
+	public void setCreador(int creador) {
+		this.creador = creador;
 	}
 	public int getDistanciaKm() {
 		return distanciaKm;

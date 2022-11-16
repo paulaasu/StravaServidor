@@ -13,11 +13,11 @@ public class RetoDTO implements Serializable {
 	private String fecha_ini; //duda: Date o String?
 	private String fecha_fin;	
 	private int distancia;
-	private String deporte;
+	private TipoDeporteDTO deporte;
 	private int creador;
 
 	
-	public RetoDTO(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, String deporte, int creador) {
+	public RetoDTO(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, TipoDeporteDTO deporte, int creador) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -35,7 +35,7 @@ public class RetoDTO implements Serializable {
 		this.fecha_ini = "";
 		this.fecha_fin = "";
 		this.distancia = 0;
-		this.deporte = "";
+		this.deporte = null;
 		this.creador = 0;
 	}
 	public String getDescripcion() {
@@ -68,26 +68,27 @@ public class RetoDTO implements Serializable {
 	}
 	public void setDistancia(int distancia) {
 		this.distancia = distancia;
-	}
-	public String getDeporte() {
+	}	
+	public TipoDeporteDTO getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(String deporte) {
+
+	public void setDeporte(TipoDeporteDTO deporte) {
 		this.deporte = deporte;
 	}
-	
+
 	public int getCreador() {
 		return creador;
 	}
 	public void setCreador(int creador) {
 		this.creador = creador;
 	}
+
 	@Override
 	public String toString() {
-		return "RetoDTO [nombre=" + nombre + ", fecha_ini=" + fecha_ini + ", fecha_fin=" + fecha_fin + ", distancia="
-				+ distancia + ", deporte=" + deporte + ", creador=" + creador
-				+ "]";
+		return "RetoDTO [nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_ini=" + fecha_ini
+				+ ", fecha_fin=" + fecha_fin + ", distancia=" + distancia + ", deporte=" + deporte + ", creador="
+				+ creador + "]";
 	}
-
 
 }

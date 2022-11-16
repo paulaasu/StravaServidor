@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import domain.Reto;
+import domain.TipoDeporte;
+import domain.TipoUsuario;
 
 public class RetoAssembler {
 
@@ -26,11 +28,34 @@ public class RetoAssembler {
 		dto.setFecha_ini(reto.getFecha_ini());
 		dto.setFecha_fin(reto.getFecha_fin());
 		dto.setDistancia(reto.getDistancia());
-		dto.setDeporte(reto.getDeporte());
+		
+		if(reto.getDeporte().equals(TipoDeporte.CICLISMO)) {
+			dto.setDeporte(TipoDeporteDTO.CICLISMO);
+		} else if(reto.getDeporte().equals(TipoDeporte.RUNNING)) {
+			dto.setDeporte(TipoDeporteDTO.CICLISMO);
+		}
 		dto.setCreador(reto.getCreador());
 				
 		return dto;
 	}
+	public Reto retoDTOTo(RetoDTO retoDTO) {
+		Reto reto = new Reto();
+		
+		reto.setNombre(retoDTO.getNombre());
+		reto.setFecha_ini(retoDTO.getFecha_ini());
+		reto.setFecha_fin(retoDTO.getFecha_fin());
+		reto.setDistancia(retoDTO.getDistancia());
+		
+		if(retoDTO.getDeporte().equals(TipoDeporteDTO.CICLISMO)) {
+			reto.setDeporte(TipoDeporte.CICLISMO);
+		} else if(retoDTO.getDeporte().equals(TipoDeporteDTO.RUNNING)) {
+			reto.setDeporte(TipoDeporte.CICLISMO);
+		}
+		reto.setCreador(retoDTO.getCreador());
+				
+		return reto;
+	}
+	
 	
 	public List<RetoDTO> retosToDTO(List<Reto> retos) {		
 		List<RetoDTO> dtos = new ArrayList<>();

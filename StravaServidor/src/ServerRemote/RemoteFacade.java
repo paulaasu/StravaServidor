@@ -17,6 +17,7 @@ import dto.EntrenamientoAssembler;
 import dto.EntrenamientoDTO;
 import dto.RetoAssembler;
 import dto.RetoDTO;
+import dto.TipoDeporteDTO;
 import dto.UsuarioDTO;
 import dto.UsuarioAssembler;
 import dto.TipoUsuarioDTO;
@@ -167,21 +168,28 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public RetoDTO crearReto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, String deporte, int creador) throws RemoteException {
-		
-		Reto reto = eraService.crearReto(nombre, descripcion, fecha_ini, fecha_fin, distancia, deporte, creador);
+	public boolean crearReto(RetoDTO retoDTO) throws RemoteException {
 		RetoAssembler assembler = new RetoAssembler();
-		RetoDTO retoDTO = assembler.retoToDTO(reto);
-		return retoDTO;
+		Reto reto = assembler.retoDTOTo(retoDTO);
+		
+		if (eraService.crearReto(reto)==true) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	@Override
-	public EntrenamientoDTO crearEntrenamiento(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion, int creador) throws RemoteException {
-		
-		Entrenamiento entre = eraService.crearEntrenamiento(titulo, deporte,distanciaKm,fecha_ini, hora, duracion, creador);
+	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO) throws RemoteException {
 		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
-		EntrenamientoDTO entrenamientoDTO = assembler.entrenamientoToDTO(entre);
-		return entrenamientoDTO;
+		Entrenamiento entrenamiento = assembler.entrenamientoDTOTo(entrenamientoDTO);
+		
+		if (eraService.crearEntrenamiento(entrenamiento)==true) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -245,8 +253,8 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		System.out.println("RemoteFacade1:"+listaEntrenamientos.size());
 		
 		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
-		List<EntrenamientoDTO> listaRetosDTO =  assembler.entrenamientosToDTO(listaEntrenamientos);
-		System.out.println("RemoteFacade2:"+listaRetosDTO.size());
-		return listaRetosDTO;
+		List<EntrenamientoDTO> listaEntrenamientosDTO =  assembler.entrenamientosToDTO(listaEntrenamientos);
+		System.out.println("RemoteFacade2:"+listaEntrenamientosDTO.size());
+		return listaEntrenamientosDTO;
 	}
 }

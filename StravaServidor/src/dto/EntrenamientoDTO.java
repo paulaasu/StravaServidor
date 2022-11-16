@@ -9,7 +9,7 @@ public class EntrenamientoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String titulo;
-	private String deporte;
+	private TipoDeporteDTO deporte;
 	private int distanciaKm;
 	private String fecha_ini;	
 	private int hora;	
@@ -19,7 +19,7 @@ public class EntrenamientoDTO implements Serializable {
 	
 	
 	
-	public EntrenamientoDTO(String titulo, String deporte, int distanciaKm, String fecha_ini, int hora, int duracion,
+	public EntrenamientoDTO(String titulo, TipoDeporteDTO deporte, int distanciaKm, String fecha_ini, int hora, int duracion,
 			int creador) {
 		super();
 		this.titulo = titulo;
@@ -34,7 +34,7 @@ public class EntrenamientoDTO implements Serializable {
 	public EntrenamientoDTO() {
 		super();
 		this.titulo = "";
-		this.deporte = "";
+		this.deporte = null;
 		this.distanciaKm = 0;
 		this.fecha_ini = "";
 		this.hora = 0;
@@ -47,12 +47,14 @@ public class EntrenamientoDTO implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDeporte() {
+	public TipoDeporteDTO getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(String deporte) {
+
+	public void setDeporte(TipoDeporteDTO deporte) {
 		this.deporte = deporte;
 	}
+
 	public int getDistanciaKm() {
 		return distanciaKm;
 	}
@@ -82,6 +84,13 @@ public class EntrenamientoDTO implements Serializable {
 	}
 	public void setCreador(int creador) {
 		this.creador = creador;
+	}
+
+	@Override
+	public String toString() {
+		return "EntrenamientoDTO [titulo=" + titulo + ", deporte=" + deporte + ", distanciaKm=" + distanciaKm
+				+ ", fecha_ini=" + fecha_ini + ", hora=" + hora + ", duracion=" + duracion + ", creador=" + creador
+				+ "]";
 	}
 	
 }
