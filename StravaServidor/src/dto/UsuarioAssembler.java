@@ -43,6 +43,28 @@ public class UsuarioAssembler {
 		return dto;
 	}
 	
+	public Usuario usuarioDTOtoUsuario(UsuarioDTO usuarioDTO) {
+		Usuario u = new Usuario();
+		
+		u.setNumero(usuarioDTO.getNumero());
+		u.setNombre(usuarioDTO.getNombre());
+		u.setEmail(usuarioDTO.getEmail());
+		u.setPesoKG(usuarioDTO.getPesoKG());
+		u.setAltura(usuarioDTO.getAltura());
+		u.setFrecCardMax(usuarioDTO.getFrecCardMax());
+		u.setFrecCardResposo(usuarioDTO.getFrecCardResposo());
+		
+		if(usuarioDTO.getTipoUsuario().equals(TipoUsuario.GOOGLE)) {
+			u.setTipoUsuario(TipoUsuario.GOOGLE);
+		} else if(usuarioDTO.getTipoUsuario().equals(TipoUsuario.FACEBOOK)) {
+			u.setTipoUsuario(TipoUsuario.FACEBOOK);
+		}else if(usuarioDTO.getTipoUsuario().equals(TipoUsuario.EMAIL)) {
+			u.setTipoUsuario(TipoUsuario.EMAIL);
+		}
+		
+		return u;
+	}
+	
 	public List<UsuarioDTO> usuariosToDTO(List<Usuario> usuarios) {		
 		List<UsuarioDTO> dtos = new ArrayList<>();
 		

@@ -127,43 +127,26 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 //	}
 
 	@Override
-	public Long registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public boolean registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		
-		UsuarioGmail user = loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO);
-		
-		if (user != null) {
-		//If user is not logged in 
-		if (!this.serverStates.values().contains(user)) {
-			Long token = Calendar.getInstance().getTimeInMillis();		
-			this.serverStates.put(token, user);		
-			return(token);
-		} else {
-			throw new RemoteException("Usuario ya registrado!");
+		if(loginService.registrarObligatorio(email, password, nickname, tipoUsuarioDTO)) {
+			return true;
+			
+		}else {
+			return false;
 		}
-	} else {
-		throw new RemoteException("Error de registro!");
-	}
+
 	}
 
 	@Override
-	public Long registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
+	public boolean registrarCompleto(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO,
 			Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 		
-		
-		UsuarioGmail usuarioDTO = loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
-		
-		if (usuarioDTO != null) {
-			//If user is not logged in 
-			if (!this.serverStates.values().contains(usuarioDTO)) {
-				Long token = Calendar.getInstance().getTimeInMillis();		
-				this.serverStates.put(token, usuarioDTO);		
-				return(token);
-			} else {
-				throw new RemoteException("Usuario ya registrado!");
-			}
+		if (loginService.registrarCompleto(email, password, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo)==true) {
+			return true;
 		} else {
-			throw new RemoteException("Error de registro!");
+			return false;
 		}
 	}
 
@@ -193,44 +176,48 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public Long registrarObligatorioFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		
-		UsuarioDTO usuDTO = loginService.registrarObligatorioFG(email, nickname, tipoUsuarioDTO);
-		
-		if (usuDTO != null) {
-			//If user is not logged in 
-			if (!this.serverState.values().contains(usuDTO)) {
-				Long token = Calendar.getInstance().getTimeInMillis();		
-				this.serverState.put(token, usuDTO);		
-				return(token);
-			} else {
-				throw new RemoteException("Usuario ya registrado!");
-			}
+		if (loginService.registrarObligatorioFacebook(email, nickname, tipoUsuarioDTO)) {
+			return true;
 		} else {
-			throw new RemoteException("Error de registro!");
+			return false;
+		}
+	
+	}
+	
+	@Override
+	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+			throws RemoteException {
+				
+		if (loginService.registrarObligatorioGoogle(email, nickname, tipoUsuarioDTO)) {
+			return true;
+		} else {
+			return false;
 		}
 		
-//		return usuDTO;
 	}
 
 	@Override
-	public Long registrarCompletoFG(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
-		
-		UsuarioDTO usuDTO = loginService.registrarCompletoFG(email,nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo);
-		
-		if (usuDTO != null) {
-			//If user is not logged in 
-			if (!this.serverState.values().contains(usuDTO)) {
-				Long token = Calendar.getInstance().getTimeInMillis();		
-				this.serverState.put(token, usuDTO);		
-				return(token);
-			} else {
-				throw new RemoteException("Usuario ya registrado!");
-			}
+				
+		if (loginService.registrarCompletoFacebook(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo)) {
+			return true;
 		} else {
-			throw new RemoteException("Error de registro!");
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
+				
+		if (loginService.registrarCompletoGoogle(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax, frecCardReposo)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
