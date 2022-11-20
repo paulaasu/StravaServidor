@@ -44,9 +44,9 @@ public interface IRemoteFacade extends Remote {
 
 	//Crear Reto/Entrenamiento
 	
-	public boolean crearReto(RetoDTO retoDTO) throws RemoteException;
+	public boolean crearReto(RetoDTO retoDTO, long token) throws RemoteException;
 	
-	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO) throws RemoteException;
+	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO, long token) throws RemoteException;
 	
 	public List<RetoDTO> getTodosRetos() throws RemoteException;
 	

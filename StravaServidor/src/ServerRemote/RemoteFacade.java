@@ -176,20 +176,27 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean crearReto(RetoDTO retoDTO) throws RemoteException {
-		RetoAssembler assembler = new RetoAssembler();
-		Reto reto = assembler.retoDTOTo(retoDTO);
+	public boolean crearReto(RetoDTO retoDTO, long token) throws RemoteException {
+		
+		if (this.serverState.containsKey(token)) {
+			// Logout means remove the User from Server State
+			RetoAssembler assembler = new RetoAssembler();
+			Reto reto = assembler.retoDTOTo(retoDTO);
 
-		if (eraService.crearReto(reto) == true) {
-			return true;
+			if (eraService.crearReto(reto) == true) {
+				return true;
+			} else {
+				return false;
+			}
+			
 		} else {
-			return false;
+			throw new RemoteException("User is not logged in!");
 		}
 
 	}
 
 	@Override
-	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO) throws RemoteException {
+	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO, long token) throws RemoteException {
 		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
 		Entrenamiento entrenamiento = assembler.entrenamientoDTOTo(entrenamientoDTO);
 

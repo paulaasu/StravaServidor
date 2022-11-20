@@ -12,6 +12,7 @@ import java.util.List;
 
 import domain.Entrenamiento;
 import domain.Reto;
+import domain.TipoDeporte;
 import domain.TipoUsuario;
 
 //TODO: Implement Singleton Pattern
@@ -19,11 +20,10 @@ public class LoginAppService {
 	private List<Usuario> listaUsuarios = new ArrayList<>();
 	private List<UsuarioGmail> listaUsuariosGmail = new ArrayList<>();
 
-
 	public Usuario loginFacebook(String email, String nickName) {
 		Usuario u = new Usuario();
 		for (Usuario usu : listaUsuarios) {
-			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName) ) {
+			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
 				u.setNombre(usu.getNombre());
 				u.setNumero(usu.getNumero());
 				u.setAltura(usu.getAltura());
@@ -33,23 +33,22 @@ public class LoginAppService {
 				u.setPesoKG(usu.getPesoKG());
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.FACEBOOK);
-				
+
 				System.out.println("el login se ha completado");
 				System.out.println("loginAppService");
-				
-				
-			}else {
+
+			} else {
 				System.out.println("el usuario no existe");
 				System.out.println("loginAppService ERROR");
 			}
 		}
-	return u;
+		return u;
 	}
-	
+
 	public Usuario loginGoogle(String email, String nickName) {
 		Usuario u = new Usuario();
 		for (Usuario usu : listaUsuarios) {
-			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName) ) {
+			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
 				u.setNombre(usu.getNombre());
 				u.setNumero(usu.getNumero());
 				u.setAltura(usu.getAltura());
@@ -59,25 +58,25 @@ public class LoginAppService {
 				u.setPesoKG(usu.getPesoKG());
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.GOOGLE);
-				
+
 				System.out.println("el login se ha completado");
 				System.out.println("loginAppService");
-				
-				
-			}else {
+
+			} else {
 				System.out.println("el usuario no existe");
 				System.out.println("loginAppService ERROR");
-	
+
 			}
 		}
-	return u;
+		return u;
 	}
 
 	public UsuarioGmail loginGmail(String email, String password, String nickName) {
 
 		UsuarioGmail u = new UsuarioGmail();
 		for (UsuarioGmail usu : listaUsuariosGmail) {
-			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName) && usu.getPassword().equals(password)) {
+			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
+					&& usu.getPassword().equals(password)) {
 				u.setNombre(usu.getNombre());
 				u.setNumero(usu.getNumero());
 				u.setAltura(usu.getAltura());
@@ -88,16 +87,15 @@ public class LoginAppService {
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.EMAIL);
 				u.setPassword(password);
-				
+
 				System.out.println("el login se ha completado");
 				System.out.println("loginAppService");
-				
-				
-			}else {
+
+			} else {
 				System.out.println("el usuario no existe");
 				System.out.println("loginAppService ERROR");
-	
-			} 
+
+			}
 		}
 		return u;
 
@@ -179,7 +177,7 @@ public class LoginAppService {
 			System.out.println("Error al crear el usuario");
 			return false;
 		}
-		
+
 	}
 
 	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
@@ -224,10 +222,9 @@ public class LoginAppService {
 			// TODO: handle exception
 			return false;
 		}
-			
-		
+
 	}
-	
+
 	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
 		UsuarioDTO dto = new UsuarioDTO();
@@ -246,7 +243,7 @@ public class LoginAppService {
 					+ dto.getPesoKG() + " Altura: " + dto.getAltura() + " F.C.M: " + dto.getFrecCardMax() + " F.C.R: "
 					+ dto.getFrecCardResposo());
 			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail());
-		
+
 			listaUsuarios.add(u);
 			return true;
 		} catch (Exception e) {
@@ -254,6 +251,22 @@ public class LoginAppService {
 			return false;
 		}
 	}
-	
-	
+
+	private void initilizeDataLogin() {
+		// Create Users
+		UsuarioGmail user0 = new UsuarioGmail();
+		user0.setEmail("thomas.e2001@gmail.com");
+		user0.setNombre("Thomas");
+		user0.setPassword("aaa");
+
+		UsuarioGmail user1 = new UsuarioGmail();
+		user1.setEmail("sample@gmail.com");
+		user1.setNombre("buyer33");
+		user1.setPassword("hqc`}3Hb");
+
+		listaUsuariosGmail.add(user0);
+		listaUsuariosGmail.add(user1);
+
+	}
+
 }
