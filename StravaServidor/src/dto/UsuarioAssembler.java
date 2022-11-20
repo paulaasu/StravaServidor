@@ -46,7 +46,6 @@ public class UsuarioAssembler {
 	public Usuario usuarioDTOtoUsuario(UsuarioDTO usuarioDTO) {
 		Usuario u = new Usuario();
 		
-		u.setNumero(usuarioDTO.getNumero());
 		u.setNombre(usuarioDTO.getNombre());
 		u.setEmail(usuarioDTO.getEmail());
 		u.setPesoKG(usuarioDTO.getPesoKG());

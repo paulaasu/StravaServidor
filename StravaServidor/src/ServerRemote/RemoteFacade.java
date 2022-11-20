@@ -176,14 +176,14 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean crearReto(RetoDTO retoDTO, long token) throws RemoteException {
+	public boolean crearReto(long token, RetoDTO retoDTO) throws RemoteException {
 		
 		if (this.serverState.containsKey(token)) {
-			// Logout means remove the User from Server State
+			
 			RetoAssembler assembler = new RetoAssembler();
 			Reto reto = assembler.retoDTOTo(retoDTO);
 
-			if (eraService.crearReto(reto) == true) {
+			if (eraService.crearReto(this.serverState.get(token), reto) == true) {
 				return true;
 			} else {
 				return false;
@@ -196,15 +196,21 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean crearEntrenamiento(EntrenamientoDTO entrenamientoDTO, long token) throws RemoteException {
-		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
-		Entrenamiento entrenamiento = assembler.entrenamientoDTOTo(entrenamientoDTO);
+	public boolean crearEntrenamiento(long token, EntrenamientoDTO entrenamientoDTO) throws RemoteException {
+		
+		if (this.serverState.containsKey(token)) {
+			EntrenamientoAssembler assembler = new EntrenamientoAssembler();
+			Entrenamiento entrenamiento = assembler.entrenamientoDTOTo(entrenamientoDTO);
 
-		if (eraService.crearEntrenamiento(entrenamiento) == true) {
-			return true;
+			if (eraService.crearEntrenamiento(this.serverState.get(token),entrenamiento) == true) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
-			return false;
+			throw new RemoteException("User is not logged in!");
 		}
+		
 	}
 
 	@Override
@@ -268,15 +274,37 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public List<EntrenamientoDTO> getTodosEntrenamientos() throws RemoteException {
-		List<Entrenamiento> listaEntrenamientos;
-		listaEntrenamientos = eraService.getTodosEntrenamiento();
-		System.out.println("RemoteFacade1:" + listaEntrenamientos.size());
+	public List<EntrenamientoDTO> getTodosEntrenamientos(long token) throws RemoteException {
+		
+		if (this.serverState.containsKey(token)) {
+			List<Entrenamiento> listaEntrenamientos;
+			listaEntrenamientos = eraService.getTodosEntrenamiento(this.serverState.get(token));
+			
+			EntrenamientoAssembler assembler = new EntrenamientoAssembler();
+			List<EntrenamientoDTO> listaEntrenamientosDTO = assembler.entrenamientosToDTO(listaEntrenamientos);
+			
+			return listaEntrenamientosDTO;
+		} else {
+			throw new RemoteException("User is not logged in!");
+		}
+	}
 
-		EntrenamientoAssembler assembler = new EntrenamientoAssembler();
-		List<EntrenamientoDTO> listaEntrenamientosDTO = assembler.entrenamientosToDTO(listaEntrenamientos);
-		System.out.println("RemoteFacade2:" + listaEntrenamientosDTO.size());
-		return listaEntrenamientosDTO;
+	@Override
+	public List<RetoDTO> getRetosPersonales(long token) throws RemoteException {
+		if (this.serverState.containsKey(token)) {
+			List<Reto> listaRetos;
+			listaRetos = eraService.getRetoPersonal(this.serverState.get(token));
+			System.out.println("RemoteFacade1:" + listaRetos.size());
+
+			RetoAssembler assembler = new RetoAssembler();
+			List<RetoDTO> listaRetosDTO = assembler.retosToDTO(listaRetos);
+			System.out.println("RemoteFacade2:" + listaRetosDTO.size());
+			
+			return listaRetosDTO;
+		} else {
+			throw new RemoteException("User is not logged in!");
+		}
+		
 	}
 
 }

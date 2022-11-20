@@ -8,7 +8,7 @@ import domain.TipoUsuario;
 
 
 public class Usuario {
-	public static int contador=0;
+	public static int contador=1;
 	private int numero; //ID
 	private String nombre;
 	private String email;

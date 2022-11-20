@@ -92,35 +92,21 @@ public class ERAppService {
 		
 
 }
-	public boolean crearReto(Reto reto) {
-//		Reto reto = new Reto(nombre,descripcion,fecha_ini,fecha_fin,distancia,deporte, creador);
-//		System.out.println("Se ha creado el RETO correctamente");
-//		RetoARetos(reto);
-//		return reto;
+	public boolean crearReto(Usuario u, Reto reto) {
 		
-		if (reto!=null) {
-			System.out.println("Se ha creado el Reto correctamente");
-			RetoARetos(reto);
-			return true;
-		}else {
-			System.out.println("Error al crear el reto");
-			return true;
-		}
+		reto.setCreador(u.getNumero());
+		System.out.println("Se ha creado el Reto correctamente");
+		RetoARetos(reto);
+		return true;
 		
 }
 
 
-	public boolean crearEntrenamiento(Entrenamiento entrenamiento) {
-		
-		if (entrenamiento!=null) {
-			System.out.println("Se ha creado el Entrenamiento correctamente");
-			EntrenaAEntrena(entrenamiento);
-			return true;
-		}else {
-			System.out.println("Error al crear el entrenamiento");
-			return true;
-		}
-		
+	public boolean crearEntrenamiento(Usuario u, Entrenamiento entrenamiento) {
+		entrenamiento.setCreador(u.getNumero());
+		System.out.println("Se ha creado el Entrenamiento correctamente");
+		EntrenaAEntrena(entrenamiento);
+		return true;
 }
 	public void RetoARetos(Reto reto) {
 		listaRetos.add(reto);
@@ -133,8 +119,24 @@ public class ERAppService {
 		return listaRetos;
 
 }
-	public List<Entrenamiento> getTodosEntrenamiento(){
-		return listaEntrenamiento;
+	public List<Entrenamiento> getTodosEntrenamiento(Usuario usuario){
+		List<Entrenamiento> listaEntrenaPersonal = new ArrayList<>();
+		for (Entrenamiento entrenamiento : listaEntrenamiento) {
+			if (entrenamiento.getCreador()==usuario.getNumero()) {
+				listaEntrenaPersonal.add(entrenamiento);
+			}
+		}
+		return listaEntrenaPersonal;
+
+}
+	public List<Reto> getRetoPersonal(Usuario usuario){
+		List<Reto> listaRetoPersonal = new ArrayList<>();
+		for (Reto reto : listaRetos) {
+			if (reto.getCreador()==usuario.getNumero()) {
+				listaRetoPersonal.add(reto);
+			}
+		}
+		return listaRetoPersonal;
 
 }
 

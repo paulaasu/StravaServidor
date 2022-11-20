@@ -32,7 +32,7 @@ public class RetoAssembler {
 		if(reto.getDeporte().equals(TipoDeporte.CICLISMO)) {
 			dto.setDeporte(TipoDeporteDTO.CICLISMO);
 		} else if(reto.getDeporte().equals(TipoDeporte.RUNNING)) {
-			dto.setDeporte(TipoDeporteDTO.CICLISMO);
+			dto.setDeporte(TipoDeporteDTO.RUNNING);
 		}
 		dto.setCreador(reto.getCreador());
 				
@@ -49,7 +49,7 @@ public class RetoAssembler {
 		if(retoDTO.getDeporte().equals(TipoDeporteDTO.CICLISMO)) {
 			reto.setDeporte(TipoDeporte.CICLISMO);
 		} else if(retoDTO.getDeporte().equals(TipoDeporteDTO.RUNNING)) {
-			reto.setDeporte(TipoDeporte.CICLISMO);
+			reto.setDeporte(TipoDeporte.RUNNING);
 		}
 		reto.setCreador(retoDTO.getCreador());
 				

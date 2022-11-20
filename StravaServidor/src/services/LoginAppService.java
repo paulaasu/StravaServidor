@@ -102,8 +102,7 @@ public class LoginAppService {
 	}
 
 	public boolean registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
-//		String mensaje = "";
-
+		
 		try {
 			UsuarioGmail u = new UsuarioGmail();
 			u.setEmail(email);
@@ -112,8 +111,6 @@ public class LoginAppService {
 			u.setTipoUsuario(TipoUsuario.EMAIL);
 			List<Reto> reto = new ArrayList<>();
 			u.setRetos(reto);
-
-//			mensaje+=u.toString();
 
 			System.out.println("Se ha creado el Usuario correctamente");
 			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Contrasenya: "
