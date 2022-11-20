@@ -16,6 +16,7 @@ import domain.Reto;
 import domain.TipoDeporte;
 import domain.Usuario;
 import domain.UsuarioGmail;
+import dto.EntrenamientoAssembler;
 import dto.EntrenamientoDTO;
 import dto.RetoAssembler;
 import dto.RetoDTO;
@@ -27,7 +28,17 @@ public class ERAppService {
 	public List<Usuario> listaUser = new ArrayList<>();
 	public List<Entrenamiento> listaEntrenamiento = new ArrayList<>();
 	private RetoAssembler assemblerReto = new RetoAssembler();
+	public static ERAppService instance;
+	
+	public static ERAppService getInstance() {
+		if (instance == null) {
+			instance = new ERAppService();
+		}
 
+		return instance;
+	}
+	
+	
 	public ERAppService() {
 		this.initilizeData();
 	}

@@ -19,7 +19,16 @@ import domain.TipoUsuario;
 public class LoginAppService {
 	private List<Usuario> listaUsuarios = new ArrayList<>();
 	private List<UsuarioGmail> listaUsuariosGmail = new ArrayList<>();
+	public static LoginAppService instance;
+	
+	public static LoginAppService getInstance() {
+		if (instance == null) {
+			instance = new LoginAppService();
+		}
 
+		return instance;
+	}
+	
 	public Usuario loginFacebook(String email, String nickName) {
 		Usuario u = new Usuario();
 		for (Usuario usu : listaUsuarios) {
