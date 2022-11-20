@@ -18,9 +18,11 @@ import dto.TipoUsuarioDTO;
 //This interface defines the API of the Server. It represents the Remote Facade pattern
 public interface IRemoteFacade extends Remote {	
 
-	public long loginGF(String email, String nickname, TipoUsuarioDTO tipoUsuario) throws RemoteException;
+	public long loginFacebook(String email, String nickname) throws RemoteException;
 	
-	public long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	public long loginGoogle(String email, String nickname) throws RemoteException;
+	
+	public long loginGmail(String email, String password, String nickname) throws RemoteException;
 	
 	public void logout(long token) throws RemoteException; 
 	

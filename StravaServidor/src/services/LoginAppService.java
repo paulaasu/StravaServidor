@@ -17,49 +17,89 @@ import domain.TipoUsuario;
 //TODO: Implement Singleton Pattern
 public class LoginAppService {
 	private List<Usuario> listaUsuarios = new ArrayList<>();
+	private List<UsuarioGmail> listaUsuariosGmail = new ArrayList<>();
 
-	public UsuarioDTO login(String email, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
-		UsuarioDTO u = new UsuarioDTO();
-		if (tipoUsuarioDTO.equals(TipoUsuarioDTO.FACEBOOK)) {
-			u.setEmail(email);
-			u.setNombre(nickName);
-			u.setTipoUsuario(tipoUsuarioDTO.FACEBOOK);
-//			List<Reto> rdto = new ArrayList<>();
-//			u.setRetos(rdto);
-			if (u.getEmail().equals(email) && u.getNombre().equals(nickName)) {
-				System.out.println(u.toString());
-				return u;
-			} else {
-				return null;
-			}
-		} else if (tipoUsuarioDTO.equals(TipoUsuarioDTO.GOOGLE)) {
-			u.setEmail(email);
-			u.setNombre(nickName);
-			u.setTipoUsuario(tipoUsuarioDTO.GOOGLE);
-//			List<Reto> rdto = new ArrayList<>();
-//			u.setRetos(rdto);
-			if (u.getEmail().equals(email) && u.getNombre().equals(nickName)) {
-				System.out.println(u.toString());
-				return u;
-			} else {
-				return null;
+
+	public Usuario loginFacebook(String email, String nickName) {
+		Usuario u = new Usuario();
+		for (Usuario usu : listaUsuarios) {
+			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName) ) {
+				u.setNombre(usu.getNombre());
+				u.setNumero(usu.getNumero());
+				u.setAltura(usu.getAltura());
+				u.setEmail(usu.getEmail());
+				u.setFrecCardMax(usu.getFrecCardMax());
+				u.setFrecCardResposo(usu.getFrecCardResposo());
+				u.setPesoKG(usu.getPesoKG());
+				u.setRetos(usu.getRetos());
+				u.setTipoUsuario(TipoUsuario.FACEBOOK);
+				
+				System.out.println("el login se ha completado");
+				System.out.println("loginAppService");
+				
+				
+			}else {
+				System.out.println("el usuario no existe");
+				System.out.println("loginAppService ERROR");
 			}
 		}
-		return u;
+	return u;
+	}
+	
+	public Usuario loginGoogle(String email, String nickName) {
+		Usuario u = new Usuario();
+		for (Usuario usu : listaUsuarios) {
+			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName) ) {
+				u.setNombre(usu.getNombre());
+				u.setNumero(usu.getNumero());
+				u.setAltura(usu.getAltura());
+				u.setEmail(usu.getEmail());
+				u.setFrecCardMax(usu.getFrecCardMax());
+				u.setFrecCardResposo(usu.getFrecCardResposo());
+				u.setPesoKG(usu.getPesoKG());
+				u.setRetos(usu.getRetos());
+				u.setTipoUsuario(TipoUsuario.GOOGLE);
+				
+				System.out.println("el login se ha completado");
+				System.out.println("loginAppService");
+				
+				
+			}else {
+				System.out.println("el usuario no existe");
+				System.out.println("loginAppService ERROR");
+	
+			}
+		}
+	return u;
 	}
 
-	public UsuarioGmail loginGmail(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
+	public UsuarioGmail loginGmail(String email, String password, String nickName) {
+
 		UsuarioGmail u = new UsuarioGmail();
-		u.setNombre(nickName);
-		u.setEmail(email);
-		u.setPassword(password);
-		u.setTipoUsuario(TipoUsuario.EMAIL);
-		if (u.getEmail().equals(email) && u.getNombre().equals(nickName)) {
-			System.out.println(u.toString());
-			return u;
-		} else {
-			return null;
+		for (UsuarioGmail usu : listaUsuariosGmail) {
+			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName) && usu.getPassword().equals(password)) {
+				u.setNombre(usu.getNombre());
+				u.setNumero(usu.getNumero());
+				u.setAltura(usu.getAltura());
+				u.setEmail(usu.getEmail());
+				u.setFrecCardMax(usu.getFrecCardMax());
+				u.setFrecCardResposo(usu.getFrecCardResposo());
+				u.setPesoKG(usu.getPesoKG());
+				u.setRetos(usu.getRetos());
+				u.setTipoUsuario(TipoUsuario.EMAIL);
+				u.setPassword(password);
+				
+				System.out.println("el login se ha completado");
+				System.out.println("loginAppService");
+				
+				
+			}else {
+				System.out.println("el usuario no existe");
+				System.out.println("loginAppService ERROR");
+	
+			} 
 		}
+		return u;
 
 	}
 
@@ -81,7 +121,7 @@ public class LoginAppService {
 			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Contrasenya: "
 					+ u.getPassword());
 
-			listaUsuarios.add(u);
+			listaUsuariosGmail.add(u);
 			return true;
 
 		} catch (Exception e) {
@@ -111,7 +151,7 @@ public class LoginAppService {
 //			
 //			mensaje+=u.toString();
 //			System.out.println(mensaje);
-			listaUsuarios.add(u);
+			listaUsuariosGmail.add(u);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
