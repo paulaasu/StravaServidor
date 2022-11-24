@@ -69,7 +69,8 @@ public class LoginAppService {
 				u.setPesoKG(usu.getPesoKG());
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.FACEBOOK);
-
+				List<Reto> retos = new ArrayList<>();
+				u.setRetos(retos);
 				return u;
 
 			} else {
@@ -92,7 +93,8 @@ public class LoginAppService {
 				u.setPesoKG(usu.getPesoKG());
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.GOOGLE);
-
+				List<Reto> reto = new ArrayList<>();
+				u.setRetos(reto);
 				return u;
 
 			} else {
@@ -119,6 +121,8 @@ public class LoginAppService {
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.EMAIL);
 				u.setPassword(password);
+				List<Reto> reto = new ArrayList<>();
+				u.setRetos(reto);
 
 				return u;
 
@@ -169,6 +173,9 @@ public class LoginAppService {
 			u.setAltura(altura);
 			u.setFrecCardMax(frecCardMax);
 			u.setFrecCardResposo(frecCardReposo);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
+			
 			System.out.println("Se ha registrado el usuario EMAIL correctamente");
 //			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Contrasenya: "
 //					+ u.getPassword() + " Peso: " + u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: "
@@ -188,15 +195,15 @@ public class LoginAppService {
 	}
 
 	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
-		UsuarioDTO dto = new UsuarioDTO();
+		Usuario u = new Usuario();
 		try {
-			dto.setEmail(email);
-			dto.setNombre(nickname);
-			dto.setTipoUsuario(TipoUsuarioDTO.FACEBOOK);
-			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
-			Usuario u = assembler.usuarioDTOtoUsuario(dto);
+			u.setEmail(email);
+			u.setNombre(nickname);
+			u.setTipoUsuario(TipoUsuario.FACEBOOK);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
-			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail());
+			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
 			listaUsuarios.add(u);
 			return true;
 		} catch (Exception e) {
@@ -208,13 +215,13 @@ public class LoginAppService {
 	}
 
 	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
-		UsuarioDTO dto = new UsuarioDTO();
+		Usuario u = new Usuario();
 		try {
-			dto.setEmail(email);
-			dto.setNombre(nickname);
-			dto.setTipoUsuario(TipoUsuarioDTO.GOOGLE);
-			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
-			Usuario u = assembler.usuarioDTOtoUsuario(dto);
+			u.setEmail(email);
+			u.setNombre(nickname);
+			u.setTipoUsuario(TipoUsuario.GOOGLE);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
 			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
 			listaUsuarios.add(u);
@@ -228,21 +235,21 @@ public class LoginAppService {
 
 	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
-		UsuarioDTO dto = new UsuarioDTO();
+		Usuario u = new Usuario();
 		try {
-			dto.setEmail(email);
-			dto.setNombre(nickname);
-			dto.setTipoUsuario(TipoUsuarioDTO.FACEBOOK);
-			dto.setPesoKG(peso);
-			dto.setAltura(altura);
-			dto.setFrecCardMax(frecCardMax);
-			dto.setFrecCardResposo(frecCardReposo);
-			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
-			Usuario u = assembler.usuarioDTOtoUsuario(dto);
+			u.setEmail(email);
+			u.setNombre(nickname);
+			u.setTipoUsuario(TipoUsuario.FACEBOOK);
+			u.setPesoKG(peso);
+			u.setAltura(altura);
+			u.setFrecCardMax(frecCardMax);
+			u.setFrecCardResposo(frecCardReposo);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
-			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail() + " Peso: "
-					+ dto.getPesoKG() + " Altura: " + dto.getAltura() + " F.C.M: " + dto.getFrecCardMax() + " F.C.R: "
-					+ dto.getFrecCardResposo());
+			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
+					+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
+					+ u.getFrecCardResposo());
 			listaUsuarios.add(u);
 			return true;
 		} catch (Exception e) {
@@ -254,22 +261,22 @@ public class LoginAppService {
 
 	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
-		UsuarioDTO dto = new UsuarioDTO();
+		Usuario u = new Usuario();
 		try {
-			dto.setEmail(email);
-			dto.setNombre(nickname);
-			dto.setTipoUsuario(TipoUsuarioDTO.GOOGLE);
-			dto.setPesoKG(peso);
-			dto.setAltura(altura);
-			dto.setFrecCardMax(frecCardMax);
-			dto.setFrecCardResposo(frecCardReposo);
-			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
-			Usuario u = assembler.usuarioDTOtoUsuario(dto);
+			u.setEmail(email);
+			u.setNombre(nickname);
+			u.setTipoUsuario(TipoUsuario.GOOGLE);
+			u.setPesoKG(peso);
+			u.setAltura(altura);
+			u.setFrecCardMax(frecCardMax);
+			u.setFrecCardResposo(frecCardReposo);
+			List<Reto> reto = new ArrayList<>();
+			u.setRetos(reto);
 			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
-			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail() + " Peso: "
-					+ dto.getPesoKG() + " Altura: " + dto.getAltura() + " F.C.M: " + dto.getFrecCardMax() + " F.C.R: "
-					+ dto.getFrecCardResposo());
-			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail());
+			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
+					+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
+					+ u.getFrecCardResposo());
+			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
 
 			listaUsuarios.add(u);
 			return true;
