@@ -52,7 +52,7 @@ public interface IRemoteFacade extends Remote {
 	
 	public List<EntrenamientoDTO> getTodosEntrenamientos(long token) throws RemoteException;
 	
-	public List<RetoDTO> getRetosPersonales(long token) throws RemoteException;
+	public List<RetoDTO> getRetosAceptados(long token) throws RemoteException;
 	
 //	public List<RetoDTO> obtenerRetosActivos() throws RemoteException;
 	

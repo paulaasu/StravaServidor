@@ -112,12 +112,11 @@ public class ERAppService {
 	}
 
 	public boolean aceptarReto(Usuario u, Reto reto) {
-		List<Reto> re =getRetoPersonal(u);
 		boolean resultado = false;
 		for (Reto ret : listaRetos) {
 			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
 				System.out.println("Reto Aceptado correctamente");
-				re.add(ret);
+				u.getRetos().add(reto);
 				resultado= true;
 			}else {
 				resultado= false;
@@ -159,14 +158,8 @@ public class ERAppService {
 
 	}
 
-	public List<Reto> getRetoPersonal(Usuario usuario) {
-		List<Reto> listaRetoPersonal = new ArrayList<>();
-		for (Reto reto : listaRetos) {
-			if (reto.getCreador() == usuario.getNumero()) {
-				listaRetoPersonal.add(reto);
-			}
-		}
-		return listaRetoPersonal;
+	public List<Reto> getRetosAceptados(Usuario usuario) {
+		return usuario.getRetos();
 
 	}
 

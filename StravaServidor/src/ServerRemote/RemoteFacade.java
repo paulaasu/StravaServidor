@@ -271,10 +271,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public List<RetoDTO> getRetosPersonales(long token) throws RemoteException {
+	public List<RetoDTO> getRetosAceptados(long token) throws RemoteException {
 		if (this.serverState.containsKey(token)) {
 			List<Reto> listaRetos;
-			listaRetos = eraService.getRetoPersonal(this.serverState.get(token));
+			listaRetos = eraService.getRetosAceptados(this.serverState.get(token));
 			System.out.println("RemoteFacade1:" + listaRetos.size());
 
 			RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton
@@ -295,10 +295,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 			RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton 
 			Reto re =assembler.retoDTOTo(retoDTO);
 			
-			
 			if(eraService.aceptarReto(this.serverState.get(token), re)) {
-				List<RetoDTO> retos =getRetosPersonales(token);
-				retos.add(retoDTO);
 				result =true;
 			}
 			

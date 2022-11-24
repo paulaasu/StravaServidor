@@ -31,11 +31,15 @@ public class LoginAppService {
 		user0.setEmail("a");
 		user0.setNombre("a");
 		user0.setPassword("a");
+		List<Reto> a = new ArrayList<>();
+		user0.setRetos(a);
 
 		UsuarioGmail user1 = new UsuarioGmail();
 		user1.setEmail("sample@gmail.com");
 		user1.setNombre("buyer33");
 		user1.setPassword("hqc`}3Hb");
+		List<Reto> b = new ArrayList<>();
+		user0.setRetos(b);
 
 		listaUsuariosGmail.add(user0);
 		listaUsuariosGmail.add(user1);
