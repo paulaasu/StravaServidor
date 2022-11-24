@@ -27,9 +27,8 @@ public class ERAppService {
 	private List<Reto> listaRetos = new ArrayList<>();
 	public List<Usuario> listaUser = new ArrayList<>();
 	public List<Entrenamiento> listaEntrenamiento = new ArrayList<>();
-	private RetoAssembler assemblerReto = new RetoAssembler();
 	public static ERAppService instance;
-	
+
 	public static ERAppService getInstance() {
 		if (instance == null) {
 			instance = new ERAppService();
@@ -37,8 +36,7 @@ public class ERAppService {
 
 		return instance;
 	}
-	
-	
+
 	public ERAppService() {
 		this.initilizeData();
 	}
@@ -62,10 +60,11 @@ public class ERAppService {
 //Create Reto
 		Reto reto1 = new Reto();
 		reto1.setNombre("Pedalear Muchisimo");
-		reto1.setDescripcion("�quema tu bici!");
+		reto1.setDescripcion("Quema tu bici");
 		reto1.setCreador(user0.getNumero());
 		reto1.setFecha_ini("01/01/2021");
 		reto1.setFecha_fin("31/12/2021");
+		reto1.setDistancia(10);
 		reto1.setDeporte(TipoDeporte.CICLISMO);
 
 		Reto reto2 = new Reto();
@@ -74,12 +73,12 @@ public class ERAppService {
 		reto2.setCreador(user1.getNumero());
 		reto2.setFecha_ini("31/10/2021");
 		reto2.setFecha_fin("31/12/2021");
+		reto2.setDistancia(5);
 		reto2.setDeporte(TipoDeporte.RUNNING);
 
 		listaRetos.add(reto1);
 		listaRetos.add(reto2);
-		System.out.println("ERAppService:"+listaRetos.size());
-
+		
 		Entrenamiento entr = new Entrenamiento();
 		entr.setTitulo("CrossFit");
 		entr.setDeporte(TipoDeporte.RUNNING);
@@ -88,7 +87,7 @@ public class ERAppService {
 		entr.setFecha_ini("31/10/2021");
 		entr.setHora(21);
 		entr.setCreador(user1);
-		
+
 		Entrenamiento entr1 = new Entrenamiento();
 		entr1.setTitulo("Correr 10KM");
 		entr1.setDeporte(TipoDeporte.RUNNING);
@@ -97,62 +96,82 @@ public class ERAppService {
 		entr1.setFecha_ini("21/10/2021");
 		entr1.setHora(18);
 		entr1.setCreador(user0);
-		
+
 		listaEntrenamiento.add(entr1);
 		listaEntrenamiento.add(entr);
-		
 
-}
+	}
+
 	public boolean crearReto(Usuario u, Reto reto) {
-		
+
 		reto.setCreador(u.getNumero());
 		System.out.println("Se ha creado el Reto correctamente");
 		RetoARetos(reto);
 		return true;
-		
-}
 
+	}
+
+	public boolean aceptarReto(Usuario u, Reto reto) {
+		List<Reto> re =getRetoPersonal(u);
+		boolean resultado = false;
+		for (Reto ret : listaRetos) {
+			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
+				System.out.println("Reto Aceptado correctamente");
+				re.add(ret);
+				resultado= true;
+			}else {
+				resultado= false;
+			}
+		}
+		return resultado;
+
+	}
+	
 
 	public boolean crearEntrenamiento(Usuario u, Entrenamiento entrenamiento) {
 		entrenamiento.setCreador(u.getNumero());
 		System.out.println("Se ha creado el Entrenamiento correctamente");
 		EntrenaAEntrena(entrenamiento);
 		return true;
-}
+	}
+
 	public void RetoARetos(Reto reto) {
 		listaRetos.add(reto);
 	}
+
 	public void EntrenaAEntrena(Entrenamiento entre) {
 		listaEntrenamiento.add(entre);
 	}
 
-	public List<Reto> getTodosRetos(){
+	public List<Reto> getTodosRetos() {
 		return listaRetos;
 
-}
-	public List<Entrenamiento> getTodosEntrenamiento(Usuario usuario){
+	}
+
+	public List<Entrenamiento> getTodosEntrenamiento(Usuario usuario) {
 		List<Entrenamiento> listaEntrenaPersonal = new ArrayList<>();
 		for (Entrenamiento entrenamiento : listaEntrenamiento) {
-			if (entrenamiento.getCreador()==usuario.getNumero()) {
+			if (entrenamiento.getCreador() == usuario.getNumero()) {
 				listaEntrenaPersonal.add(entrenamiento);
 			}
 		}
 		return listaEntrenaPersonal;
 
-}
-	public List<Reto> getRetoPersonal(Usuario usuario){
+	}
+
+	public List<Reto> getRetoPersonal(Usuario usuario) {
 		List<Reto> listaRetoPersonal = new ArrayList<>();
 		for (Reto reto : listaRetos) {
-			if (reto.getCreador()==usuario.getNumero()) {
+			if (reto.getCreador() == usuario.getNumero()) {
 				listaRetoPersonal.add(reto);
 			}
 		}
 		return listaRetoPersonal;
 
-}
+	}
 
 	public float getGBPRate() {
 // TODO Auto-generated method stub
 		return 0;
-}
+	}
 }

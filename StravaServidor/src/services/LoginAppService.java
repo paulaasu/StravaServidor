@@ -21,6 +21,29 @@ public class LoginAppService {
 	private List<UsuarioGmail> listaUsuariosGmail = new ArrayList<>();
 	public static LoginAppService instance;
 	
+	public LoginAppService() {
+		this.initilizeDataLogin();
+	}
+
+	private void initilizeDataLogin() {
+		// Create Users
+		UsuarioGmail user0 = new UsuarioGmail();
+		user0.setEmail("a");
+		user0.setNombre("a");
+		user0.setPassword("a");
+
+		UsuarioGmail user1 = new UsuarioGmail();
+		user1.setEmail("sample@gmail.com");
+		user1.setNombre("buyer33");
+		user1.setPassword("hqc`}3Hb");
+
+		listaUsuariosGmail.add(user0);
+		listaUsuariosGmail.add(user1);
+
+	}
+	
+	
+	
 	public static LoginAppService getInstance() {
 		if (instance == null) {
 			instance = new LoginAppService();
@@ -43,12 +66,10 @@ public class LoginAppService {
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.FACEBOOK);
 
-				System.out.println("el login se ha completado");
-				System.out.println("loginAppService");
+				return u;
 
 			} else {
-				System.out.println("el usuario no existe");
-				System.out.println("loginAppService ERROR");
+				return null;
 			}
 		}
 		return u;
@@ -68,12 +89,10 @@ public class LoginAppService {
 				u.setRetos(usu.getRetos());
 				u.setTipoUsuario(TipoUsuario.GOOGLE);
 
-				System.out.println("el login se ha completado");
-				System.out.println("loginAppService");
+				return u;
 
 			} else {
-				System.out.println("el usuario no existe");
-				System.out.println("loginAppService ERROR");
+				return null;
 
 			}
 		}
@@ -97,12 +116,10 @@ public class LoginAppService {
 				u.setTipoUsuario(TipoUsuario.EMAIL);
 				u.setPassword(password);
 
-				System.out.println("el login se ha completado");
-				System.out.println("loginAppService");
+				return u;
 
 			} else {
-				System.out.println("el usuario no existe");
-				System.out.println("loginAppService ERROR");
+				return null;
 
 			}
 		}
@@ -258,21 +275,5 @@ public class LoginAppService {
 		}
 	}
 
-	private void initilizeDataLogin() {
-		// Create Users
-		UsuarioGmail user0 = new UsuarioGmail();
-		user0.setEmail("thomas.e2001@gmail.com");
-		user0.setNombre("Thomas");
-		user0.setPassword("aaa");
-
-		UsuarioGmail user1 = new UsuarioGmail();
-		user1.setEmail("sample@gmail.com");
-		user1.setNombre("buyer33");
-		user1.setPassword("hqc`}3Hb");
-
-		listaUsuariosGmail.add(user0);
-		listaUsuariosGmail.add(user1);
-
-	}
 
 }

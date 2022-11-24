@@ -25,6 +25,7 @@ public class RetoAssembler {
 		RetoDTO dto = new RetoDTO();
 		
 		dto.setNombre(reto.getNombre());
+		dto.setDescripcion(reto.getDescripcion());
 		dto.setFecha_ini(reto.getFecha_ini());
 		dto.setFecha_fin(reto.getFecha_fin());
 		dto.setDistancia(reto.getDistancia());
@@ -42,6 +43,7 @@ public class RetoAssembler {
 		Reto reto = new Reto();
 		
 		reto.setNombre(retoDTO.getNombre());
+		reto.setDescripcion(retoDTO.getDescripcion());
 		reto.setFecha_ini(retoDTO.getFecha_ini());
 		reto.setFecha_fin(retoDTO.getFecha_fin());
 		reto.setDistancia(retoDTO.getDistancia());

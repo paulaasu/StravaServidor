@@ -47,7 +47,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		
 		Long token = (long) -1;
 		// If login() success user is stored in the Server State
-		if (!(user.getNombre() == "" && user.getEmail() == "")) {
+		if (!(user.getNombre() == "" && user.getEmail() == "" && user.password=="")) {
 			// If user is not logged in
 			if (!this.serverState.values().contains(user)) {
 				token = Calendar.getInstance().getTimeInMillis();
@@ -132,23 +132,6 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		}
 	}
 
-//	@Override
-//	public ArrayList<RetoDTO> getRetos(String deporte) throws RemoteException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	@Override
-//	public void anyadirRetoARetos(RetoDTO reto, UsuarioDTO user) throws RemoteException {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void quitarRetoARetos(String tituloReto) throws RemoteException {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 	@Override
 	public boolean registrarObligatorio(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
@@ -265,11 +248,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	public List<RetoDTO> getTodosRetos() throws RemoteException {
 		List<Reto> listaRetos;
 		listaRetos = eraService.getTodosRetos();
-		System.out.println("RemoteFacade1:" + listaRetos.size());
 
 		RetoAssembler assembler = new RetoAssembler();
 		List<RetoDTO> listaRetosDTO = assembler.retosToDTO(listaRetos);
-		System.out.println("RemoteFacade2:" + listaRetosDTO.size());
 		return listaRetosDTO;
 	}
 
@@ -304,6 +285,27 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		} else {
 			throw new RemoteException("User is not logged in!");
 		}
+		
+	}
+
+	@Override
+	public boolean aceptarReto(long token, RetoDTO retoDTO) throws RemoteException {
+		boolean result=false;
+		if (this.serverState.containsKey(token)) {
+			RetoAssembler assembler = new RetoAssembler();
+			Reto re =assembler.retoDTOTo(retoDTO);
+			
+			
+			if(eraService.aceptarReto(this.serverState.get(token), re)) {
+				List<RetoDTO> retos =getRetosPersonales(token);
+				retos.add(retoDTO);
+				result =true;
+			}
+			
+		} else {
+			throw new RemoteException("User is not logged in!");
+		}
+		return result;
 		
 	}
 

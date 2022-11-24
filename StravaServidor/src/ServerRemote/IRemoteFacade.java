@@ -56,13 +56,11 @@ public interface IRemoteFacade extends Remote {
 	
 //	public List<RetoDTO> obtenerRetosActivos() throws RemoteException;
 	
-//	public void aceptarReto(RetoDTO reto, UsuarioDTO user) throws RemoteException;
+	public boolean aceptarReto(long token, RetoDTO reto) throws RemoteException;
 //	
 //	public void quitarRetoARetos(String tituloReto) throws RemoteException;
 //	
 	//public float calcularEstado(RetoAceptadoDTO reto, UsuarioDTO user) throws RemoteException;
 	
 	public float getGBPRate() throws RemoteException;
-
-	
 }
