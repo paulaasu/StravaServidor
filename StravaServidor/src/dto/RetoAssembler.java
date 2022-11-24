@@ -12,6 +12,7 @@ public class RetoAssembler {
 
 	public static RetoAssembler instance;
 
+	private RetoAssembler() { }
 	
 	public static RetoAssembler getInstance() {
 		if (instance == null) {

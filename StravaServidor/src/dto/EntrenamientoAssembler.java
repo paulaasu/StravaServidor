@@ -11,6 +11,7 @@ public class EntrenamientoAssembler {
 
 	public static EntrenamientoAssembler instance;
 
+	private EntrenamientoAssembler() { }
 	
 	public static EntrenamientoAssembler getInstance() {
 		if (instance == null) {

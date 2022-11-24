@@ -12,6 +12,7 @@ public class UsuarioAssembler {
 
 	public static UsuarioAssembler instance;
 
+	private UsuarioAssembler() { }
 	
 	public static UsuarioAssembler getInstance() {
 		if (instance == null) {

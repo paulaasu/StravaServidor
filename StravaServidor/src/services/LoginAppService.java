@@ -20,7 +20,7 @@ public class LoginAppService {
 	private List<Usuario> listaUsuarios = new ArrayList<>();
 	private List<UsuarioGmail> listaUsuariosGmail = new ArrayList<>();
 	public static LoginAppService instance;
-	
+	//private UsuarioAssembler assembler=UsuarioAssembler.getInstance();
 	public LoginAppService() {
 		this.initilizeDataLogin();
 	}
@@ -189,7 +189,7 @@ public class LoginAppService {
 			dto.setEmail(email);
 			dto.setNombre(nickname);
 			dto.setTipoUsuario(TipoUsuarioDTO.FACEBOOK);
-			UsuarioAssembler assembler = new UsuarioAssembler();
+			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
 			Usuario u = assembler.usuarioDTOtoUsuario(dto);
 			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
 			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail());
@@ -209,7 +209,7 @@ public class LoginAppService {
 			dto.setEmail(email);
 			dto.setNombre(nickname);
 			dto.setTipoUsuario(TipoUsuarioDTO.GOOGLE);
-			UsuarioAssembler assembler = new UsuarioAssembler();
+			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
 			Usuario u = assembler.usuarioDTOtoUsuario(dto);
 			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
 			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
@@ -233,7 +233,7 @@ public class LoginAppService {
 			dto.setAltura(altura);
 			dto.setFrecCardMax(frecCardMax);
 			dto.setFrecCardResposo(frecCardReposo);
-			UsuarioAssembler assembler = new UsuarioAssembler();
+			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
 			Usuario u = assembler.usuarioDTOtoUsuario(dto);
 			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
 			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail() + " Peso: "
@@ -259,7 +259,7 @@ public class LoginAppService {
 			dto.setAltura(altura);
 			dto.setFrecCardMax(frecCardMax);
 			dto.setFrecCardResposo(frecCardReposo);
-			UsuarioAssembler assembler = new UsuarioAssembler();
+			UsuarioAssembler assembler=UsuarioAssembler.getInstance();//Usar patron singleton
 			Usuario u = assembler.usuarioDTOtoUsuario(dto);
 			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
 			System.out.println("Usuario creado: Nombre: " + dto.getNombre() + " Email: " + dto.getEmail() + " Peso: "

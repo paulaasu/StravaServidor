@@ -163,7 +163,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		
 		if (this.serverState.containsKey(token)) {
 			
-			RetoAssembler assembler = new RetoAssembler();
+			RetoAssembler assembler = RetoAssembler.getInstance();//Usar patron singleton
 			Reto reto = assembler.retoDTOTo(retoDTO);
 
 			if (eraService.crearReto(this.serverState.get(token), reto) == true) {
@@ -182,7 +182,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	public boolean crearEntrenamiento(long token, EntrenamientoDTO entrenamientoDTO) throws RemoteException {
 		
 		if (this.serverState.containsKey(token)) {
-			EntrenamientoAssembler assembler = new EntrenamientoAssembler();
+			EntrenamientoAssembler assembler =EntrenamientoAssembler.getInstance();//Usar patron singleton
 			Entrenamiento entrenamiento = assembler.entrenamientoDTOTo(entrenamientoDTO);
 
 			if (eraService.crearEntrenamiento(this.serverState.get(token),entrenamiento) == true) {
@@ -249,7 +249,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		List<Reto> listaRetos;
 		listaRetos = eraService.getTodosRetos();
 
-		RetoAssembler assembler = new RetoAssembler();
+		RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton
 		List<RetoDTO> listaRetosDTO = assembler.retosToDTO(listaRetos);
 		return listaRetosDTO;
 	}
@@ -261,7 +261,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 			List<Entrenamiento> listaEntrenamientos;
 			listaEntrenamientos = eraService.getTodosEntrenamiento(this.serverState.get(token));
 			
-			EntrenamientoAssembler assembler = new EntrenamientoAssembler();
+			EntrenamientoAssembler assembler =EntrenamientoAssembler.getInstance();//Usar patron singleton
 			List<EntrenamientoDTO> listaEntrenamientosDTO = assembler.entrenamientosToDTO(listaEntrenamientos);
 			
 			return listaEntrenamientosDTO;
@@ -277,7 +277,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 			listaRetos = eraService.getRetoPersonal(this.serverState.get(token));
 			System.out.println("RemoteFacade1:" + listaRetos.size());
 
-			RetoAssembler assembler = new RetoAssembler();
+			RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton
 			List<RetoDTO> listaRetosDTO = assembler.retosToDTO(listaRetos);
 			System.out.println("RemoteFacade2:" + listaRetosDTO.size());
 			
@@ -292,7 +292,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	public boolean aceptarReto(long token, RetoDTO retoDTO) throws RemoteException {
 		boolean result=false;
 		if (this.serverState.containsKey(token)) {
-			RetoAssembler assembler = new RetoAssembler();
+			RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton 
 			Reto re =assembler.retoDTOTo(retoDTO);
 			
 			
