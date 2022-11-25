@@ -10,7 +10,7 @@ import domain.TipoUsuario;
 
 public class RetoAssembler {
 
-	public static RetoAssembler instance;
+	private static RetoAssembler instance;
 
 	private RetoAssembler() { }
 	

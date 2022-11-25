@@ -61,6 +61,5 @@ public interface IRemoteFacade extends Remote {
 //	public void quitarRetoARetos(String tituloReto) throws RemoteException;
 //	
 	//public float calcularEstado(RetoAceptadoDTO reto, UsuarioDTO user) throws RemoteException;
-	
-	public float getGBPRate() throws RemoteException;
+
 }

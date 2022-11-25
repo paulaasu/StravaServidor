@@ -10,7 +10,7 @@ import domain.TipoUsuario;
 
 public class UsuarioAssembler {
 
-	public static UsuarioAssembler instance;
+	private static UsuarioAssembler instance;
 
 	private UsuarioAssembler() { }
 	

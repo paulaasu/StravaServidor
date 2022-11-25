@@ -9,7 +9,7 @@ import domain.TipoDeporte;
 
 public class EntrenamientoAssembler {
 
-	public static EntrenamientoAssembler instance;
+	private static EntrenamientoAssembler instance;
 
 	private EntrenamientoAssembler() { }
 	

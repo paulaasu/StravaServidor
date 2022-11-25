@@ -4,6 +4,7 @@ import dto.EntrenamientoAssembler;
 import dto.TipoUsuarioDTO;
 import dto.UsuarioAssembler;
 import dto.UsuarioDTO;
+import gateway.GoogleGateway;
 import domain.Usuario;
 import domain.UsuarioGmail;
 
@@ -215,22 +216,30 @@ public class LoginAppService {
 	}
 
 	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
-		Usuario u = new Usuario();
-		try {
-			u.setEmail(email);
-			u.setNombre(nickname);
-			u.setTipoUsuario(TipoUsuario.GOOGLE);
-			List<Reto> reto = new ArrayList<>();
-			u.setRetos(reto);
-			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
-			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
-			listaUsuarios.add(u);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("Error al crear el usuario");
-			return false;
+		boolean resultado =false;
+		GoogleGateway googleGateway = GoogleGateway.getInstance();
+		if (googleGateway.checkCuenta(email)==true) {
+			Usuario u = new Usuario();
+			try {
+				u.setEmail(email);
+				u.setNombre(nickname);
+				u.setTipoUsuario(TipoUsuario.GOOGLE);
+				List<Reto> reto = new ArrayList<>();
+				u.setRetos(reto);
+				System.out.println("Se ha registrado el usuario GOOGLE correctamente");
+				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
+				listaUsuarios.add(u);
+				resultado = true;
+			} catch (Exception e) {
+				System.out.println("Error al crear el usuario");
+				resultado= false;
+			}
+		}else {
+			System.out.println("La cuenta de google no coincide");
+			resultado= false;
 		}
+		return resultado;
+		
 	}
 
 	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
@@ -261,29 +270,36 @@ public class LoginAppService {
 
 	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
-		Usuario u = new Usuario();
-		try {
-			u.setEmail(email);
-			u.setNombre(nickname);
-			u.setTipoUsuario(TipoUsuario.GOOGLE);
-			u.setPesoKG(peso);
-			u.setAltura(altura);
-			u.setFrecCardMax(frecCardMax);
-			u.setFrecCardResposo(frecCardReposo);
-			List<Reto> reto = new ArrayList<>();
-			u.setRetos(reto);
-			System.out.println("Se ha registrado el usuario GOOGLE correctamente");
-			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
-					+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
-					+ u.getFrecCardResposo());
-			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
-
-			listaUsuarios.add(u);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return false;
+		boolean resultado =false;
+		GoogleGateway googleGateway = GoogleGateway.getInstance();
+		if (googleGateway.checkCuenta(email)) {
+			Usuario u = new Usuario();
+			try {
+				u.setEmail(email);
+				u.setNombre(nickname);
+				u.setTipoUsuario(TipoUsuario.GOOGLE);
+				u.setPesoKG(peso);
+				u.setAltura(altura);
+				u.setFrecCardMax(frecCardMax);
+				u.setFrecCardResposo(frecCardReposo);
+				List<Reto> reto = new ArrayList<>();
+				u.setRetos(reto);
+				System.out.println("Se ha registrado el usuario GOOGLE correctamente");
+				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
+						+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
+						+ u.getFrecCardResposo());
+				listaUsuarios.add(u);
+				resultado= true;
+			} catch (Exception e) {
+				resultado= false;
+			}
+		}else {
+			resultado =false;
+			System.out.println("La cuenta de google no coincide");
 		}
+		return resultado;
+		
+		
 	}
 
 

@@ -118,19 +118,6 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		}
 	}
 
-	@Override
-	public float getGBPRate() throws RemoteException {
-		System.out.println(" * RemoteFacade get GBP rate");
-
-		// Get rate using BidAppService
-		float rate = eraService.getGBPRate();
-
-		if (rate != -1) {
-			return rate;
-		} else {
-			throw new RemoteException("getGBPRate() fails!");
-		}
-	}
 
 
 	@Override
@@ -200,7 +187,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 
-		if (loginService.registrarObligatorioFacebook(email, nickname, tipoUsuarioDTO)) {
+		if (loginService.registrarObligatorioFacebook(email, nickname, tipoUsuarioDTO)==true) {
 			return true;
 		} else {
 			return false;
@@ -211,13 +198,13 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	@Override
 	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
-
-		if (loginService.registrarObligatorioGoogle(email, nickname, tipoUsuarioDTO)) {
-			return true;
+		boolean resultado = false;
+		if (loginService.registrarObligatorioGoogle(email, nickname, tipoUsuarioDTO)==true) {
+			resultado= true;
 		} else {
-			return false;
+			resultado= false;
 		}
-
+		 return resultado;
 	}
 
 	@Override
@@ -225,7 +212,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 
 		if (loginService.registrarCompletoFacebook(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
-				frecCardReposo)) {
+				frecCardReposo)==true) {
 			return true;
 		} else {
 			return false;
@@ -237,7 +224,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 
 		if (loginService.registrarCompletoGoogle(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
-				frecCardReposo)) {
+				frecCardReposo)==true) {
 			return true;
 		} else {
 			return false;
