@@ -196,10 +196,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public boolean registrarObligatorioGoogle(String email, String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		boolean resultado = false;
-		if (loginService.registrarObligatorioGoogle(email, nickname, tipoUsuarioDTO)==true) {
+		if (loginService.registrarObligatorioGoogle(email, contasenya, nickname, tipoUsuarioDTO)==true) {
 			resultado= true;
 		} else {
 			resultado= false;
@@ -220,10 +220,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 
-		if (loginService.registrarCompletoGoogle(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
+		if (loginService.registrarCompletoGoogle(email, contrasenya, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
 				frecCardReposo)==true) {
 			return true;
 		} else {

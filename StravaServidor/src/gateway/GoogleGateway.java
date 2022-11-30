@@ -27,10 +27,10 @@ public class GoogleGateway {
 	}
 
 	
-	public boolean checkCuenta(String email) {
+	public boolean checkCuenta(String email, String contasenya) {
 		boolean resultado = false;
 		try {
-			if (this.currencyConvService.checkUsuario(email)) {
+			if (this.currencyConvService.checkUsuario(email, contasenya)) {
 				resultado = true;
 			} else {
 				resultado= false;

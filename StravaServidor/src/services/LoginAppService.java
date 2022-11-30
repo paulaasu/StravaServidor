@@ -215,10 +215,10 @@ public class LoginAppService {
 
 	}
 
-	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
+	public boolean registrarObligatorioGoogle(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
 		boolean resultado =false;
 		GoogleGateway googleGateway = GoogleGateway.getInstance();
-		if (googleGateway.checkCuenta(email)==true) {
+		if (googleGateway.checkCuenta(email, contasenya)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);
@@ -268,11 +268,11 @@ public class LoginAppService {
 
 	}
 
-	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
 		boolean resultado =false;
 		GoogleGateway googleGateway = GoogleGateway.getInstance();
-		if (googleGateway.checkCuenta(email)) {
+		if (googleGateway.checkCuenta(email, contrasenya)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);
