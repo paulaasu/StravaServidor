@@ -9,6 +9,7 @@ import domain.Usuario;
 import domain.UsuarioGmail;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import domain.Entrenamiento;
@@ -36,11 +37,11 @@ public class LoginAppService {
 		user0.setRetos(a);
 
 		UsuarioGmail user1 = new UsuarioGmail();
-		user1.setEmail("sample@gmail.com");
-		user1.setNombre("buyer33");
-		user1.setPassword("hqc`}3Hb");
+		user1.setEmail("b");
+		user1.setNombre("b");
+		user1.setPassword("b");
 		List<Reto> b = new ArrayList<>();
-		user0.setRetos(b);
+		user1.setRetos(b);
 
 		listaUsuariosGmail.add(user0);
 		listaUsuariosGmail.add(user1);
@@ -61,21 +62,8 @@ public class LoginAppService {
 		Usuario u = new Usuario();
 		for (Usuario usu : listaUsuarios) {
 			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-				u.setNombre(usu.getNombre());
-				u.setNumero(usu.getNumero());
-				u.setAltura(usu.getAltura());
-				u.setEmail(usu.getEmail());
-				u.setFrecCardMax(usu.getFrecCardMax());
-				u.setFrecCardResposo(usu.getFrecCardResposo());
-				u.setPesoKG(usu.getPesoKG());
-				u.setRetos(usu.getRetos());
-				u.setTipoUsuario(TipoUsuario.FACEBOOK);
-				List<Reto> retos = new ArrayList<>();
-				u.setRetos(retos);
-				return u;
+				return usu;
 
-			} else {
-				return null;
 			}
 		}
 		return u;
@@ -85,21 +73,7 @@ public class LoginAppService {
 		Usuario u = new Usuario();
 		for (Usuario usu : listaUsuarios) {
 			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-				u.setNombre(usu.getNombre());
-				u.setNumero(usu.getNumero());
-				u.setAltura(usu.getAltura());
-				u.setEmail(usu.getEmail());
-				u.setFrecCardMax(usu.getFrecCardMax());
-				u.setFrecCardResposo(usu.getFrecCardResposo());
-				u.setPesoKG(usu.getPesoKG());
-				u.setRetos(usu.getRetos());
-				u.setTipoUsuario(TipoUsuario.GOOGLE);
-				List<Reto> reto = new ArrayList<>();
-				u.setRetos(reto);
-				return u;
-
-			} else {
-				return null;
+				return usu;
 
 			}
 		}
@@ -109,31 +83,16 @@ public class LoginAppService {
 	public UsuarioGmail loginGmail(String email, String password, String nickName) {
 
 		UsuarioGmail u = new UsuarioGmail();
+
+		
 		for (UsuarioGmail usu : listaUsuariosGmail) {
 			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
 					&& usu.getPassword().equals(password)) {
-				u.setNombre(usu.getNombre());
-				u.setNumero(usu.getNumero());
-				u.setAltura(usu.getAltura());
-				u.setEmail(usu.getEmail());
-				u.setFrecCardMax(usu.getFrecCardMax());
-				u.setFrecCardResposo(usu.getFrecCardResposo());
-				u.setPesoKG(usu.getPesoKG());
-				u.setRetos(usu.getRetos());
-				u.setTipoUsuario(TipoUsuario.EMAIL);
-				u.setPassword(password);
-				List<Reto> reto = new ArrayList<>();
-				u.setRetos(reto);
-
-				return u;
-
-			} else {
-				return null;
-
-			}
+				return usu;
+		}
+		
 		}
 		return u;
-
 	}
 
 	public boolean registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
