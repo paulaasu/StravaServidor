@@ -1,28 +1,21 @@
 package services;
 
-import dto.EntrenamientoAssembler;
 import dto.TipoUsuarioDTO;
-import dto.UsuarioAssembler;
-import dto.UsuarioDTO;
-import gateway.GoogleGateway;
+import factory.LoginFactory;
 import domain.Usuario;
 import domain.UsuarioGmail;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import domain.Entrenamiento;
 import domain.Reto;
-import domain.TipoDeporte;
 import domain.TipoUsuario;
 
-//TODO: Implement Singleton Pattern
 public class LoginAppService {
 	private List<Usuario> listaUsuarios = new ArrayList<>();
 	private List<UsuarioGmail> listaUsuariosGmail = new ArrayList<>();
 	public static LoginAppService instance;
-	//private UsuarioAssembler assembler=UsuarioAssembler.getInstance();
+	
 	public LoginAppService() {
 		this.initilizeDataLogin();
 	}
@@ -137,47 +130,45 @@ public class LoginAppService {
 			u.setRetos(reto);
 			
 			System.out.println("Se ha registrado el usuario EMAIL correctamente");
-//			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Contrasenya: "
-//					+ u.getPassword() + " Peso: " + u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: "
-//					+ u.getFrecCardMax() + " F.C.R: " + u.getFrecCardResposo());
-//			
-//			mensaje+=u.toString();
-//			System.out.println(mensaje);
+
 			listaUsuariosGmail.add(u);
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("Error al crear el usuario");
-			return false;
-		}
-//		String mensaje = "";
-
-	}
-
-	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
-		Usuario u = new Usuario();
-		try {
-			u.setEmail(email);
-			u.setNombre(nickname);
-			u.setTipoUsuario(TipoUsuario.FACEBOOK);
-			List<Reto> reto = new ArrayList<>();
-			u.setRetos(reto);
-			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
-			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
-			listaUsuarios.add(u);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println("Error al crear el usuario");
 			return false;
 		}
 
 	}
 
-	public boolean registrarObligatorioGoogle(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
+	public boolean registrarObligatorioFacebook(String email,String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
+		if (LoginFactory.crearLoginService("Facebook").comprobarCuenta(email, contrasenya)==true) {
+			Usuario u = new Usuario();
+			try {
+				u.setEmail(email);
+				u.setNombre(nickname);
+				u.setTipoUsuario(TipoUsuario.FACEBOOK);
+				List<Reto> reto = new ArrayList<>();
+				u.setRetos(reto);
+				System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
+				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
+				listaUsuarios.add(u);
+				return true;
+			} catch (Exception e) {
+				System.out.println("Error al crear el usuario");
+				return false;
+			}
+		}else {
+			System.out.println("La cuenta de Facebook no coincide");
+			return false;
+		}
+		
+
+
+	}
+
+	public boolean registrarObligatorioGoogle(String email,String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
 		boolean resultado =false;
-		GoogleGateway googleGateway = GoogleGateway.getInstance();
-		if (googleGateway.checkCuenta(email, contasenya)==true) {
+		if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);
@@ -201,27 +192,33 @@ public class LoginAppService {
 		
 	}
 
-	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoFacebook(String email,String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
-		Usuario u = new Usuario();
-		try {
-			u.setEmail(email);
-			u.setNombre(nickname);
-			u.setTipoUsuario(TipoUsuario.FACEBOOK);
-			u.setPesoKG(peso);
-			u.setAltura(altura);
-			u.setFrecCardMax(frecCardMax);
-			u.setFrecCardResposo(frecCardReposo);
-			List<Reto> reto = new ArrayList<>();
-			u.setRetos(reto);
-			System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
-			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
-					+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
-					+ u.getFrecCardResposo());
-			listaUsuarios.add(u);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
+		
+		if (LoginFactory.crearLoginService("Facebook").comprobarCuenta(email, contrasenya)==true) {
+			Usuario u = new Usuario();
+			try {
+				u.setEmail(email);
+				u.setNombre(nickname);
+				u.setTipoUsuario(TipoUsuario.FACEBOOK);
+				u.setPesoKG(peso);
+				u.setAltura(altura);
+				u.setFrecCardMax(frecCardMax);
+				u.setFrecCardResposo(frecCardReposo);
+				List<Reto> reto = new ArrayList<>();
+				u.setRetos(reto);
+				System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
+				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
+						+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
+						+ u.getFrecCardResposo());
+				listaUsuarios.add(u);
+				return true;
+			} catch (Exception e) {
+				System.out.println("Error al crear usuario");
+				return false;
+			}
+		}else {
+			System.out.println("La cuenta de Facebook no coincide");
 			return false;
 		}
 
@@ -230,8 +227,7 @@ public class LoginAppService {
 	public boolean registrarCompletoGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
 		boolean resultado =false;
-		GoogleGateway googleGateway = GoogleGateway.getInstance();
-		if (googleGateway.checkCuenta(email, contrasenya)==true) {
+		if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);

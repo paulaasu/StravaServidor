@@ -2,9 +2,7 @@ package ServerRemote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +15,6 @@ import dto.EntrenamientoAssembler;
 import dto.EntrenamientoDTO;
 import dto.RetoAssembler;
 import dto.RetoDTO;
-import dto.TipoDeporteDTO;
-import dto.UsuarioDTO;
-import dto.UsuarioAssembler;
 import dto.TipoUsuarioDTO;
 import services.ERAppService;
 import services.LoginAppService;
@@ -184,10 +179,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public boolean registrarObligatorioFacebook(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 
-		if (loginService.registrarObligatorioFacebook(email, nickname, tipoUsuarioDTO)==true) {
+		if (loginService.registrarObligatorioFacebook(email,contasenya, nickname, tipoUsuarioDTO)==true) {
 			return true;
 		} else {
 			return false;
@@ -208,10 +203,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoFacebook(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 
-		if (loginService.registrarCompletoFacebook(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
+		if (loginService.registrarCompletoFacebook(email,contasenya, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
 				frecCardReposo)==true) {
 			return true;
 		} else {

@@ -1,13 +1,9 @@
 package dto;
-import java.io.Serializable;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import domain.Usuario;
+import java.io.Serializable;
 
 public class RetoDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String descripcion;
 	private String fecha_ini; //duda: Date o String?

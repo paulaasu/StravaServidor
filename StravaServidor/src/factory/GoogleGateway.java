@@ -1,18 +1,18 @@
-package gateway;
+package factory;
 
 import java.rmi.Naming;
 
 
 import remote.IGoogle;
 
-public class GoogleGateway {
+public class GoogleGateway implements ILoginGateway {
 	private static GoogleGateway instance;
-	private IGoogle currencyConvService;
+	private IGoogle GoogleService;
 	
-	private GoogleGateway() {
+	public GoogleGateway() {
 		try {		
 			String URL = "//127.0.0.1:1099/ServidorGoogle";
-			this.currencyConvService = (IGoogle) Naming.lookup(URL);
+			this.GoogleService = (IGoogle) Naming.lookup(URL);
 		} catch (Exception ex) {
 			System.err.println("# Error locating remote service: " + ex);
 		}
@@ -26,11 +26,11 @@ public class GoogleGateway {
 		return instance;
 	}
 
-	
-	public boolean checkCuenta(String email, String contasenya) {
+	@Override
+	public boolean comprobarCuenta(String email, String contasenya) {
 		boolean resultado = false;
 		try {
-			if (this.currencyConvService.checkUsuario(email, contasenya)) {
+			if (this.GoogleService.checkUsuario(email, contasenya)) {
 				resultado = true;
 			} else {
 				resultado= false;
@@ -42,4 +42,6 @@ public class GoogleGateway {
 	}
 	
 
+
+	
 }

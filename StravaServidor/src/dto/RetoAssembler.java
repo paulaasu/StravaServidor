@@ -1,12 +1,10 @@
 package dto;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import domain.Reto;
 import domain.TipoDeporte;
-import domain.TipoUsuario;
 
 public class RetoAssembler {
 

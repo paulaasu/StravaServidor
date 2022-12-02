@@ -1,9 +1,6 @@
 package dto;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import domain.Usuario;
 
 public class EntrenamientoDTO implements Serializable {
 

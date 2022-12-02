@@ -1,27 +1,14 @@
 package services;
 
-import java.rmi.RemoteException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.JOptionPane;
-
 import domain.Entrenamiento;
 import domain.Reto;
 import domain.TipoDeporte;
 import domain.Usuario;
 import domain.UsuarioGmail;
-import dto.EntrenamientoAssembler;
-import dto.EntrenamientoDTO;
-import dto.RetoAssembler;
-import dto.RetoDTO;
 
-//TODO: Implement Singleton Pattern
+
 public class ERAppService {
 
 	private List<Reto> listaRetos = new ArrayList<>();
@@ -164,7 +151,6 @@ public class ERAppService {
 	}
 
 	public float getGBPRate() {
-// TODO Auto-generated method stub
 		return 0;
 	}
 }
