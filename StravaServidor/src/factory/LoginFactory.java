@@ -1,7 +1,6 @@
 package factory;
 
 
-
 public class LoginFactory {
 	public static ILoginGateway crearLoginService(String metodo) {
 		if (metodo.equals("Google")) {

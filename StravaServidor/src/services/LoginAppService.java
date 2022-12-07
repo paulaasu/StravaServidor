@@ -51,6 +51,35 @@ public class LoginAppService {
 		return instance;
 	}
 	
+	
+	public Usuario login(String email, String contrasenya,String nickName, TipoUsuarioDTO tipousuario) {
+		if (tipousuario.equals(TipoUsuarioDTO.FACEBOOK)) {
+			if (LoginFactory.crearLoginService("Facebook").comprobarCuenta(email, contrasenya)==true) {
+				for (Usuario usu : listaUsuarios) {
+					if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
+						return usu;
+					}
+			}
+		}
+		}else if (tipousuario.equals(TipoUsuarioDTO.GOOGLE)) {
+			if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
+				for (Usuario usu : listaUsuarios) {
+					if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
+						return usu;
+					}
+			}	
+		}	
+		} else if(tipousuario.equals(TipoUsuarioDTO.EMAIL)) {
+			for (UsuarioGmail usu : listaUsuariosGmail) {
+				if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
+						&& usu.getPassword().equals(contrasenya)) {
+					return usu;
+			}
+		}
+	}
+		return null;
+}
+	
 	public Usuario loginFacebook(String email, String nickName) {
 		Usuario u = new Usuario();
 		for (Usuario usu : listaUsuarios) {
@@ -140,8 +169,8 @@ public class LoginAppService {
 
 	}
 
-	public boolean registrarObligatorioFacebook(String email,String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
-		if (LoginFactory.crearLoginService("Facebook").comprobarCuenta(email, contrasenya)==true) {
+	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
+		if (LoginFactory.crearLoginService("Facebook").comprobarEmail(email)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);
@@ -166,9 +195,9 @@ public class LoginAppService {
 
 	}
 
-	public boolean registrarObligatorioGoogle(String email,String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
+	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) {
 		boolean resultado =false;
-		if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
+		if (LoginFactory.crearLoginService("Google").comprobarEmail(email)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);
@@ -192,10 +221,10 @@ public class LoginAppService {
 		
 	}
 
-	public boolean registrarCompletoFacebook(String email,String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
 		
-		if (LoginFactory.crearLoginService("Facebook").comprobarCuenta(email, contrasenya)==true) {
+		if (LoginFactory.crearLoginService("Facebook").comprobarEmail(email)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);
@@ -224,10 +253,10 @@ public class LoginAppService {
 
 	}
 
-	public boolean registrarCompletoGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) {
 		boolean resultado =false;
-		if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
+		if (LoginFactory.crearLoginService("Google").comprobarEmail(email)==true) {
 			Usuario u = new Usuario();
 			try {
 				u.setEmail(email);

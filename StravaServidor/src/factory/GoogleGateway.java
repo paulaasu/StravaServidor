@@ -40,6 +40,21 @@ public class GoogleGateway implements ILoginGateway {
 		}
 		return resultado;
 	}
+
+	@Override
+	public boolean comprobarEmail(String email) {
+		boolean resultado = false;
+		try {
+			if (this.GoogleService.checkEmail(email)) {
+				resultado = true;
+			} else {
+				resultado= false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 	
 
 

@@ -32,6 +32,35 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		super();
 	}
 
+
+	@Override
+	public long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+			throws RemoteException {
+		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuarioDTO);
+		
+		LoginAppService loginService = LoginAppService.getInstance();
+		Usuario user = loginService.login(email, password, nickname, tipoUsuarioDTO);
+		
+		
+		Long token = (long) -1;
+		// If login() success user is stored in the Server State
+		if (user != null) {
+			// If user is not logged in
+			if (!this.serverState.values().contains(user)) {
+				token = Calendar.getInstance().getTimeInMillis();
+				this.serverState.put(token, user);
+				return (token);
+			} else {
+				throw new RemoteException("El usuario no esta registrado!");
+			}
+		} else {
+			System.out.println("Error en el remotefacade loginGmail");
+			return(token);
+		}
+	}
+
+	
+	
 	@Override
 	public long loginGmail(String email, String password, String nickname) throws RemoteException {
 //		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
@@ -182,10 +211,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarObligatorioFacebook(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		LoginAppService loginService = LoginAppService.getInstance();
-		if (loginService.registrarObligatorioFacebook(email,contasenya, nickname, tipoUsuarioDTO)==true) {
+		if (loginService.registrarObligatorioFacebook(email, nickname, tipoUsuarioDTO)==true) {
 			return true;
 		} else {
 			return false;
@@ -194,11 +223,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarObligatorioGoogle(String email, String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
+	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO)
 			throws RemoteException {
 		boolean resultado = false;
 		LoginAppService loginService = LoginAppService.getInstance();
-		if (loginService.registrarObligatorioGoogle(email, contasenya, nickname, tipoUsuarioDTO)==true) {
+		if (loginService.registrarObligatorioGoogle(email, nickname, tipoUsuarioDTO)==true) {
 			resultado= true;
 		} else {
 			resultado= false;
@@ -207,10 +236,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarCompletoFacebook(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 		LoginAppService loginService = LoginAppService.getInstance();
-		if (loginService.registrarCompletoFacebook(email,contasenya, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
+		if (loginService.registrarCompletoFacebook(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
 				frecCardReposo)==true) {
 			return true;
 		} else {
@@ -219,10 +248,10 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	}
 
 	@Override
-	public boolean registrarCompletoGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
+	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso,
 			Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException {
 		LoginAppService loginService = LoginAppService.getInstance();
-		if (loginService.registrarCompletoGoogle(email, contrasenya, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
+		if (loginService.registrarCompletoGoogle(email, nickname, tipoUsuarioDTO, peso, altura, frecCardMax,
 				frecCardReposo)==true) {
 			return true;
 		} else {
@@ -291,5 +320,8 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		return result;
 		
 	}
+
+
+
 
 }

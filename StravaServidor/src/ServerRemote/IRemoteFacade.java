@@ -10,6 +10,8 @@ import dto.TipoUsuarioDTO;
 
 public interface IRemoteFacade extends Remote {	
 
+	public long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	
 	public long loginFacebook(String email, String nickname) throws RemoteException;
 	
 	public long loginGoogle(String email, String nickname) throws RemoteException;
@@ -24,15 +26,15 @@ public interface IRemoteFacade extends Remote {
 
 	//Registrar Facebook/Google obligatorio
 	
-	public boolean registrarObligatorioFacebook(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	public boolean registrarObligatorioFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
 	
-	public boolean registrarObligatorioGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
+	public boolean registrarObligatorioGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
 
 	//Registrar Facebook/Google completo
 	
-	public boolean registrarCompletoFacebook(String email,String contasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
+	public boolean registrarCompletoFacebook(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
 	
-	public boolean registrarCompletoGoogle(String email, String contrasenya, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
+	public boolean registrarCompletoGoogle(String email, String nickname, TipoUsuarioDTO tipoUsuarioDTO, Integer peso, Integer altura, Integer frecCardMax, Integer frecCardReposo) throws RemoteException;
 
 	//Crear Reto/Entrenamiento
 	
