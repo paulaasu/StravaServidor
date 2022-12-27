@@ -5,8 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.jdo.annotations.PersistenceCapable;
+
 import domain.Usuario;
 
+@PersistenceCapable
 public class Reto {
 	private String nombre;
 	private String descripcion;

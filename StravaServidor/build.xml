@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="4.server" name="StravaServidor">    
+<project basedir="." default="7.server" name="StravaServidor">    
 	<property name="src.dir" location="src"/>
    	<property name="bin.dir" location="bin"/>
 	<property name="dist.dir" location="dist"/>
@@ -29,12 +29,43 @@
 		<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/ServerRemote/I**.class, **/dto/**.class"/>
 	</target>
 	
-	<target name="3.local.test" depends="1.build" description="Runs local repository test">
+	<target name="3.enhance-classes" depends="1.build" description="Adds JDO code to the persisten compiled classes">
+	    	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask"/>
+	   		<enhancer classpathref="classpath" failonerror="true">
+	            <sysproperty key="log4j.configuration" value="**/resources/log4j.properties"/>
+	            <fileset dir="${bin.dir}">
+	                <include name="**/*.class"/>
+	            </fileset>
+	   		</enhancer>
+	    </target>
+	
+	<target name="4.create-db-schema" depends="3.enhance-classes" description="Creates DB Schema on the DB Server">
+	        <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+	    	<schematool mode="create" classpathref="classpath" props="datanucleus.properties" failonerror="true">
+	            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+	            <fileset dir="${bin.dir}">
+	                <include name="**/*.class"/>
+	            </fileset>
+	        </schematool>
+	    </target>
+	
+	<target name="5.delete-db-schema" depends="3.enhance-classes" description="Drops DB sechema from the DB Server">
+			<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+	    	<schematool mode="delete" classpathref="classpath" props="datanucleus.properties" failonerror="true">            
+	    	   	<sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+	    	 	<fileset dir="${bin.dir}">
+	           		<include name="**/*.class"/>
+	            </fileset>
+	        </schematool>
+		</target>
+	
+	
+	<target name="6.local.test" depends="1.build" description="Runs local repository test">
 		<java classname="es.deusto.ingenieria.sd.auctions.server.test.LocalTest" classpathref="classpath" fork="true">
 		</java>
     </target>
 	
-	<target name="4.server" depends="1.build" description="Runs the Server">
+	<target name="7.server" depends="1.build" description="Runs the Server">
 		<java classname="servidor.MainProgram" classpathref="classpath" fork="true">
         	<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>

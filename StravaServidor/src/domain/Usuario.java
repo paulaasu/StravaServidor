@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.PersistenceCapable;
+
 import domain.TipoUsuario;
 
-
+@PersistenceCapable
 public class Usuario {
 	public static int contador=1;
 	private int numero; //ID

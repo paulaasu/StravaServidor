@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import domain.Usuario;
+import javax.jdo.annotations.PersistenceCapable;
 
+@PersistenceCapable
 public class Entrenamiento {
 	private String titulo;
 	private TipoDeporte deporte;
