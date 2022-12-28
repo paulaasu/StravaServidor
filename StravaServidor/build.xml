@@ -9,12 +9,14 @@
 	<property name="rmiregistry.IP" value="127.0.0.1"/> 
 	<property name="rmiregistry.port" value="1099"/> 
 	<property name="server.name" value="StravaServidor"/>
+	<property name="resources.dir" location="resources"/>
 
 	<path id="classpath">
         <fileset dir="${lib.dir}">
             <include name="**/*.jar"/>
         </fileset>
         <pathelement location="${bin.dir}"/>
+		<pathelement location="${resources.dir}"/> 
     </path>
 	
 	<target name="1.build" description="Builds the project">
@@ -32,7 +34,7 @@
 	<target name="3.enhance-classes" depends="1.build" description="Adds JDO code to the persisten compiled classes">
 	    	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask"/>
 	   		<enhancer classpathref="classpath" failonerror="true">
-	            <sysproperty key="log4j.configuration" value="**/resources/log4j.properties"/>
+	            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
 	            <fileset dir="${bin.dir}">
 	                <include name="**/*.class"/>
 	            </fileset>

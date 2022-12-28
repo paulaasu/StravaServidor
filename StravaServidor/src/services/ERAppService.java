@@ -150,7 +150,4 @@ public class ERAppService {
 
 	}
 
-	public float getGBPRate() {
-		return 0;
-	}
 }

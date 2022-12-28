@@ -1,0 +1,48 @@
+11:28:00,589 (main) ERROR [DataNucleus.SchemaTool] - Error creating NucleusContext
+No se puede leer el archivo de propiedades "datanucleus.properties"
+org.datanucleus.exceptions.NucleusUserException: No se puede leer el archivo de propiedades "datanucleus.properties"
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:693)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:294)
+Caused by: java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:687)
+	... 1 more
+Nested Throwables StackTrace:
+java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:687)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:294)
+11:35:21,054 (main) ERROR [DataNucleus.SchemaTool] - Error creating NucleusContext
+No se puede leer el archivo de propiedades "datanucleus.properties"
+org.datanucleus.exceptions.NucleusUserException: No se puede leer el archivo de propiedades "datanucleus.properties"
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:693)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:294)
+Caused by: java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:687)
+	... 1 more
+Nested Throwables StackTrace:
+java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:687)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:294)
+11:36:37,542 (main) ERROR [DataNucleus.SchemaTool] - Error creating NucleusContext
+No se puede leer el archivo de propiedades "datanucleus.properties"
+org.datanucleus.exceptions.NucleusUserException: No se puede leer el archivo de propiedades "datanucleus.properties"
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:693)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:294)
+Caused by: java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:687)
+	... 1 more
+Nested Throwables StackTrace:
+java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.Configuration.getPropertiesFromPropertiesFile(Configuration.java:687)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:294)
