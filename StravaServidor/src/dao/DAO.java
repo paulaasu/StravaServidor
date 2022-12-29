@@ -7,11 +7,13 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
-public class DAO implements IDAO {
+public class DAO  {
 
 	protected static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 
-	@Override
+	
+	
+	
 	public void guardarObjeto(Object object) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -32,7 +34,7 @@ public class DAO implements IDAO {
 	
 	}
 
-	@Override
+
 	public void borrarObjeto(Object object) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -52,17 +54,5 @@ public class DAO implements IDAO {
 		}
 	}
 
-	@Override
-	public List getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object buscarObjetos(String condicion) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	
 }

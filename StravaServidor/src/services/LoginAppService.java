@@ -8,6 +8,7 @@ import domain.UsuarioGmail;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.UsuarioDAO;
 import domain.Reto;
 import domain.TipoUsuario;
 
@@ -55,8 +56,8 @@ public class LoginAppService {
 	public Usuario login(String email, String contrasenya,String nickName, TipoUsuarioDTO tipousuario) {
 		if (tipousuario.equals(TipoUsuarioDTO.FACEBOOK)) {
 			if (LoginFactory.crearLoginService("Facebook").comprobarCuenta(email, contrasenya)==true) {
-				for (Usuario usu : listaUsuarios) {
-					if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
+				for (Usuario usu : UsuarioDAO.getInstance().getAll()) {
+					if ((usu).getEmail().equals(email) && (usu).getNombre().equals(nickName)) {
 						return usu;
 					}
 			}

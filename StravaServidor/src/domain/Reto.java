@@ -9,7 +9,7 @@ import javax.jdo.annotations.PersistenceCapable;
 
 import domain.Usuario;
 
-@PersistenceCapable
+@PersistenceCapable(detachable = "true")
 public class Reto {
 	private String nombre;
 	private String descripcion;

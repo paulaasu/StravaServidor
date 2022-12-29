@@ -9,7 +9,7 @@ import java.util.Locale;
 import domain.Usuario;
 import javax.jdo.annotations.PersistenceCapable;
 
-@PersistenceCapable
+@PersistenceCapable(detachable = "true")
 public class Entrenamiento {
 	private String titulo;
 	private TipoDeporte deporte;

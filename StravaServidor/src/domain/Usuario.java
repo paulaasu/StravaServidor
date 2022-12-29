@@ -8,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 
 import domain.TipoUsuario;
 
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class Usuario {
 	public static int contador=1;
 	private int numero; //ID

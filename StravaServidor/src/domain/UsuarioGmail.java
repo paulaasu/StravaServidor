@@ -3,7 +3,8 @@ package domain;
 import java.util.List;
 
 import javax.jdo.annotations.PersistenceCapable;
-@PersistenceCapable
+
+@PersistenceCapable(detachable="true")
 public class UsuarioGmail extends Usuario {
 
 	public String password;
