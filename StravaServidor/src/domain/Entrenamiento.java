@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 import domain.Usuario;
 import javax.jdo.annotations.PersistenceCapable;
-
+ 
 @PersistenceCapable(detachable = "true")
 public class Entrenamiento {
 	private String titulo;
