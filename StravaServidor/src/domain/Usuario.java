@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
 import domain.TipoUsuario;
 
 @PersistenceCapable(detachable="true")
+@Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	public static int contador=1;
 	private int numero; //ID

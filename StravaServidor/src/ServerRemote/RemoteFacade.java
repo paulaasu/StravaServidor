@@ -61,77 +61,77 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 
 	
 	
-	@Override
-	public long loginGmail(String email, String password, String nickname) throws RemoteException {
-//		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
-			
-		// Perform login() using LoginAppService
-		
-		LoginAppService loginService = LoginAppService.getInstance();
-		UsuarioGmail user = loginService.loginGmail(email, password, nickname);
-		
-		Long token = (long) -1;
-		// If login() success user is stored in the Server State
-		if (!(user.getNombre() == "" && user.getEmail() == "" && user.password=="")) {
-			// If user is not logged in
-			if (!this.serverState.values().contains(user)) {
-				token = Calendar.getInstance().getTimeInMillis();
-				this.serverState.put(token, user);
-				return (token);
-			} else {
-				throw new RemoteException("El usuario no esta registrado!");
-			}
-		} else {
-			System.out.println("Error en el remotefacade loginGmail");
-			return(token);
-		}
-	}
+//	@Override
+//	public long loginGmail(String email, String password, String nickname) throws RemoteException {
+////		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuario);
+//			
+//		// Perform login() using LoginAppService
+//		
+//		LoginAppService loginService = LoginAppService.getInstance();
+//		UsuarioGmail user = loginService.loginGmail(email, password, nickname);
+//		
+//		Long token = (long) -1;
+//		// If login() success user is stored in the Server State
+//		if (!(user.getNombre() == "" && user.getEmail() == "" && user.password=="")) {
+//			// If user is not logged in
+//			if (!this.serverState.values().contains(user)) {
+//				token = Calendar.getInstance().getTimeInMillis();
+//				this.serverState.put(token, user);
+//				return (token);
+//			} else {
+//				throw new RemoteException("El usuario no esta registrado!");
+//			}
+//		} else {
+//			System.out.println("Error en el remotefacade loginGmail");
+//			return(token);
+//		}
+//	}
 
-	public synchronized long loginGoogle(String email, String nickname) throws RemoteException {
-
-		// Perform login() using LoginAppService
-		LoginAppService loginService = LoginAppService.getInstance();
-		Usuario user = loginService.loginGoogle(email, nickname);
-		System.out.println(" * RemoteFacade login(): " + user.getEmail() + " / " + user.getNombre());
-		Long token = (long) -1;
-		// If login() success user is stored in the Server State
-		if (!(user.getNombre() == "" && user.getEmail() == "")) {
-			// If user is not logged in
-			if (!this.serverState.values().contains(user)) {
-				token = Calendar.getInstance().getTimeInMillis();
-				this.serverState.put(token, user);
-				return (token);
-			} else {
-				throw new RemoteException("El usuario no esta registrado!");
-			}
-		} else {
-			System.out.println("Error en el remotefacade loginGoogle");
-			return (token);
-		}
-	}
-
-	public synchronized long loginFacebook(String email, String nickname) throws RemoteException {
-
-		// Perform login() using LoginAppService
-		LoginAppService loginService = LoginAppService.getInstance();
-		Usuario user = loginService.loginFacebook(email, nickname);
-		System.out.println(" * RemoteFacade login(): " + user.getEmail() + " / " + user.getNombre());
-		Long token = (long) -1;
-		// If login() success user is stored in the Server State
-		if (!(user.getNombre() == "" && user.getEmail() == "")) {
-			// If user is not logged in
-			if (!this.serverState.values().contains(user)) {
-				token = Calendar.getInstance().getTimeInMillis();
-				this.serverState.put(token, user);
-				return (token);
-			} else {
-				throw new RemoteException("El usuario no esta registrado!");
-			}
-		} else {
-			System.out.println("Error en el remotefacade loginFacebook");
-			return (token);
-		}
-	}
+//	public synchronized long loginGoogle(String email, String nickname) throws RemoteException {
+//
+//		// Perform login() using LoginAppService
+//		LoginAppService loginService = LoginAppService.getInstance();
+//		Usuario user = loginService.loginGoogle(email, nickname);
+//		System.out.println(" * RemoteFacade login(): " + user.getEmail() + " / " + user.getNombre());
+//		Long token = (long) -1;
+//		// If login() success user is stored in the Server State
+//		if (!(user.getNombre() == "" && user.getEmail() == "")) {
+//			// If user is not logged in
+//			if (!this.serverState.values().contains(user)) {
+//				token = Calendar.getInstance().getTimeInMillis();
+//				this.serverState.put(token, user);
+//				return (token);
+//			} else {
+//				throw new RemoteException("El usuario no esta registrado!");
+//			}
+//		} else {
+//			System.out.println("Error en el remotefacade loginGoogle");
+//			return (token);
+//		}
+//	}
+//
+//	public synchronized long loginFacebook(String email, String nickname) throws RemoteException {
+//
+//		// Perform login() using LoginAppService
+//		LoginAppService loginService = LoginAppService.getInstance();
+//		Usuario user = loginService.loginFacebook(email, nickname);
+//		System.out.println(" * RemoteFacade login(): " + user.getEmail() + " / " + user.getNombre());
+//		Long token = (long) -1;
+//		// If login() success user is stored in the Server State
+//		if (!(user.getNombre() == "" && user.getEmail() == "")) {
+//			// If user is not logged in
+//			if (!this.serverState.values().contains(user)) {
+//				token = Calendar.getInstance().getTimeInMillis();
+//				this.serverState.put(token, user);
+//				return (token);
+//			} else {
+//				throw new RemoteException("El usuario no esta registrado!");
+//			}
+//		} else {
+//			System.out.println("Error en el remotefacade loginFacebook");
+//			return (token);
+//		}
+//	}
 
 	@Override
 	public synchronized void logout(long token) throws RemoteException {

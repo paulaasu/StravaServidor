@@ -12,11 +12,11 @@ public interface IRemoteFacade extends Remote {
 
 	public long login(String email, String password, String nickname, TipoUsuarioDTO tipoUsuarioDTO) throws RemoteException;
 	
-	public long loginFacebook(String email, String nickname) throws RemoteException;
-	
-	public long loginGoogle(String email, String nickname) throws RemoteException;
-	
-	public long loginGmail(String email, String password, String nickname) throws RemoteException;
+//	public long loginFacebook(String email, String nickname) throws RemoteException;
+//	
+//	public long loginGoogle(String email, String nickname) throws RemoteException;
+//	
+//	public long loginGmail(String email, String password, String nickname) throws RemoteException;
 	
 	public void logout(long token) throws RemoteException; 
 

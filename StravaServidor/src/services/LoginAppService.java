@@ -64,7 +64,7 @@ public class LoginAppService {
 		}
 		}else if (tipousuario.equals(TipoUsuarioDTO.GOOGLE)) {
 			if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
-				for (Usuario usu : listaUsuarios) {
+				for (Usuario usu : UsuarioDAO.getInstance().getAll()) {
 					if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
 						return usu;
 					}
@@ -81,42 +81,42 @@ public class LoginAppService {
 		return null;
 }
 	
-	public Usuario loginFacebook(String email, String nickName) {
-		Usuario u = new Usuario();
-		for (Usuario usu : listaUsuarios) {
-			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-				return usu;
-
-			}
-		}
-		return u;
-	}
-
-	public Usuario loginGoogle(String email, String nickName) {
-		Usuario u = new Usuario();
-		for (Usuario usu : listaUsuarios) {
-			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-				return usu;
-
-			}
-		}
-		return u;
-	}
-
-	public UsuarioGmail loginGmail(String email, String password, String nickName) {
-
-		UsuarioGmail u = new UsuarioGmail();
-
-		
-		for (UsuarioGmail usu : listaUsuariosGmail) {
-			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
-					&& usu.getPassword().equals(password)) {
-				return usu;
-		}
-		
-		}
-		return u;
-	}
+//	public Usuario loginFacebook(String email, String nickName) {
+//		Usuario u = new Usuario();
+//		for (Usuario usu : listaUsuarios) {
+//			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
+//				return usu;
+//
+//			}
+//		}
+//		return u;
+//	}
+//
+//	public Usuario loginGoogle(String email, String nickName) {
+//		Usuario u = new Usuario();
+//		for (Usuario usu : listaUsuarios) {
+//			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
+//				return usu;
+//
+//			}
+//		}
+//		return u;
+//	}
+//
+//	public UsuarioGmail loginGmail(String email, String password, String nickName) {
+//
+//		UsuarioGmail u = new UsuarioGmail();
+//
+//		
+//		for (UsuarioGmail usu : listaUsuariosGmail) {
+//			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
+//					&& usu.getPassword().equals(password)) {
+//				return usu;
+//		}
+//		
+//		}
+//		return u;
+//	}
 
 	public boolean registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
 		
