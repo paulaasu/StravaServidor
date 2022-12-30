@@ -9,31 +9,31 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
+import domain.Reto;
 import domain.Usuario;
-import domain.UsuarioGmail;
 
-public class UsuarioDAO implements IDAO<Usuario>{
+public class RetoDAO implements IDAO<Reto>{
 	
-	private static UsuarioDAO instance;	
+	private static RetoDAO instance;	
 
 	
-	public static UsuarioDAO getInstance() {
+	public static RetoDAO getInstance() {
 		if (instance == null) {
-			instance = new UsuarioDAO();
+			instance = new RetoDAO();
 		}		
 		
 		return instance;
 	}
 	
 	private PersistenceManagerFactory pmf;
-
-	public UsuarioDAO() {
+	
+	public RetoDAO() {
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	}
-
-
+	
+	
 	@Override
-	public void borrarObjeto(Usuario object) {
+	public void borrarObjeto(Reto object) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -54,19 +54,19 @@ public class UsuarioDAO implements IDAO<Usuario>{
 	}
 
 	@Override
-	public List<Usuario> getAll() {
+	public List<Reto> getAll() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		
-		List<Usuario> usuarios = new ArrayList<>();
+		List<Reto> retos = new ArrayList<>();
 
 		try {
 			tx.begin();
 			
-			Extent<Usuario> userExtent = pm.getExtent(Usuario.class, true);
+			Extent<Reto> retoExtent = pm.getExtent(Reto.class, true);
 			
-			for (Usuario user : userExtent) {
-				usuarios.add(user);
+			for (Reto reto : retoExtent) {
+				retos.add(reto);
 			}
 						
 			tx.commit();
@@ -80,47 +80,17 @@ public class UsuarioDAO implements IDAO<Usuario>{
 			pm.close();
 		}
 
-		return usuarios;
+		return retos;
 	}
-	
-	public List<UsuarioGmail> getAllGmail() {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		
-		List<UsuarioGmail> usuarios = new ArrayList<>();
-
-		try {
-			tx.begin();
-			
-			Extent<UsuarioGmail> userExtent = pm.getExtent(UsuarioGmail.class, true);
-			
-			for (UsuarioGmail user : userExtent) {
-				usuarios.add(user);
-			}
-						
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("  $ Error querying all users: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-
-		return usuarios;
-	}
-	
 
 	@Override
-	public Usuario buscarObjetos(String condicion) {
+	public Reto buscarObjetos(String condicion) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void guardar(Usuario object) {
+	public void guardar(Reto object) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -141,26 +111,5 @@ public class UsuarioDAO implements IDAO<Usuario>{
 		
 	}
 	
-	public void guardarGmail(UsuarioGmail object) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-			System.out.println("   * Storing an object: " + object);
-			pm.makePersistent(object);
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error storing an object: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-		
-	}
-
 	
 }

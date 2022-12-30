@@ -2,6 +2,9 @@ package services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dao.EntrenamientoDAO;
+import dao.RetoDAO;
 import domain.Entrenamiento;
 import domain.Reto;
 import domain.TipoDeporte;
@@ -122,15 +125,18 @@ public class ERAppService {
 	}
 
 	public void RetoARetos(Reto reto) {
-		listaRetos.add(reto);
+		//listaRetos.add(reto);
+		RetoDAO.getInstance().guardar(reto);
+		
 	}
 
 	public void EntrenaAEntrena(Entrenamiento entre) {
-		listaEntrenamiento.add(entre);
+		//listaEntrenamiento.add(entre);
+		EntrenamientoDAO.getInstance().guardar(entre);
 	}
 
 	public List<Reto> getTodosRetos() {
-		return listaRetos;
+		return RetoDAO.getInstance().getAll();
 
 	}
 

@@ -30,26 +30,7 @@ public class EntrenamientoDAO implements IDAO<Entrenamiento>{
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	}
 
-	@Override
-	public void guardarObjeto(Entrenamiento object) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-			pm.makePersistent(object);
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println(" $ Error storing an object: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-		
-	}
+	
 
 	@Override
 	public void borrarObjeto(Entrenamiento object) {
@@ -106,6 +87,28 @@ public class EntrenamientoDAO implements IDAO<Entrenamiento>{
 	public Entrenamiento buscarObjetos(String condicion) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void guardar(Entrenamiento object) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+			System.out.println("   * Storing an object: " + object);
+			pm.makePersistent(object);
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error storing an object: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			pm.close();
+		}
+		
 	}
 	
 	

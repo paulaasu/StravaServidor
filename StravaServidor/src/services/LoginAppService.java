@@ -71,7 +71,7 @@ public class LoginAppService {
 			}	
 		}	
 		} else if(tipousuario.equals(TipoUsuarioDTO.EMAIL)) {
-			for (UsuarioGmail usu : listaUsuariosGmail) {
+			for (UsuarioGmail usu : UsuarioDAO.getInstance().getAllGmail()) {
 				if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
 						&& usu.getPassword().equals(contrasenya)) {
 					return usu;
@@ -132,8 +132,8 @@ public class LoginAppService {
 			System.out.println("Se ha creado el Usuario correctamente");
 			System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Contrasenya: "
 					+ u.getPassword());
-
-			listaUsuariosGmail.add(u);
+			
+			UsuarioDAO.getInstance().guardarGmail(u);
 			return true;
 
 		} catch (Exception e) {
@@ -160,8 +160,9 @@ public class LoginAppService {
 			u.setRetos(reto);
 			
 			System.out.println("Se ha registrado el usuario EMAIL correctamente");
-
-			listaUsuariosGmail.add(u);
+			
+			
+			UsuarioDAO.getInstance().guardarGmail(u);
 			return true;
 		} catch (Exception e) {
 			System.out.println("Error al crear el usuario");
@@ -181,7 +182,9 @@ public class LoginAppService {
 				u.setRetos(reto);
 				System.out.println("Se ha registrado el usuario FACEBOOK correctamente");
 				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
-				listaUsuarios.add(u);
+				
+				UsuarioDAO.getInstance().guardar(u);
+				
 				return true;
 			} catch (Exception e) {
 				System.out.println("Error al crear el usuario");
@@ -208,7 +211,9 @@ public class LoginAppService {
 				u.setRetos(reto);
 				System.out.println("Se ha registrado el usuario GOOGLE correctamente");
 				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail());
-				listaUsuarios.add(u);
+				
+				UsuarioDAO.getInstance().guardar(u);
+				
 				resultado = true;
 			} catch (Exception e) {
 				System.out.println("Error al crear el usuario");
@@ -241,7 +246,9 @@ public class LoginAppService {
 				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
 						+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
 						+ u.getFrecCardResposo());
-				listaUsuarios.add(u);
+				
+				UsuarioDAO.getInstance().guardar(u);
+				
 				return true;
 			} catch (Exception e) {
 				System.out.println("Error al crear usuario");
@@ -273,7 +280,9 @@ public class LoginAppService {
 				System.out.println("Usuario creado: Nombre: " + u.getNombre() + " Email: " + u.getEmail() + " Peso: "
 						+ u.getPesoKG() + " Altura: " + u.getAltura() + " F.C.M: " + u.getFrecCardMax() + " F.C.R: "
 						+ u.getFrecCardResposo());
-				listaUsuarios.add(u);
+				
+				UsuarioDAO.getInstance().guardar(u);
+				
 				resultado= true;
 			} catch (Exception e) {
 				resultado= false;

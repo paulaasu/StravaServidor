@@ -67,7 +67,7 @@ public class MainProgram {
 		user1.setPesoKG(0);
 		user1.setFrecCardMax(0);
 		user1.setFrecCardResposo(0);;
-		user1.setTipoUsuario(TipoUsuario.FACEBOOK);
+		user1.setTipoUsuario(TipoUsuario.GOOGLE);
 		List<Reto> retosAceptados1 = new ArrayList<Reto>();
 		user1.setRetos(retosAceptados);
 		
@@ -83,9 +83,9 @@ public class MainProgram {
 		
 		
 		//Save Users in the DB
-		UsuarioDAO.getInstance().guardarObjeto(user0);
-		UsuarioDAO.getInstance().guardarObjeto(user1);
-		EntrenamientoDAO.getInstance().guardarObjeto(entrenamiento1);
+//		UsuarioDAO.getInstance().guardarObjeto(user0);
+//		UsuarioDAO.getInstance().guardarObjeto(user1);
+//		EntrenamientoDAO.getInstance().guardarObjeto(entrenamiento1);
 //		UserDAO.getInstance().save(user1);
 //		UserDAO.getInstance().save(user2);
 	}

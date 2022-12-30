@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 
 import domain.TipoUsuario;
@@ -22,7 +23,10 @@ public class Usuario {
 	private float frecCardMax;
 	private float frecCardResposo;
 	private TipoUsuario tipoUsuario;
+	@Join
 	private List<Reto> retos = new ArrayList<>();
+	
+	
 	
 	
 public Usuario(String nombre, String email, float pesoKG, float altura, float frecCardMax,
