@@ -76,7 +76,7 @@ public class ERAppService {
 		entr.setDuracion(10);
 		entr.setFecha_ini("31/10/2021");
 		entr.setHora(21);
-		entr.setCreador(user1);
+//		entr.setCreador(user1);
 
 		Entrenamiento entr1 = new Entrenamiento();
 		entr1.setTitulo("Correr 10KM");
@@ -85,7 +85,7 @@ public class ERAppService {
 		entr1.setDuracion(20);
 		entr1.setFecha_ini("21/10/2021");
 		entr1.setHora(18);
-		entr1.setCreador(user0);
+//		entr1.setCreador(user0);
 
 		listaEntrenamiento.add(entr1);
 		listaEntrenamiento.add(entr);
@@ -118,9 +118,9 @@ public class ERAppService {
 	
 
 	public boolean crearEntrenamiento(Usuario u, Entrenamiento entrenamiento) {
-		entrenamiento.setCreador(u.getNumero());
+		u.addEntrenamiento(entrenamiento);
 		System.out.println("Se ha creado el Entrenamiento correctamente");
-		EntrenaAEntrena(entrenamiento);
+		EntrenamientoDAO.getInstance().guardar(entrenamiento);
 		return true;
 	}
 
@@ -130,10 +130,10 @@ public class ERAppService {
 		
 	}
 
-	public void EntrenaAEntrena(Entrenamiento entre) {
-		//listaEntrenamiento.add(entre);
-		EntrenamientoDAO.getInstance().guardar(entre);
-	}
+//	public void EntrenaAEntrena(Entrenamiento entre) {
+//		//listaEntrenamiento.add(entre);
+//		EntrenamientoDAO.getInstance().guardar(entre);
+//	}
 
 	public List<Reto> getTodosRetos() {
 		return RetoDAO.getInstance().getAll();
@@ -141,13 +141,24 @@ public class ERAppService {
 	}
 
 	public List<Entrenamiento> getTodosEntrenamiento(Usuario usuario) {
-		List<Entrenamiento> listaEntrenaPersonal = new ArrayList<>();
-		for (Entrenamiento entrenamiento : listaEntrenamiento) {
-			if (entrenamiento.getCreador() == usuario.getNumero()) {
-				listaEntrenaPersonal.add(entrenamiento);
-			}
+		System.out.println("metodo getEntrenamientos USUARIO:");
+		System.out.println(usuario.getNombre());
+		System.out.println("Entrenamientos: ");
+		for(int i=0; i<usuario.getEntrenamientos().size(); i++) {
+			System.out.println(usuario.getEntrenamientos().get(i));
+			
 		}
-		return listaEntrenaPersonal;
+		return usuario.getEntrenamientos();
+		
+//		List<Entrenamiento> listaEntrenaPersonal = new ArrayList<>();
+//		for (Entrenamiento entrenamiento : listaEntrenamiento) {
+//			if (entrenamiento.getCreador() == usuario.getNumero()) {
+//				listaEntrenaPersonal.add(entrenamiento);
+//			}
+//		}
+//		
+//		
+//		return listaEntrenaPersonal;
 
 	}
 

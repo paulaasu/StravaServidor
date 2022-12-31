@@ -58,18 +58,6 @@ public class MainProgram {
 		List<Reto> retosAceptados = new ArrayList<Reto>();
 		user0.setRetos(retosAceptados);
 		
-		//Usuarios
-		Usuario user1 = new Usuario();		
-		user1.setNumero(0);
-		user1.setEmail("paula");
-		user1.setNombre("paula");
-		user1.setAltura(0);
-		user1.setPesoKG(0);
-		user1.setFrecCardMax(0);
-		user1.setFrecCardResposo(0);;
-		user1.setTipoUsuario(TipoUsuario.GOOGLE);
-		List<Reto> retosAceptados1 = new ArrayList<Reto>();
-		user1.setRetos(retosAceptados);
 		
 		
 		//Entrenamientos
@@ -81,11 +69,33 @@ public class MainProgram {
 		entrenamiento1.setHora(1222);
 		entrenamiento1.setDeporte(TipoDeporte.CICLISMO);
 		
+		//Usuarios
+				Usuario user1 = new Usuario();		
+				user1.setNumero(0);
+				user1.setEmail("paula");
+				user1.setNombre("paula");
+				user1.setAltura(0);
+				user1.setPesoKG(0);
+				user1.setFrecCardMax(0);
+				user1.setFrecCardResposo(0);;
+				user1.setTipoUsuario(TipoUsuario.GOOGLE);
+				List<Reto> retosAceptados1 = new ArrayList<Reto>();
+				user1.setRetos(retosAceptados);
+				List<Entrenamiento> entrenamientos = new ArrayList<Entrenamiento>();
+				entrenamientos.add(entrenamiento1);
+				user1.setEntrenamientos(entrenamientos);
+				
+				
+				System.out.println("Entrenamientos Main: ");
+				for(int i=0; i<user1.getEntrenamientos().size(); i++) {
+					System.out.println("HOLA!"+user1.getEntrenamientos().get(i));
+					
+				}
 		
 		//Save Users in the DB
-//		UsuarioDAO.getInstance().guardarObjeto(user0);
-//		UsuarioDAO.getInstance().guardarObjeto(user1);
-//		EntrenamientoDAO.getInstance().guardarObjeto(entrenamiento1);
+//		UsuarioDAO.getInstance().guardar(user0);
+//		UsuarioDAO.getInstance().guardar(user1);
+//		EntrenamientoDAO.getInstance().guardar(entrenamiento1);
 //		UserDAO.getInstance().save(user1);
 //		UserDAO.getInstance().save(user2);
 	}

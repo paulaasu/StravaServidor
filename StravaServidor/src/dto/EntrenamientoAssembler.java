@@ -33,7 +33,7 @@ public class EntrenamientoAssembler {
 		dto.setDuracion(entrenamiento.getDuracion());
 		dto.setFecha_ini(entrenamiento.getFecha_ini());
 		dto.setHora(entrenamiento.getHora());
-		dto.setCreador(entrenamiento.getCreador());
+//		dto.setCreador(entrenamiento.getCreador());
 				
 		return dto;
 	}
@@ -51,7 +51,7 @@ public class EntrenamientoAssembler {
 		entre.setDuracion(entrenamientoDTO.getDuracion());
 		entre.setFecha_ini(entrenamientoDTO.getFecha_ini());
 		entre.setHora(entrenamientoDTO.getHora());
-		entre.setCreador(entrenamientoDTO.getCreador());
+//		entre.setCreador(entrenamientoDTO.getCreador());
 				
 		return entre;
 	}

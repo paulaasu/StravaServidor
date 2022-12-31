@@ -38,17 +38,23 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 			throws RemoteException {
 		System.out.println(" * RemoteFacade login(): " + email + " / " + password + " / " +nickname+ " / " +tipoUsuarioDTO);
 		
-		LoginAppService loginService = LoginAppService.getInstance();
-		Usuario user = loginService.login(email, password, nickname, tipoUsuarioDTO);
-		
-		
+		Usuario user = LoginAppService.getInstance().login(email, password, nickname, tipoUsuarioDTO);
+
 		Long token = (long) -1;
 		// If login() success user is stored in the Server State
 		if (user != null) {
 			// If user is not logged in
 			if (!this.serverState.values().contains(user)) {
 				token = Calendar.getInstance().getTimeInMillis();
+				System.out.println(token);
+				System.out.println(user.getEmail());
 				this.serverState.put(token, user);
+//				System.out.println("LOGIN TOKEN:");
+//				
+//				for(long key: serverState.keySet()) {
+//					System.out.println(key+"="+serverState.get(key));
+//				}
+				
 				return (token);
 			} else {
 				throw new RemoteException("El usuario no esta registrado!");
@@ -274,6 +280,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		
 		if (this.serverState.containsKey(token)) {
 			List<Entrenamiento> listaEntrenamientos;
+			System.out.println("USUARIO DE TOKEN: ");
+			// TOKEN/USUARIO
+			System.out.println(this.serverState.get(token).getNombre());
 			listaEntrenamientos = eraService.getTodosEntrenamiento(this.serverState.get(token));
 			
 			EntrenamientoAssembler assembler =EntrenamientoAssembler.getInstance();//Usar patron singleton

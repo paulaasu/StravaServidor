@@ -66,6 +66,11 @@ public class LoginAppService {
 			if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
 				for (Usuario usu : UsuarioDAO.getInstance().getAll()) {
 					if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
+						System.out.println("Entrenamientos LoginAppService: "+usu.getNombre());
+						for(int i=0; i<usu.getEntrenamientos().size(); i++) {
+							System.out.println("HOLA!"+usu.getEntrenamientos().get(i));
+							
+						}
 						return usu;
 					}
 			}	

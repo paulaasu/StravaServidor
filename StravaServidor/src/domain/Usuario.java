@@ -8,6 +8,7 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 
 import domain.TipoUsuario;
 
@@ -18,14 +19,16 @@ public class Usuario {
 	private int numero; //ID
 	private String nombre;
 	private String email;
+	private TipoUsuario tipoUsuario;
 	private float pesoKG;
 	private float altura;
 	private float frecCardMax;
 	private float frecCardResposo;
-	private TipoUsuario tipoUsuario;
-	@Join
-	private List<Reto> retos = new ArrayList<>();
 	
+	@Persistent(defaultFetchGroup = "true")
+	private List<Reto> retos = new ArrayList<>();
+	@Persistent(defaultFetchGroup = "true")
+	private List<Entrenamiento> entrenamientos = new ArrayList<>();
 	
 	
 	
@@ -119,8 +122,19 @@ public int getNumero() {
 		}
 	}
 	
-	
-	
+	public List<Entrenamiento> getEntrenamientos() {
+		return entrenamientos;
+	}
+
+	public void setEntrenamientos(List<Entrenamiento> entrenamientos) {
+		this.entrenamientos = entrenamientos;
+	}
+
+	public void addEntrenamiento(Entrenamiento entrenamiento) { //añadir entrenamiento a la lista de retos
+		if (entrenamiento != null && !this.entrenamientos.contains(entrenamiento)) {
+			this.entrenamientos.add(entrenamiento);
+		}
+	}
 	
 	@Override
 	public String toString() {
