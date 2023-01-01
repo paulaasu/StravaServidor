@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.EntrenamientoDAO;
 import dao.RetoDAO;
+import dao.UsuarioDAO;
 import domain.Entrenamiento;
 import domain.Reto;
 import domain.TipoDeporte;
@@ -94,41 +95,44 @@ public class ERAppService {
 
 	public boolean crearReto(Usuario u, Reto reto) {
 
-		reto.setCreador(u.getNumero());
+		RetoDAO.getInstance().guardar(reto);
 		System.out.println("Se ha creado el Reto correctamente");
-		RetoARetos(reto);
 		return true;
 
 	}
 
 	public boolean aceptarReto(Usuario u, Reto reto) {
 		boolean resultado = false;
-		for (Reto ret : listaRetos) {
+		for (Reto ret : RetoDAO.getInstance().getAll()) {
 			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
 				System.out.println("Reto Aceptado correctamente");
 				u.getRetos().add(reto);
+				
 				resultado= true;
 			}else {
 				resultado= false;
 			}
 		}
+		UsuarioDAO.getInstance().guardar(u);
 		return resultado;
 
 	}
 	
 
 	public boolean crearEntrenamiento(Usuario u, Entrenamiento entrenamiento) {
+		
 		u.addEntrenamiento(entrenamiento);
-		System.out.println("Se ha creado el Entrenamiento correctamente");
+		UsuarioDAO.getInstance().guardar(u);
 		EntrenamientoDAO.getInstance().guardar(entrenamiento);
+		System.out.println("Se ha creado el Entrenamiento correctamente");
 		return true;
 	}
 
-	public void RetoARetos(Reto reto) {
-		//listaRetos.add(reto);
-		RetoDAO.getInstance().guardar(reto);
-		
-	}
+//	public void RetoARetos(Reto reto) {
+//		//listaRetos.add(reto);
+//		RetoDAO.getInstance().guardar(reto);
+//		
+//	}
 
 //	public void EntrenaAEntrena(Entrenamiento entre) {
 //		//listaEntrenamiento.add(entre);
@@ -136,6 +140,7 @@ public class ERAppService {
 //	}
 
 	public List<Reto> getTodosRetos() {
+		
 		return RetoDAO.getInstance().getAll();
 
 	}
