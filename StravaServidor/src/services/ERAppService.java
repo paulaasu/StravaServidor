@@ -102,31 +102,16 @@ public class ERAppService {
 	}
 
 	public boolean aceptarReto(Usuario u, Reto reto) {
-		boolean resultado = false;
-		try {
-			u.getRetos().add(reto);
-			UsuarioDAO.getInstance().updateUser(u);
-			System.out.println("Reto Aceptado correctamente");
-			resultado=true;
-			
-		} catch (Exception e) {
-			System.out.println("ERROR EN ACEPTAR RETO");
+		
+		for (Reto ret : RetoDAO.getInstance().getAll()) {
+			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
+				u.getRetos().add(ret);
+				UsuarioDAO.getInstance().updateUser(u);
+				System.out.println("Reto Aceptado correctamente");
+				return true;
 		}
-		
-//		for (Reto ret : RetoDAO.getInstance().getAll()) {
-//			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
-//				u.getRetos().add(reto);
-//				UsuarioDAO.getInstance().updateUser(u);
-//				System.out.println("Reto Aceptado correctamente");
-//				
-//				
-//				resultado= true;
-//			}else {
-//				resultado= false;
-//			}
-//		}
-		
-		return resultado;
+		}
+		return false;
 
 	}
 	
@@ -148,19 +133,7 @@ public class ERAppService {
 	}
 
 	public List<Entrenamiento> getTodosEntrenamiento(Usuario usuario) {
-		System.out.println(usuario.getNombre());
 		return usuario.getEntrenamientos();
-		
-//		List<Entrenamiento> listaEntrenaPersonal = new ArrayList<>();
-//		for (Entrenamiento entrenamiento : listaEntrenamiento) {
-//			if (entrenamiento.getCreador() == usuario.getNumero()) {
-//				listaEntrenaPersonal.add(entrenamiento);
-//			}
-//		}
-//		
-//		
-//		return listaEntrenaPersonal;
-
 	}
 
 	public List<Reto> getRetosAceptados(Usuario usuario) {

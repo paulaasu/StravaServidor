@@ -87,18 +87,11 @@ public class MainProgram {
 		entrenamientos.add(entrenamiento1);
 		user1.setEntrenamientos(entrenamientos);
 
-		System.out.println("Entrenamientos Main: ");
-		for (int i = 0; i < user1.getEntrenamientos().size(); i++) {
-			System.out.println("HOLA!" + user1.getEntrenamientos().get(i));
-
-		}
-
 		//Save Users in the DB
 //		UsuarioDAO.getInstance().guardar(user0);
 //		UsuarioDAO.getInstance().guardar(user1);
 //		EntrenamientoDAO.getInstance().guardar(entrenamiento1);
-//		UserDAO.getInstance().save(user1);
-//		UserDAO.getInstance().save(user2);
+
 	}
 
 }

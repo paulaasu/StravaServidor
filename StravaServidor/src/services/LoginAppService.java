@@ -66,11 +66,6 @@ public class LoginAppService {
 			if (LoginFactory.crearLoginService("Google").comprobarCuenta(email, contrasenya)==true) {
 				for (Usuario usu : UsuarioDAO.getInstance().getAll()) {
 					if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-						System.out.println("Entrenamientos LoginAppService: "+usu.getNombre());
-						for(int i=0; i<usu.getEntrenamientos().size(); i++) {
-							System.out.println("HOLA!"+usu.getEntrenamientos().get(i));
-							
-						}
 						return usu;
 					}
 			}	
@@ -85,43 +80,6 @@ public class LoginAppService {
 	}
 		return null;
 }
-	
-//	public Usuario loginFacebook(String email, String nickName) {
-//		Usuario u = new Usuario();
-//		for (Usuario usu : listaUsuarios) {
-//			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-//				return usu;
-//
-//			}
-//		}
-//		return u;
-//	}
-//
-//	public Usuario loginGoogle(String email, String nickName) {
-//		Usuario u = new Usuario();
-//		for (Usuario usu : listaUsuarios) {
-//			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)) {
-//				return usu;
-//
-//			}
-//		}
-//		return u;
-//	}
-//
-//	public UsuarioGmail loginGmail(String email, String password, String nickName) {
-//
-//		UsuarioGmail u = new UsuarioGmail();
-//
-//		
-//		for (UsuarioGmail usu : listaUsuariosGmail) {
-//			if (usu.getEmail().equals(email) && usu.getNombre().equals(nickName)
-//					&& usu.getPassword().equals(password)) {
-//				return usu;
-//		}
-//		
-//		}
-//		return u;
-//	}
 
 	public boolean registrarObligatorio(String email, String password, String nickName, TipoUsuarioDTO tipoUsuarioDTO) {
 		

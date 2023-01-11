@@ -12,7 +12,7 @@ import javax.jdo.annotations.Persistent;
 
 import domain.TipoUsuario;
 
-@PersistenceCapable(detachable="true")
+@PersistenceCapable(detachable = "true")
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	public static int contador=1;
@@ -26,8 +26,10 @@ public class Usuario {
 	private float frecCardResposo;
 	
 	@Persistent(defaultFetchGroup = "true")
+	@Join
 	private List<Reto> retos = new ArrayList<>();
 	@Persistent(defaultFetchGroup = "true")
+	@Join
 	private List<Entrenamiento> entrenamientos = new ArrayList<>();
 	
 	
