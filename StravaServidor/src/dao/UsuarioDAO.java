@@ -161,6 +161,26 @@ public class UsuarioDAO implements IDAO<Usuario>{
 		}
 		
 	}
+	
+	//para actualizar el usuario
+	public void updateUser(Usuario usu) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+			pm.makePersistent(usu);
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error retreiving an extent: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			pm.close();
+		}
+	}
 
 	
 }

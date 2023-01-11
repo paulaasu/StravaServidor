@@ -1,3 +1,7 @@
-/services/
+/ServerRemote/
 /dao/
 /domain/
+/dto/
+/services/
+/servidor/
+/factory/

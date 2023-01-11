@@ -94,9 +94,9 @@ public class MainProgram {
 		}
 
 		//Save Users in the DB
-		UsuarioDAO.getInstance().guardar(user0);
-		UsuarioDAO.getInstance().guardar(user1);
-		EntrenamientoDAO.getInstance().guardar(entrenamiento1);
+//		UsuarioDAO.getInstance().guardar(user0);
+//		UsuarioDAO.getInstance().guardar(user1);
+//		EntrenamientoDAO.getInstance().guardar(entrenamiento1);
 //		UserDAO.getInstance().save(user1);
 //		UserDAO.getInstance().save(user2);
 	}

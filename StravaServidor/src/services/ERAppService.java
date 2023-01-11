@@ -103,17 +103,29 @@ public class ERAppService {
 
 	public boolean aceptarReto(Usuario u, Reto reto) {
 		boolean resultado = false;
-		for (Reto ret : RetoDAO.getInstance().getAll()) {
-			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
-				System.out.println("Reto Aceptado correctamente");
-				u.getRetos().add(reto);
-				
-				resultado= true;
-			}else {
-				resultado= false;
-			}
+		try {
+			u.getRetos().add(reto);
+			UsuarioDAO.getInstance().updateUser(u);
+			System.out.println("Reto Aceptado correctamente");
+			resultado=true;
+			
+		} catch (Exception e) {
+			System.out.println("ERROR EN ACEPTAR RETO");
 		}
-		UsuarioDAO.getInstance().guardar(u);
+		
+//		for (Reto ret : RetoDAO.getInstance().getAll()) {
+//			if (ret.getNombre().equals(reto.getNombre())&& ret.getDescripcion().equals(reto.getDescripcion()) && ret.getDeporte().equals(reto.getDeporte()) && ret.getDistancia()==reto.getDistancia() && ret.getFecha_ini().equals(reto.getFecha_ini())&& ret.getFecha_fin().equals(reto.getFecha_fin())&&ret.getCreador()==reto.getCreador()) {
+//				u.getRetos().add(reto);
+//				UsuarioDAO.getInstance().updateUser(u);
+//				System.out.println("Reto Aceptado correctamente");
+//				
+//				
+//				resultado= true;
+//			}else {
+//				resultado= false;
+//			}
+//		}
+		
 		return resultado;
 
 	}
@@ -122,22 +134,12 @@ public class ERAppService {
 	public boolean crearEntrenamiento(Usuario u, Entrenamiento entrenamiento) {
 		
 		u.addEntrenamiento(entrenamiento);
-		UsuarioDAO.getInstance().guardar(u);
-		EntrenamientoDAO.getInstance().guardar(entrenamiento);
+		UsuarioDAO.getInstance().updateUser(u);
+//		UsuarioDAO.getInstance().guardar(u);
+//		EntrenamientoDAO.getInstance().guardar(entrenamiento);
 		System.out.println("Se ha creado el Entrenamiento correctamente");
 		return true;
 	}
-
-//	public void RetoARetos(Reto reto) {
-//		//listaRetos.add(reto);
-//		RetoDAO.getInstance().guardar(reto);
-//		
-//	}
-
-//	public void EntrenaAEntrena(Entrenamiento entre) {
-//		//listaEntrenamiento.add(entre);
-//		EntrenamientoDAO.getInstance().guardar(entre);
-//	}
 
 	public List<Reto> getTodosRetos() {
 		
@@ -146,13 +148,7 @@ public class ERAppService {
 	}
 
 	public List<Entrenamiento> getTodosEntrenamiento(Usuario usuario) {
-		System.out.println("metodo getEntrenamientos USUARIO:");
 		System.out.println(usuario.getNombre());
-		System.out.println("Entrenamientos: ");
-		for(int i=0; i<usuario.getEntrenamientos().size(); i++) {
-			System.out.println(usuario.getEntrenamientos().get(i));
-			
-		}
 		return usuario.getEntrenamientos();
 		
 //		List<Entrenamiento> listaEntrenaPersonal = new ArrayList<>();
