@@ -5,6 +5,8 @@ import java.util.List;
 
 import domain.Reto;
 import domain.TipoDeporte;
+import domain.TipoUsuario;
+import domain.Usuario;
 
 public class RetoAssembler {
 
@@ -34,8 +36,11 @@ public class RetoAssembler {
 		} else if(reto.getDeporte().equals(TipoDeporte.RUNNING)) {
 			dto.setDeporte(TipoDeporteDTO.RUNNING);
 		}
-		dto.setCreador(reto.getCreador());
-				
+		
+		UsuarioAssembler asem = UsuarioAssembler.getInstance();
+		UsuarioDTO usuDTO = asem.usuarioToDTO(reto.getCreador());
+		dto.setCreador(usuDTO);
+		
 		return dto;
 	}
 	public Reto retoDTOTo(RetoDTO retoDTO) {
@@ -52,7 +57,29 @@ public class RetoAssembler {
 		} else if(retoDTO.getDeporte().equals(TipoDeporteDTO.RUNNING)) {
 			reto.setDeporte(TipoDeporte.RUNNING);
 		}
-		reto.setCreador(retoDTO.getCreador());
+		
+		
+//		Usuario usu = new Usuario();
+//		usu.setEmail(retoDTO.getCreador().getEmail());
+//		usu.setAltura(retoDTO.getCreador().getAltura());
+//		usu.setFrecCardMax(retoDTO.getCreador().getFrecCardMax());
+//		usu.setFrecCardResposo(retoDTO.getCreador().getFrecCardResposo());
+//		usu.setNombre(retoDTO.getCreador().getNombre());
+//		usu.setPesoKG(retoDTO.getCreador().getPesoKG());
+//		usu.setNumero(retoDTO.getCreador().getNumero());
+//		
+//		if(retoDTO.getCreador().getTipoUsuario().equals(TipoUsuarioDTO.GOOGLE)) {
+//			usu.setTipoUsuario(TipoUsuario.GOOGLE);
+//		} else if(retoDTO.getCreador().getTipoUsuario().equals(TipoUsuarioDTO.FACEBOOK)) {
+//			usu.setTipoUsuario(TipoUsuario.FACEBOOK);
+//		}else if(retoDTO.getCreador().getTipoUsuario().equals(TipoUsuarioDTO.EMAIL)) {
+//			usu.setTipoUsuario(TipoUsuario.EMAIL);
+//		}
+		
+//		reto.setCreador(usu);
+		UsuarioAssembler asem = UsuarioAssembler.getInstance();
+		Usuario usu = asem.usuarioDTOtoUsuario(retoDTO.getCreador());
+		reto.setCreador(usu);
 				
 		return reto;
 	}
@@ -60,11 +87,10 @@ public class RetoAssembler {
 	
 	public List<RetoDTO> retosToDTO(List<Reto> retos) {		
 		List<RetoDTO> dtos = new ArrayList<>();
-		
 		for (Reto reto : retos) {
+							
 			dtos.add(this.retoToDTO(reto));
 		}
-		
 		return dtos;
 	}
 	

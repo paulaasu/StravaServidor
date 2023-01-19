@@ -138,11 +138,12 @@ public int getNumero() {
 		}
 	}
 	
+
 	@Override
 	public String toString() {
-		return "Usuario [numero=" + numero + ", nombre=" + nombre + ", email=" + email + ", pesoKG=" + pesoKG
-				+ ", altura=" + altura + ", frecCardMax=" + frecCardMax + ", frecCardResposo=" + frecCardResposo
-				+ ", tipoUsuario=" + tipoUsuario + ", retos=" + retos + "]";
+		return "Usuario [numero=" + numero + ", nombre=" + nombre + ", email=" + email + ", tipoUsuario=" + tipoUsuario
+				+ ", pesoKG=" + pesoKG + ", altura=" + altura + ", frecCardMax=" + frecCardMax + ", frecCardResposo="
+				+ frecCardResposo + ", retos=" + retos + ", entrenamientos=" + entrenamientos + "]";
 	}
 
 	@Override

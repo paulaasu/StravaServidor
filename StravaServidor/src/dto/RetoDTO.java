@@ -10,10 +10,10 @@ public class RetoDTO implements Serializable {
 	private String fecha_fin;	
 	private int distancia;
 	private TipoDeporteDTO deporte;
-	private int creador;
+	private UsuarioDTO creador;
 
 	
-	public RetoDTO(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, TipoDeporteDTO deporte, int creador) {
+	public RetoDTO(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia, TipoDeporteDTO deporte, UsuarioDTO creador) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -32,7 +32,7 @@ public class RetoDTO implements Serializable {
 		this.fecha_fin = "";
 		this.distancia = 0;
 		this.deporte = null;
-		this.creador = 0;
+		this.creador = null;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -73,10 +73,10 @@ public class RetoDTO implements Serializable {
 		this.deporte = deporte;
 	}
 
-	public int getCreador() {
+	public UsuarioDTO getCreador() {
 		return creador;
 	}
-	public void setCreador(int creador) {
+	public void setCreador(UsuarioDTO creador) {
 		this.creador = creador;
 	}
 

@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 
 import domain.Usuario;
 
@@ -13,15 +15,18 @@ import domain.Usuario;
 public class Reto {
 	private String nombre;
 	private String descripcion;
-	private String fecha_ini; //duda: Date o String?
+	private String fecha_ini;
 	private String fecha_fin;	
 	private int distancia;
 	private TipoDeporte deporte;
-	private int creador;
+	
+	@Join
+	@Persistent(defaultFetchGroup = "true")
+	private Usuario creador;
 	
 	
 	public Reto(String nombre, String descripcion, String fecha_ini, String fecha_fin, int distancia,
-			TipoDeporte deporte, int creador) {
+			TipoDeporte deporte, Usuario creador) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -39,7 +44,7 @@ public class Reto {
 		this.fecha_fin = null;
 		this.distancia = 0;
 		this.deporte = null;
-		this.creador = 0;
+		this.creador = null;
 	}
 	public String getNombre() {
 		return nombre;
@@ -80,10 +85,10 @@ public class Reto {
 	public void setDeporte(TipoDeporte deporte) {
 		this.deporte = deporte;
 	}
-	public int getCreador() {
+	public Usuario getCreador() {
 		return creador;
 	}
-	public void setCreador(int creador) {
+	public void setCreador(Usuario creador) {
 		this.creador = creador;
 	}
 	@Override
@@ -91,5 +96,6 @@ public class Reto {
 		return "Reto [nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_ini=" + fecha_ini + ", fecha_fin="
 				+ fecha_fin + ", distancia=" + distancia + ", deporte=" + deporte + ", creador=" + creador + "]";
 	}
+	
 	
 }

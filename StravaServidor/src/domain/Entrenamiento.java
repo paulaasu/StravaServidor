@@ -29,8 +29,6 @@ public class Entrenamiento {
 		this.fecha_ini = fecha_ini;
 		this.hora = hora;
 		this.duracion = duracion;
-//		this.creador= creador;
-		//usuario u1, entrenamiento e1 -->e1.setCreador(u1);
 	}
 	public Entrenamiento() {
 		super();
@@ -40,8 +38,6 @@ public class Entrenamiento {
 		this.fecha_ini = "";
 		this.hora = 0;
 		this.duracion = 0;
-//		this.creador= 0;
-		//usuario u1, entrenamiento e1 -->e1.setCreador(u1);
 	}
 	
 	public String getTitulo() {
@@ -57,9 +53,6 @@ public class Entrenamiento {
 	public void setDeporte(TipoDeporte deporte) {
 		this.deporte = deporte;
 	}
-//	public void setCreador(int creador) {
-//		this.creador = creador;
-//	}
 	public int getDistanciaKm() {
 		return distanciaKm;
 	}
@@ -89,13 +82,6 @@ public class Entrenamiento {
 		return "Entrenamiento [titulo=" + titulo + ", deporte=" + deporte + ", distanciaKm=" + distanciaKm
 				+ ", fecha_ini=" + fecha_ini + ", hora=" + hora + ", duracion=" + duracion + "]";
 	}
-	
-//	public int getCreador() {
-//		return creador;
-//	}
-//	public void setCreador(Usuario creador) {
-//		this.creador = creador.getNumero();
-//	}
 	
 
 }

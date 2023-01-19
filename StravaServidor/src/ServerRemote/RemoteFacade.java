@@ -16,6 +16,8 @@ import dto.EntrenamientoDTO;
 import dto.RetoAssembler;
 import dto.RetoDTO;
 import dto.TipoUsuarioDTO;
+import dto.UsuarioAssembler;
+import dto.UsuarioDTO;
 import services.ERAppService;
 import services.LoginAppService;
 
@@ -102,6 +104,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 		
 		if (this.serverState.containsKey(token)) {
 			
+			UsuarioAssembler asem = UsuarioAssembler.getInstance();
+			UsuarioDTO usuDTO = asem.usuarioToDTO(this.serverState.get(token));
+			retoDTO.setCreador(usuDTO);
 			RetoAssembler assembler = RetoAssembler.getInstance();//Usar patron singleton
 			Reto reto = assembler.retoDTOTo(retoDTO);
 
@@ -188,7 +193,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 	public List<RetoDTO> getTodosRetos() throws RemoteException {
 		List<Reto> listaRetos;
 		listaRetos = eraService.getTodosRetos();
-
+		
 		RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton
 		List<RetoDTO> listaRetosDTO = assembler.retosToDTO(listaRetos);
 		return listaRetosDTO;
@@ -228,19 +233,17 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 
 	@Override
 	public boolean aceptarReto(long token, RetoDTO retoDTO) throws RemoteException {
-		boolean result=false;
 		if (this.serverState.containsKey(token)) {
 			RetoAssembler assembler=RetoAssembler.getInstance();//usar patron singleton 
 			Reto re =assembler.retoDTOTo(retoDTO);
-			
 			if(eraService.aceptarReto(this.serverState.get(token), re)) {
-				result =true;
+				return true;
 			}
 			
 		} else {
 			throw new RemoteException("User is not logged in!");
 		}
-		return result;
+		return false;
 		
 	}
 

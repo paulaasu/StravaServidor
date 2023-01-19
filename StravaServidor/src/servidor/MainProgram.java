@@ -8,6 +8,7 @@ import ServerRemote.IRemoteFacade;
 import ServerRemote.RemoteFacade;
 import dao.DAO;
 import dao.EntrenamientoDAO;
+import dao.RetoDAO;
 import dao.UsuarioDAO;
 import domain.Usuario;
 import domain.Entrenamiento;
@@ -78,7 +79,6 @@ public class MainProgram {
 		user1.setPesoKG(0);
 		user1.setFrecCardMax(0);
 		user1.setFrecCardResposo(0);
-		;
 		user1.setTipoUsuario(TipoUsuario.GOOGLE);
 		List<Reto> retosAceptados1 = new ArrayList<Reto>();
 		user1.setRetos(retosAceptados);
@@ -87,11 +87,11 @@ public class MainProgram {
 		entrenamientos.add(entrenamiento1);
 		user1.setEntrenamientos(entrenamientos);
 
+		
 		//Save Users in the DB
 //		UsuarioDAO.getInstance().guardar(user0);
 //		UsuarioDAO.getInstance().guardar(user1);
 //		EntrenamientoDAO.getInstance().guardar(entrenamiento1);
-
 	}
 
 }
